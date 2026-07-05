@@ -1,0 +1,11 @@
+ Built the solution with 0 errors
+
+ Created and seeded the database with 88 chemicals + Admin/User accounts
+
+Launched the Login Window
+
+Logged in with Admin credentials
+
+Reached the MainWindow!
+
+5 July/ 6.42
