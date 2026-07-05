@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextilePro.Core", "TextilePro.Core\TextilePro.Core.csproj", "{9888E72C-63A8-481D-BAD0-7C830297363E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextilePro.UI", "TextilePro.UI\TextilePro.UI.csproj", "{7CD84D87-530B-42D4-B8A1-4702988803BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9888E72C-63A8-481D-BAD0-7C830297363E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9888E72C-63A8-481D-BAD0-7C830297363E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9888E72C-63A8-481D-BAD0-7C830297363E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9888E72C-63A8-481D-BAD0-7C830297363E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CD84D87-530B-42D4-B8A1-4702988803BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD84D87-530B-42D4-B8A1-4702988803BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD84D87-530B-42D4-B8A1-4702988803BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD84D87-530B-42D4-B8A1-4702988803BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

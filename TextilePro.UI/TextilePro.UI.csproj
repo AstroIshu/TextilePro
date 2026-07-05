@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\TextilePro.Core\TextilePro.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.142" />
+    <PackageReference Include="QuestPDF" Version="2026.6.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+  <OutputType>WinExe</OutputType>
+  <TargetFramework>net8.0-windows</TargetFramework>
+  <UseWPF>true</UseWPF>
+  
+  <!-- Self-contained single file for distribution -->
+  <PublishSingleFile>true</PublishSingleFile>
+  <SelfContained>true</SelfContained>
+  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  
+  <!-- Professional metadata -->
+  <ApplicationIcon>Assets\appicon.ico</ApplicationIcon>
+  <AssemblyName>TextilePro</AssemblyName>
+  <Version>1.0.0.0</Version>
+  <Company>AIM</Company>
+  <Product>TextilePro</Product>
+  <Copyright>© 2026 AIM</Copyright>
+</PropertyGroup>
+
+</Project>

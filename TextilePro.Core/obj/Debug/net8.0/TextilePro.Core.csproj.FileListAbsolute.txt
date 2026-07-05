@@ -1,0 +1,14 @@
+D:\Codes\Textile\TextilePro.Core\bin\Debug\net8.0\TextilePro.Core.deps.json
+D:\Codes\Textile\TextilePro.Core\bin\Debug\net8.0\TextilePro.Core.runtimeconfig.json
+D:\Codes\Textile\TextilePro.Core\bin\Debug\net8.0\TextilePro.Core.dll
+D:\Codes\Textile\TextilePro.Core\bin\Debug\net8.0\TextilePro.Core.pdb
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.csproj.AssemblyReference.cache
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.AssemblyInfoInputs.cache
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.AssemblyInfo.cs
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.csproj.CoreCompileInputs.cache
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.dll
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\refint\TextilePro.Core.dll
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.pdb
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.genruntimeconfig.cache
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\ref\TextilePro.Core.dll

@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Winsome Textile | Commodity Chemicals Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dcebf5 0%, #c4ddf2 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 28px 32px;
+            min-height: 100vh;
+        }
+
+        .winsome-dashboard {
+            max-width: 1600px;
+            margin: 0;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 55, 80, 0.28);
+            overflow: hidden;
+            border: 1px solid rgba(96, 165, 210, 0.35);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 20px 32px;
+            background: linear-gradient(105deg, #eef7ff 0%, #e2f0fe 100%);
+            border-bottom: 2px solid #c2ddf5;
+        }
+        .logo-area h2 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1172a4, #2b95ce);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo-area p {
+            font-size: 0.75rem;
+            color: #2c6e9e;
+            font-weight: 500;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 14px;
+        }
+        .btn {
+            padding: 9px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: #1f7ea3;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .btn-primary:hover {
+            background: #0e6588;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(27, 105, 145, 0.2);
+        }
+        .btn-outline-sky {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border: 1px solid #9ac4de;
+            color: #1a6d93;
+        }
+        .btn-outline-sky:hover {
+            background: white;
+            border-color: #5c9bc2;
+        }
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            margin: 0 3px;
+            font-weight: 500;
+        }
+        .btn-sm-edit { background: #e0f0fa; color: #1c6e96; }
+        .btn-sm-del { background: #fee9e7; color: #bc5a4a; }
+
+        .tabs-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            background: #ffffff;
+            padding: 0 28px;
+            gap: 2px;
+            border-bottom: 1px solid #d9eaf5;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 15px 24px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #3f6f91;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 20px 20px 0 0;
+            letter-spacing: 0.3px;
+        }
+        .tab-btn.active {
+            color: #1279a8;
+            background: #f0f9ff;
+            border-bottom: 3px solid #2b9fd6;
+            font-weight: 700;
+        }
+        .tab-content {
+            display: none;
+            padding: 30px 32px;
+            background: #ffffff;
+            animation: fadeSlide 0.25s ease;
+        }
+        .tab-content.active { display: block; }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .card-panel {
+            background: #fbfefe;
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid #d9edfc;
+            box-shadow: 0 4px 12px rgba(64, 144, 184, 0.05);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+            margin-bottom: 26px;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field-group label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #216e94;
+        }
+        input, select, textarea {
+            padding: 11px 16px;
+            border: 1px solid #cde3f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            background: white;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #47b5e0;
+            box-shadow: 0 0 0 3px rgba(71, 181, 224, 0.15);
+        }
+        input:read-only {
+            background: #f8fafc;
+            color: #4a627a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        th {
+            background: #e5f2fc;
+            padding: 13px 12px;
+            text-align: left;
+            font-weight: 700;
+            color: #135d83;
+        }
+        td {
+            padding: 11px 12px;
+            border-bottom: 1px solid #eaf3fa;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .badge-A { background: #d2f0e2; color: #0f6b41; }
+        .badge-B { background: #ffefcf; color: #b96f0c; }
+        .badge-C { background: #ffe1dc; color: #bc4a3a; }
+        .upload-zone {
+            background: #f5fafe;
+            border: 2px dashed #b9d9f0;
+            border-radius: 28px;
+            padding: 30px;
+            text-align: center;
+        }
+        .analysis-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: #f2f9ff;
+            border-radius: 28px;
+            padding: 18px 22px;
+            flex: 1;
+            min-width: 180px;
+            border: 1px solid #cde3f2;
+        }
+        .stat-card h4 { color: #1f6d93; font-size: 0.85rem; }
+        .edit-mode-badge {
+            background: #f0f7fc;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            margin-left: 12px;
+            color: #1172a4;
+        }
+        .evaluation-grid {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #e2edf5;
+            border-radius: 20px;
+            padding: 5px;
+        }
+        .eval-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 12px 10px;
+            border-bottom: 1px solid #eef3fa;
+            gap: 10px;
+        }
+        .eval-question {
+            flex: 3;
+            min-width: 250px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e4a6b;
+        }
+        .eval-options {
+            flex: 2;
+            min-width: 200px;
+        }
+        .eval-score {
+            width: 70px;
+            text-align: center;
+            font-weight: 700;
+            color: #1f6d93;
+        }
+        .total-score-box {
+            background: #e5f2fc;
+            border-radius: 20px;
+            padding: 15px 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .analysis-subtab {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #5c6f87;
+            cursor: pointer;
+            border-radius: 20px 20px 0 0;
+            transition: all 0.2s;
+        }
+        .analysis-subtab.active {
+            color: #1f7ea3;
+            background: #f0f9ff;
+            border-bottom: 2px solid #1f7ea3;
+        }
+        .analysis-subcontent {
+            display: none;
+        }
+        .analysis-subcontent.active {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        canvas {
+            max-height: 400px;
+            width: 100%;
+        }
+        .editable-target {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 20px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        /* ── Manual Inventory Modal ── */
+        .inv-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 40, 65, 0.45);
+            backdrop-filter: blur(3px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .inv-modal-overlay.open { display: flex; }
+        .inv-modal {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px 36px;
+            width: 560px;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,55,80,0.28);
+            border: 1px solid #c2ddf5;
+            animation: fadeSlide 0.22s ease;
+        }
+        .inv-modal h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1172a4;
+            margin-bottom: 22px;
+        }
+        .inv-modal .field-group { margin-bottom: 16px; }
+        .inv-modal .field-group label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #216e94;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .inv-modal input[readonly] {
+            background: #f0f7fc;
+            color: #4a627a;
+            cursor: not-allowed;
+        }
+        .inv-modal-footer {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: flex-end;
+        }
+        /* ── Export Modal ── */
+        .exp-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,40,65,0.48);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .exp-modal-overlay.open { display: flex; }
+        .exp-modal {
+            background: #fff;
+            border-radius: 28px;
+            padding: 34px 38px;
+            width: 620px;
+            max-width: 96vw;
+            max-height: 92vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 70px rgba(0,55,90,0.30);
+            border: 1px solid #b8d9f3;
+            animation: fadeSlide 0.22s ease;
+        }
+        .exp-modal h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0e5f8a;
+            margin-bottom: 6px;
+        }
+        .exp-modal p.sub { font-size:0.75rem; color:#5b7d96; margin-bottom:22px; }
+        .exp-tab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .exp-tab-card {
+            border: 2px solid #cde3f0;
+            border-radius: 16px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: 0.18s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1c5f82;
+            background: #f5fbff;
+            user-select: none;
+        }
+        .exp-tab-card:hover { border-color: #4eaad6; background:#e8f6ff; }
+        .exp-tab-card.selected { border-color: #1279a8; background:#daeffe; color:#0b4f73; }
+        .exp-tab-card .exp-icon { font-size:1.3rem; }
+        .exp-format-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .exp-format-btn {
+            flex: 1;
+            padding: 13px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exp-excel-btn { background: #17a055; color:#fff; }
+        .exp-excel-btn:hover { background: #0f7a3e; transform:translateY(-1px); }
+        .exp-pdf-btn { background: #d63031; color:#fff; }
+        .exp-pdf-btn:hover { background: #a8242a; transform:translateY(-1px); }
+        .exp-select-all { font-size:0.72rem; color:#1279a8; cursor:pointer; text-decoration:underline; margin-bottom:10px; display:inline-block; }
+        .exp-modal-close { float:right; background:none; border:none; font-size:1.3rem; cursor:pointer; color:#7a9ab5; margin-top:-4px; }
+        .exp-modal-close:hover { color:#c0392b; }
+        .exp-section-label {
+            font-size:0.72rem;
+            font-weight:800;
+            text-transform:uppercase;
+            letter-spacing:0.6px;
+            color:#0e5f8a;
+            margin-bottom:10px;
+        }
+        .exp-divider {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin:20px 0 16px;
+            color:#a0bdd0;
+            font-size:0.75rem;
+            font-weight:600;
+        }
+        .exp-divider::before, .exp-divider::after {
+            content:'';
+            flex:1;
+            height:1px;
+            background:#d5e8f3;
+        }
+    </style>
+</head>
+<body>
+<div class="winsome-dashboard">
+    <div class="dashboard-header">
+        <div class="logo-area">
+            <h2>☁️ Winsome Textile Industries Commodity Chemicals</h2>
+            <p>MRSL Risk · Supplier Classification · Purchase Analysis</p>
+        </div>
+        <div class="action-buttons">
+            <div style="position:relative; display:inline-flex; align-items:center;">
+                <button id="jsonToggleBtn" class="btn btn-outline-sky" title="JSON Backup / Restore" style="display:flex; align-items:center; gap:6px;">
+                    🗄️ JSON Backup <span id="jsonToggleArrow" style="font-size:0.65rem; transition:transform 0.2s;">▼</span>
+                </button>
+                <div id="jsonDropdown" style="display:none; position:absolute; top:calc(100% + 8px); right:0; background:#fff; border:1px solid #c2ddf5; border-radius:16px; box-shadow:0 8px 24px rgba(0,55,90,0.15); z-index:999; min-width:210px; overflow:hidden; animation:fadeSlide 0.15s ease;">
+                    <button id="exportFullJsonBtn" style="display:flex; align-items:center; gap:10px; width:100%; padding:12px 18px; background:none; border:none; border-bottom:1px solid #e8f3fb; cursor:pointer; font-size:0.8rem; font-weight:600; color:#1a6d93; font-family:inherit;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='none'">📎 Export JSON (Full Data)</button>
+                    <label for="importJsonInput" style="display:flex; align-items:center; gap:10px; width:100%; padding:12px 18px; background:none; cursor:pointer; font-size:0.8rem; font-weight:600; color:#1a6d93; font-family:inherit;" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='none'">📂 Import JSON & Restore</label>
+                    <input type="file" id="importJsonInput" accept=".json" hidden>
+                </div>
+            </div>
+            <button id="openExportModalBtn" class="btn btn-outline-sky">📥 Download Reports</button>
+            <button id="resetDemoBtn" class="btn btn-outline-sky">⟳ Reset Demo</button>
+            <span style="font-size:0.68rem; color:#4a7fa0; font-weight:500; white-space:nowrap; align-self:center;">© Winsome Textile Industries Ltd. All rights reserved.</span>
+        </div>
+    </div>
+
+    <div class="tabs-wrapper">
+        <button class="tab-btn" data-tab="tab1">🏭 CC Supplier Entry</button>
+        <button class="tab-btn" data-tab="tab2">📋 List of Commodity Chemicals</button>
+        <button class="tab-btn active" data-tab="tab3">⭐ Supplier Evaluation</button>
+        <button class="tab-btn" data-tab="tab4">🏷️ Supplier Classification</button>
+        <button class="tab-btn" data-tab="tab5">📦 CC Inventory</button>
+        <button class="tab-btn" data-tab="tab6">📊 Purchase Analysis</button>
+        <button class="tab-btn" data-tab="tab7">🎯 Target Analysis 2030</button>
+    </div>
+
+    <!-- TAB 1 -->
+    <div id="tab1" class="tab-content">
+        <div class="card-panel">
+            <h3 style="margin-bottom: 20px; color: #1c6b92;">➕ Register / Edit Commodity Chemical Seller</h3>
+            <div class="form-row">
+                <div class="field-group"><label>Name of CC seller *</label><input type="text" id="supName" placeholder="Ex: BASF SE"></div>
+                <div class="field-group"><label>Country of purchase</label><input type="text" id="supCountry" placeholder="Germany"></div>
+                <div class="field-group"><label>Website (NA if none)</label><input type="text" id="supWeb" value="NA"></div>
+                <div class="field-group"><label>Contact person</label><input type="text" id="supContact" value="NA"></div>
+                <div class="field-group"><label>Telephone</label><input type="text" id="supPhone" value="NA"></div>
+                <div class="field-group"><label>Email</label><input type="text" id="supEmail" value="NA"></div>
+                <div class="field-group"><label>Address of CC Seller</label><textarea id="supAddress" rows="2"></textarea></div>
+            </div>
+            <div style="display:flex; gap:12px;">
+                <button id="addSupplierBtn" class="btn btn-primary">➕ Save New Supplier</button>
+                <button id="updateSupplierBtn" class="btn btn-outline-sky" style="display:none;">✏️ Update Supplier</button>
+                <button id="cancelEditBtn" class="btn btn-outline-sky" style="display:none;">❌ Cancel Edit</button>
+            </div>
+            <input type="hidden" id="editSupplierId" value="">
+        </div>
+        <div class="card-panel">
+            <h4>📋 Existing Suppliers</h4>
+            <div style="overflow-x: auto;">
+                <table id="suppliersTable">
+                    <thead><tr><th>Name</th><th>Country</th><th>Website</th><th>Contact</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2 -->
+    <div id="tab2" class="tab-content">
+        <div class="card-panel">
+            <h3 style="color:#1c6b92;">🧪 Assign Commodity Chemical (ZDHC Guide)</h3>
+            <div class="form-row">
+                <div class="field-group"><label>CC Supplier Name *</label><select id="chemSupplierSelect"></select></div>
+                <div class="field-group"><label>Select Chemical from ZDHC Guide ▼</label><select id="chemicalSelectGuide"></select></div>
+                <div class="field-group"><label>Serial No.</label><input id="chemSerial" readonly placeholder="Auto filled"></div>
+                <div class="field-group"><label>CAS No.</label><input id="chemCas" readonly placeholder="Auto filled"></div>
+                <div class="field-group"><label>Potential Usage</label><input id="chemUsage" readonly placeholder="Auto filled"></div>
+                <div class="field-group"><label>ZDHC MRSL Categorisation</label><input id="chemRisk" readonly placeholder="Auto filled"></div>
+            </div>
+            <button id="addChemicalBtn" class="btn btn-primary">➕ Add Chemical to Supplier</button>
+        </div>
+        <div class="card-panel">
+            <h4>📄 Commodity Chemicals List</h4>
+            <div style="overflow-x: auto;">
+                <table id="chemicalsTable">
+                    <thead><tr><th>Supplier</th><th>Serial</th><th>Chemical Name</th><th>CAS</th><th>Usage</th><th>Risk</th><th>Action</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3 -->
+    <div id="tab3" class="tab-content active">
+        <div class="card-panel">
+            <h3 style="color:#1c6b92;">📝 Supplier Evaluation Questionnaire</h3>
+            <div class="form-row">
+                <div class="field-group"><label>Select Supplier to Evaluate</label><select id="evalSupplierSelectMain"></select></div>
+                <div class="field-group"><label>Evaluation Date</label><input type="date" id="evalDate"></div>
+                <div class="field-group"><label>Self-declaration from CC seller</label><select id="selfDeclStatusEval"><option value="Available">✅ Available</option><option value="Not Available">❌ Not Available</option></select></div>
+                <div class="field-group">
+                    <label>Upload Declaration Document</label>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <label for="selfDeclFileInput" class="btn btn-outline-sky btn-sm" style="cursor:pointer; margin:0; padding:6px 14px; font-size:0.76rem;">📎 Choose File</label>
+                        <input type="file" id="selfDeclFileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx" hidden>
+                        <span id="selfDeclFileName" style="font-size:0.73rem; color:#4a7fa0; font-style:italic; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">No file chosen</span>
+                        <button id="selfDeclFileClear" type="button" title="Remove file" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:1rem;padding:0;display:none;">✕</button>
+                    </div>
+                </div>
+            </div>
+            <div class="evaluation-grid" id="evalQuestionsContainer"></div>
+            <div class="total-score-box">
+                <h4>Total Score: <span id="totalScoreDisplay">0</span> / 24</h4>
+                <p id="scoreClassificationMsg"></p>
+                <button id="saveEvalResultsBtn" class="btn btn-primary">💾 Save Evaluation Results</button>
+            </div>
+        </div>
+        <div class="card-panel">
+            <h4>📊 Saved Evaluation Records</h4>
+            <div style="overflow-x: auto;">
+                <table id="evalTable">
+                    <thead><tr><th>Supplier</th><th>Date</th><th>Score</th><th>Self‑declaration</th><th>Declaration File</th><th>Class</th><th>Actions</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4 -->
+    <div id="tab4" class="tab-content">
+        <div class="card-panel">
+            <h3 style="color:#1c6b92;">🏆 Supplier Classification Matrix</h3>
+            <div style="overflow-x: auto;">
+                <table id="classificationTable">
+                    <thead><tr><th>Supplier</th><th>Score</th><th>Class</th><th>Action Required</th><th>Products</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5 -->
+    <div id="tab5" class="tab-content">
+        <div class="card-panel">
+            <h3>📂 Upload Inventory (Excel/CSV)</h3>
+            <div class="upload-zone">
+                <div style="display:flex; align-items:center; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
+                    <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                        <label style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#216e94;">Purchase Month for Upload</label>
+                        <div style="display:flex; gap:8px; align-items:center;">
+                            <select id="uploadMonthSelect" style="border-radius:20px; padding:8px 14px; border:1px solid #cde3f0; font-size:0.83rem; min-width:120px;">
+                                <option value="">-- Month --</option>
+                                <option value="Jan">January</option><option value="Feb">February</option>
+                                <option value="Mar">March</option><option value="Apr">April</option>
+                                <option value="May">May</option><option value="Jun">June</option>
+                                <option value="Jul">July</option><option value="Aug">August</option>
+                                <option value="Sep">September</option><option value="Oct">October</option>
+                                <option value="Nov">November</option><option value="Dec">December</option>
+                            </select>
+                            <select id="uploadYearSelect" style="border-radius:20px; padding:8px 14px; border:1px solid #cde3f0; font-size:0.83rem; min-width:90px;"></select>
+                            <span id="uploadMonthPreview" style="font-size:0.78rem;color:#1279a8;font-weight:600;min-width:70px;"></span>
+                        </div>
+                    </div>
+                </div>
+                <input type="file" id="inventoryFileUpload" accept=".xlsx, .csv, .xls">
+                <div style="display:flex; gap:10px; margin-top:15px; justify-content:center; flex-wrap:wrap;">
+                    <button id="processInventoryUploadBtn" class="btn btn-primary btn-sm">⬆️ Process & Load Inventory</button>
+                    <button id="downloadInventoryTemplateBtn" class="btn btn-outline-sky btn-sm">⬇️ Download Upload Template</button>
+                </div>
+                <p style="font-size:0.7rem;color:#7aabbc;margin-top:10px;">💡 Template is pre-filled with all chemicals from Tab 2. Add Volume column only. Selected month will be applied to all uploaded rows (overrides any month in file).</p>
+            </div>
+        </div>
+        <div class="card-panel">
+            <h4>🔍 Filter Inventory Records</h4>
+            <div class="form-row">
+                <div class="field-group"><label>Filter by Supplier</label><select id="filterSupplier"><option value="">-- All Suppliers --</option></select></div>
+                <div class="field-group"><label>Filter by Chemical</label><input type="text" id="filterChemical" placeholder="Type to filter..."></div>
+                <div class="field-group"><label>Filter by Month</label><select id="filterMonth"><option value="">-- All Months --</option></select></div>
+                <div class="field-group"><button id="clearFiltersBtn" class="btn btn-outline-sky btn-sm">Clear Filters</button></div>
+            </div>
+        </div>
+        <div class="card-panel">
+            <h4>📦 Inventory Records</h4>
+            <div style="overflow-x: auto;">
+                <table id="inventoryTable">
+                    <thead><tr><th>Supplier</th><th>Chemical</th><th>CAS</th><th>Volume</th><th>Type</th><th>Purchase Month</th><th>Action</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button id="addManualInventoryBtn" class="btn btn-outline-sky btn-sm" style="margin-top:20px;">+ Add Manual Inventory Row</button>
+        </div>
+    </div>
+
+    <!-- TAB 6 -->
+    <div id="tab6" class="tab-content">
+        <div class="card-panel">
+            <h3 style="color:#1c6b92; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">📈 Purchase & Volume Analytics <span id="tab6DataPeriod" style="font-size:0.72rem; font-weight:600; background:#e2f3fc; color:#1279a8; border:1px solid #b0d9f0; border-radius:30px; padding:4px 14px; white-space:nowrap;"></span></h3>
+            <div class="form-row">
+                <div class="field-group"><label>Select Year</label><select id="analysisYearFilter"><option value="all">All Time</option></select></div>
+                <div class="field-group"><label>Start Month</label><select id="analysisStartMonth"><option value="">-- Select --</option></select></div>
+                <div class="field-group"><label>End Month</label><select id="analysisEndMonth"><option value="">-- Select --</option></select></div>
+                <div class="field-group"><button id="applyPeriodFilter" class="btn btn-primary btn-sm">Apply Filter</button><button id="resetPeriodFilter" class="btn btn-outline-sky btn-sm">Reset</button></div>
+            </div>
+            <div style="display: flex; gap: 10px; border-bottom: 1px solid #d9eaf5; margin-bottom: 20px;">
+                <button class="analysis-subtab active" data-subtab="summary">📊 Summary</button>
+                <button class="analysis-subtab" data-subtab="monthwise">📅 Month-wise Data</button>
+                <button class="analysis-subtab" data-subtab="graphical">📈 Graphical View</button>
+            </div>
+            <div id="summaryView" class="analysis-subcontent active"><div id="analysisDynamicContainer"></div></div>
+            <div id="monthwiseView" class="analysis-subcontent"><div style="overflow-x: auto;"><table id="monthwiseTable"><thead><tr><th>Month</th><th>Class A</th><th>Class B</th><th>Class C</th><th>Virgin</th><th>Non-Virgin</th><th>Total</th></tr></thead><tbody></tbody></table></div></div>
+            <div id="graphicalView" class="analysis-subcontent"><canvas id="volumeChart"></canvas><canvas id="classPieChart" style="margin-top: 30px;"></canvas></div>
+        </div>
+    </div>
+
+    <!-- TAB 7 - Editable Target -->
+    <div id="tab7" class="tab-content">
+        <div class="card-panel">
+            <h3 style="color:#1c6b92; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">🎯 2030 Goal: Source 50% of Commodity Purchases from Class A Suppliers <span id="tab7DataPeriod" style="font-size:0.72rem; font-weight:600; background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; border-radius:30px; padding:4px 14px; white-space:nowrap;"></span></h3>
+            
+            <!-- Current Status (Read-only) -->
+            <div class="form-row">
+                <div class="field-group"><label>Current Class A Volume (kg/L)</label><input type="text" id="currentClassAVolume" readonly style="background:#f0f7fc; font-weight:bold;"></div>
+                <div class="field-group"><label>Current Total Volume (kg/L)</label><input type="text" id="currentTotalVolume" readonly style="background:#f0f7fc; font-weight:bold;"></div>
+                <div class="field-group"><label>Current Class A Share (%)</label><input type="text" id="currentClassAShare" readonly style="background:#f0f7fc; font-weight:bold;"></div>
+            </div>
+            
+            <!-- Editable Target Section -->
+            <div class="editable-target">
+                <h4 style="color:#2e7d32; margin-bottom:15px;">✏️ Set Your Target</h4>
+                <div class="form-row">
+                    <div class="field-group"><label>Target Class A Share (%) <span style="color:#2e7d32;">(Editable)</span></label><input type="number" id="targetClassAShareEditable" step="0.1" style="background:#ffffff; font-weight:bold; border:2px solid #4caf50;"></div>
+                    <div class="field-group"><label>Target Year</label><select id="targetYear" style="background:#ffffff;"><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030" selected>2030</option></select></div>
+                    <div class="field-group"><label>Target Class A Volume (kg/L)</label><input type="text" id="targetClassAVolume" readonly style="background:#e8f5e9; font-weight:bold; color:#2e7d32;"></div>
+                    <div class="field-group"><label>Additional Volume Required (kg/L)</label><input type="text" id="additionalVolumeRequired" readonly style="background:#fff3e0; font-weight:bold; color:#e65100;"></div>
+                </div>
+                <div class="form-row">
+                    <div class="field-group"><button id="applyTargetBtn" class="btn btn-primary">📊 Apply Target & Calculate</button></div>
+                    <div class="field-group"><button id="resetTargetBtn" class="btn btn-outline-sky">⟳ Reset to 50% Increase</button></div>
+                </div>
+            </div>
+            
+            <div class="total-score-box" style="background:#e8f5e9; margin-top:20px;">
+                <h4>📊 Progress Tracking</h4>
+                <div style="background:#e0e0e0; border-radius:25px; overflow:hidden; height:30px; margin:20px 0;">
+                    <div id="targetProgressBar" style="width:0%; background:linear-gradient(90deg,#4caf50,#2e7d32); height:30px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">0%</div>
+                </div>
+                <p id="targetMessage"></p>
+                <button id="refreshTargetBtn" class="btn btn-outline-sky">🔄 Refresh Current Data</button>
+            </div>
+            
+            <div class="card-panel" style="margin-top:20px;">
+                <h4>📋 Action Plan to Achieve Target</h4>
+                <ul style="margin-top:15px; line-height:1.8;">
+                    <li>✅ Identify and prioritize Class A suppliers for increased sourcing</li>
+                    <li>✅ Work with Class B suppliers to improve their score to Class A level</li>
+                    <li>✅ Consider transitioning from Class C suppliers to Class A or B suppliers</li>
+                    <li>✅ Conduct regular supplier evaluations and performance reviews</li>
+                    <li>✅ Implement supplier development programs for B and C class vendors</li>
+                    <li>✅ Set quarterly targets for Class A volume increase</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Export / Download Reports Modal ── -->
+<div id="exportReportModal" class="exp-modal-overlay">
+  <div class="exp-modal">
+    <button class="exp-modal-close" id="closeExportModal">✕</button>
+    <h3>📥 Download Reports</h3>
+    <p class="sub">Export data from all tabs or generate a combined CCMS Full Report.</p>
+
+    <!-- Section 1: Individual tab selection -->
+    <div class="exp-section-label">📂 Select Tabs to Download</div>
+    <span class="exp-select-all" id="expSelectAll">Deselect All</span>
+    <div class="exp-tab-grid">
+      <div class="exp-tab-card selected" data-tabkey="tab1"><span class="exp-icon">🏭</span><span>Tab 1 — Existing Suppliers</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab2"><span class="exp-icon">📋</span><span>Tab 2 — Commodity Chemicals List</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab3"><span class="exp-icon">⭐</span><span>Tab 3 — Saved Evaluation Records</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab4"><span class="exp-icon">🏷️</span><span>Tab 4 — Supplier Classification Matrix</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab5"><span class="exp-icon">📦</span><span>Tab 5 — Inventory Records</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab6"><span class="exp-icon">📊</span><span>Tab 6 — Purchase Analysis Summary</span></div>
+      <div class="exp-tab-card selected" data-tabkey="tab7"><span class="exp-icon">🎯</span><span>Tab 7 — Target Analysis 2030</span></div>
+    </div>
+    <div class="exp-format-row">
+      <button class="exp-format-btn exp-excel-btn" id="expExcelBtn">🟢 Download Excel (.xlsx)</button>
+      <button class="exp-format-btn exp-pdf-btn" id="expPdfBtn">🔴 Download PDF (.pdf)</button>
+    </div>
+
+    <!-- Divider -->
+    <div class="exp-divider"><span>OR</span></div>
+
+    <!-- Section 2: CCMS Full Report -->
+    <div class="exp-section-label">📑 CCMS Full Report — All 7 Tabs Combined</div>
+    <p style="font-size:0.73rem;color:#5b7d96;margin-bottom:14px;">Generates a single comprehensive report file covering all tabs with cover page, summary, and full details.</p>
+    <div class="exp-format-row">
+      <button class="exp-format-btn exp-excel-btn" id="expCcmsExcelBtn">🟢 CCMS Report — Excel</button>
+      <button class="exp-format-btn exp-pdf-btn" id="expCcmsPdfBtn">🔴 CCMS Report — PDF</button>
+    </div>
+
+    <p style="font-size:0.68rem;color:#8aabbc;text-align:center;margin-top:14px;">© Winsome Textile Industries Ltd. All rights reserved.</p>
+  </div>
+</div>
+<div id="manualInventoryModal" class="inv-modal-overlay">
+    <div class="inv-modal">
+        <h3>➕ Add Manual Inventory Row</h3>
+        <div class="field-group">
+            <label>Supplier Name *</label>
+            <select id="modalSupplierSelect" style="width:100%;"></select>
+        </div>
+        <div class="field-group">
+            <label>Product / Chemical Name *</label>
+            <select id="modalChemicalSelect" style="width:100%;"><option value="">-- Select Supplier First --</option></select>
+        </div>
+        <div class="field-group">
+            <label>CAS No.</label>
+            <input type="text" id="modalCasNo" readonly placeholder="Auto-filled from Tab 2" style="width:100%;">
+        </div>
+        <div class="field-group">
+            <label>Product Type (Virgin / Non-Virgin)</label>
+            <select id="modalProductType" style="width:100%;">
+                <option value="">-- Auto-filled from Tab 2 --</option>
+                <option value="Virgin">Virgin</option>
+                <option value="Non-Virgin">Non-Virgin</option>
+                <option value="Virgin and Non-Virgin">Virgin and Non-Virgin</option>
+            </select>
+        </div>
+        <div class="field-group">
+            <label>Volume (kg/L) *</label>
+            <input type="number" id="modalVolume" placeholder="e.g. 500" min="0" step="0.01" style="width:100%;">
+        </div>
+        <div class="field-group">
+            <label>Purchase Month (MMM-YYYY) *</label>
+            <input type="text" id="modalPurchaseMonth" placeholder="e.g. Jan-2025" style="width:100%;">
+        </div>
+        <div class="inv-modal-footer">
+            <button id="modalCancelBtn" class="btn btn-outline-sky">✖ Cancel</button>
+            <button id="modalSaveBtn" class="btn btn-primary">💾 Save Row</button>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+<script>
+    // ======================= COMPLETE ZDHC CHEMICAL GUIDE =======================
+    const fullChemicalLibrary = [
+        { serial: "1", name: "Acetic acid", cas: "64-19-7", usage: "For neutralisation purposes", risk: "Non-Virgin" },
+        { serial: "2", name: "Ammonia solution", cas: "1336-21-6", usage: "pH adjustment", risk: "Virgin" },
+        { serial: "3", name: "Aluminium chloride hydroxide", cas: "1327-41-9", usage: "Buffering agent, complexing agent", risk: "Non-Virgin" },
+        { serial: "4", name: "Aluminium sulphate (Alum)", cas: "10043-01-03", usage: "Tanning, water treatment chemical", risk: "Virgin" },
+        { serial: "5", name: "Ammonium bicarbonate", cas: "1066-33-7", usage: "Neutralisation (leather processing)", risk: "Virgin" },
+        { serial: "6", name: "Ammonium carbonate", cas: "506-87-6", usage: "Mordant in textile dyeing", risk: "Virgin" },
+        { serial: "7", name: "Ammonium chloride", cas: "12125-02-09", usage: "Deliming (leather processing)", risk: "Virgin" },
+        { serial: "8", name: "Ammonium sulphate", cas: "7783-20-2", usage: "Levelling, after-treatment agents", risk: "Virgin" },
+        { serial: "9", name: "Bis peroxide", cas: "25155-25-3", usage: "Footwear-rubber", risk: "Virgin" },
+        { serial: "10", name: "Boric acid", cas: "10043-35-3", usage: "Deliming (leather processing)", risk: "Virgin" },
+        { serial: "11", name: "Calcium carbonate", cas: "471-34-1", usage: "Accessory & gear", risk: "Non-Virgin" },
+        { serial: "12", name: "Calcium hydroxide", cas: "12177-67-2", usage: "Hair removal/liming (leather processing), ETP", risk: "Non-Virgin" },
+        { serial: "13", name: "Calcium hypochlorite", cas: "7778-54-3", usage: "Bleaching, ETP, disinfecting chemicals", risk: "Virgin" },
+        { serial: "14", name: "Carboxymethyl cellulose (CMC)", cas: "9004-32-4", usage: "Weaving-sizing agent", risk: "Virgin" },
+        { serial: "15", name: "Chrome alum", cas: "10141-00-1", usage: "Tanning", risk: "Non-Virgin" },
+        { serial: "16", name: "Chromium sulphate", cas: "10101-53-8", usage: "Chrome tanning", risk: "Non-Virgin" },
+        { serial: "17", name: "Citric acid anhydrous", cas: "77-92-9", usage: "Neutralisation & buffering agent", risk: "Virgin and Non-Virgin" },
+        { serial: "18", name: "Citric acid monohydrate", cas: "5949-29-1", usage: "Neutralisation & buffering agent", risk: "Virgin and Non-Virgin" },
+        { serial: "19", name: "Diammonium phosphate", cas: "7783-28-0", usage: "Buffering agent in ETP", risk: "Virgin" },
+        { serial: "20", name: "Disodium phosphate", cas: "7558-79-4", usage: "Catalyst in pigment printing", risk: "Virgin" },
+        { serial: "21", name: "Dolomite", cas: "16389-88-1", usage: "Neutralisation (leather processing)", risk: "Virgin" },
+        { serial: "22", name: "DTPA (Pentetic acid)", cas: "67-43-6", usage: "Chelating agent", risk: "Virgin" },
+        { serial: "23", name: "EDTA (Edetic acid)", cas: "60-00-4", usage: "Chelating agent", risk: "Virgin" },
+        { serial: "24", name: "Ferric chloride", cas: "7705-08-0", usage: "ETP chemical", risk: "Non-Virgin" },
+        { serial: "25", name: "Ferrous sulphate", cas: "17375-41-6", usage: "ETP chemical", risk: "Non-Virgin" },
+        { serial: "26", name: "Formic acid", cas: "64-18-6", usage: "Neutralisation substitute of acetic acid", risk: "Non-Virgin" },
+        { serial: "27", name: "Glucose", cas: "50-99-7", usage: "Reducing agent", risk: "Virgin" },
+        { serial: "28", name: "Glycerine", cas: "56-81-5", usage: "Lab reagent, additive in printing", risk: "Virgin" },
+        { serial: "29", name: "Hydrochloric acid", cas: "7647-01-0", usage: "Neutralisation substitute", risk: "Non-Virgin" },
+        { serial: "30", name: "Hydrogen peroxide", cas: "7722-84-1", usage: "Bleaching agent, oxidising agent", risk: "Virgin" },
+        { serial: "31", name: "Hydroxylamine sulphate", cas: "10039-54-0", usage: "Buffering agent, hair removal", risk: "Virgin" },
+        { serial: "32", name: "Isopropyl palmitate", cas: "142-91-6", usage: "Textile processing", risk: "Virgin" },
+        { serial: "33", name: "Sodium 3-nitrobenzenesulphonate", cas: "127-68-4", usage: "Antioxidant in dyeing and printing", risk: "Virgin" },
+        { serial: "34", name: "Magnesium carbonate", cas: "546-93-0", usage: "Neutralisation (leather processing)", risk: "Non-Virgin" },
+        { serial: "35", name: "Magnesium chloride", cas: "7786-30-3", usage: "ETP and textile complexing agent", risk: "Non-Virgin" },
+        { serial: "36", name: "Magnesium hydroxide", cas: "1309-42-8", usage: "Neutralisation (leather processing)", risk: "Non-Virgin" },
+        { serial: "37", name: "Magnesium sulphate solution", cas: "7487-88-9", usage: "Textile dyeing and leather tanning", risk: "Non-Virgin" },
+        { serial: "38", name: "Nitric acid", cas: "7697-37-2", usage: "Deionization ETP", risk: "Non-Virgin" },
+        { serial: "39", name: "Oxalic acid", cas: "114-62-7", usage: "Neutraliser for polyester dyeing", risk: "Virgin" },
+        { serial: "40", name: "Phosphoric acid", cas: "7664-38-2", usage: "Buffering agent, neutralisation", risk: "Virgin" },
+        { serial: "41", name: "Polyaluminium chloride", cas: "1327-41-9", usage: "Water and effluent treatment", risk: "Non-Virgin" },
+        { serial: "42", name: "Polyethylene glycol", cas: "25322-68-3", usage: "Humectant, anti-foaming", risk: "Virgin" },
+        { serial: "43", name: "Potassium alum", cas: "10043-67-1", usage: "Water treatment", risk: "Virgin" },
+        { serial: "44", name: "Potassium dichromate", cas: "7778-50-9", usage: "After chroming agent in dyeing", risk: "Virgin" },
+        { serial: "45", name: "Potassium dihydrogen phosphate", cas: "7778-77-0", usage: "Buffering", risk: "Non-Virgin" },
+        { serial: "46", name: "Potassium hydroxide", cas: "1310-58-3", usage: "Lab reagent", risk: "Virgin" },
+        { serial: "47", name: "Potassium permanganate", cas: "7722-64-7", usage: "Denim fading, oxidising agent", risk: "Virgin" },
+        { serial: "48", name: "Silicon dioxide", cas: "112926-00-8", usage: "Footwear-rubber", risk: "Virgin" },
+        { serial: "49", name: "Sodium acetate", cas: "127-09-03", usage: "Buffer in dyeing", risk: "Non-Virgin" },
+        { serial: "50", name: "Sodium acetate trihydrate", cas: "6131-90-4", usage: "Buffer in dyeing", risk: "Non-Virgin" },
+        { serial: "51", name: "Sodium alginate", cas: "9005-38-3", usage: "Anti-migration in dyeing", risk: "Virgin" },
+        { serial: "52", name: "Sodium bicarbonate", cas: "144-55-8", usage: "Printing, neutralisation, buffer", risk: "Virgin" },
+        { serial: "53", name: "Sodium carbonate", cas: "497-19-8", usage: "Printing, neutralisation, buffer", risk: "Virgin" },
+        { serial: "54", name: "Sodium carbonate monohydrate", cas: "5968-11-6", usage: "Neutralisation, buffering agent", risk: "Virgin" },
+        { serial: "55", name: "Sodium carbonate decahydrate", cas: "6132-02-1", usage: "Dyeing agent for pH regulation", risk: "Virgin" },
+        { serial: "56", name: "Sodium chloride", cas: "7647-14-5", usage: "Dyeing, bleaching, whitening", risk: "Non-Virgin" },
+        { serial: "57", name: "Sodium citrate", cas: "6132-04-3", usage: "WTP membrane cleaning", risk: "Non-Virgin" },
+        { serial: "58", name: "Sodium dichromate", cas: "7789-12-0", usage: "After chroming agent in dyeing", risk: "Virgin" },
+        { serial: "59", name: "Sodium formate", cas: "141-53-7", usage: "Pickling (leather processing)", risk: "Virgin" },
+        { serial: "60", name: "Sodium hydrosulfite solid", cas: "7775-14-6", usage: "Discharge printing, ETP", risk: "Virgin" },
+        { serial: "61", name: "Sodium hydrosulfite solution", cas: "7775-14-6", usage: "Dyeing, denim dyeing", risk: "Non-Virgin" },
+        { serial: "62", name: "Sodium hydrosulphide", cas: "16721-80-5", usage: "Hair removal (leather processing)", risk: "Virgin" },
+        { serial: "63", name: "Sodium hydroxide pellets", cas: "1310-73-2", usage: "Pre treatment & fixation", risk: "Non-Virgin" },
+        { serial: "64", name: "Sodium hydroxide solution", cas: "1310-73-2", usage: "Pre treatment, mercerising", risk: "Non-Virgin" },
+        { serial: "65", name: "Sodium hypochlorite", cas: "7681-52-9", usage: "Oxidising agent, cleaning", risk: "Virgin" },
+        { serial: "66", name: "Sodium lauryl sulphate", cas: "151-21-3", usage: "Washing", risk: "Virgin" },
+        { serial: "67", name: "Sodium metabisulfite", cas: "7681-57-4", usage: "Anti oxidant", risk: "Virgin" },
+        { serial: "68", name: "Sodium metasilicate", cas: "6834-92-0", usage: "Alkali in CPB dyeing", risk: "Virgin" },
+        { serial: "69", name: "Sodium nitrate", cas: "7631-99-4", usage: "Textile enamel agent", risk: "Virgin" },
+        { serial: "70", name: "Sodium nitrite", cas: "7632-00-0", usage: "Neutraliser and buffer in tanning", risk: "Not listed" },
+        { serial: "71", name: "Sodium perborate", cas: "10486-00-7", usage: "Oxidising agent, filler", risk: "Virgin" },
+        { serial: "72", name: "Sodium percarbonate", cas: "15630-89-4", usage: "Oxidising agent, dye fixing", risk: "Virgin" },
+        { serial: "73", name: "Sodium persulfate", cas: "7775-27-1", usage: "Bleaching agent", risk: "Virgin" },
+        { serial: "74", name: "Sodium polyphosphates", cas: "68915-31-1", usage: "Buffer and alkali releasing", risk: "Virgin" },
+        { serial: "75", name: "Sodium silicate", cas: "1344-09-08", usage: "Silicate dyeing, fixing agent", risk: "Virgin" },
+        { serial: "76", name: "Sodium sulphate", cas: "7757-82-6", usage: "Dyeing, ETP", risk: "Non-Virgin" },
+        { serial: "77", name: "Sodium sulphide", cas: "1313-82-2", usage: "Sulphur dyeing", risk: "Non-Virgin" },
+        { serial: "78", name: "Sodium sulphite", cas: "7757-83-7", usage: "Anti oxidant", risk: "Non-Virgin" },
+        { serial: "79", name: "Sodium thiosulfate anhydrous", cas: "7772-98-7", usage: "Lab reagent, print film", risk: "Virgin" },
+        { serial: "80", name: "Sodium thiosulfate solution", cas: "10102-17-7", usage: "Lab reagent, print film", risk: "Virgin" },
+        { serial: "81", name: "Starch", cas: "65996-63-6", usage: "Finishing", risk: "Virgin" },
+        { serial: "82", name: "Stearic acid", cas: "57-11-4", usage: "Textile, footwear-rubber", risk: "Not listed" },
+        { serial: "83", name: "Sulphuric acid", cas: "7664-93-9", usage: "ETP, carbonising", risk: "Non-Virgin" },
+        { serial: "84", name: "Thio urea dioxide", cas: "1758-73-2", usage: "Reducing agent for dyeing", risk: "Virgin" },
+        { serial: "85", name: "Trisodium phosphate", cas: "7601-54-9", usage: "Dyeing", risk: "Non-Virgin" },
+        { serial: "86", name: "Urea", cas: "57-13-6", usage: "Printing humectant", risk: "Not listed" },
+        { serial: "87", name: "Zinc sulphate", cas: "7446-20-0", usage: "Mordant in printing", risk: "Non-Virgin" },
+        { serial: "88", name: "Zinc carbonate", cas: "51839-25-9", usage: "Footwear-rubber", risk: "Non-Virgin" }
+    ];
+
+    // ======================= EVALUATION QUESTIONS =======================
+    const evaluationQuestions = [
+        { id: 1, category: "Details of organisation", question: "Location of the manufacturing site", options: ["Manufactured (2 pts)", "Traded, known origin (1 pt)", "Traded, unknown origin (0 pt)"], scores: [2,1,0] },
+        { id: 2, category: "Technical person", question: "Name of technical person/QC Head", options: ["Tech person/QC head name is known (2 pts)", "Commercial person is known (1 pt)", "No proper person is known (0 pt)"], scores: [2,1,0] },
+        { id: 3, category: "Traceability", question: "System of traceability of commodity chemical source", options: ["System with documentation (2 pts)", "System without backup (1 pt)", "No traceability (0 pt)"], scores: [2,1,0] },
+        { id: 4, category: "Consistency", question: "Quality consistency of commodity chemicals", options: ["No changes for past batches (2 pts)", "Variation >10% deliveries (1 pt)", "Variation >25% deliveries (0 pt)"], scores: [2,1,0] },
+        { id: 5, category: "Supply reliability", question: "Ability to supply ordered quantity", options: ["Immediate full lot (2 pts)", "Delivered in several lots (1 pt)", "Not fulfilled/spread out (0 pt)"], scores: [2,1,0] },
+        { id: 6, category: "Technical Knowledge", question: "Qualified team for quality decisions", options: ["Internal qualified QC team (2 pts)", "Relies on external decision (1 pt)", "No testing carried out (0 pt)"], scores: [2,1,0] },
+        { id: 7, category: "Quality Lab", question: "Quality testing laboratory", options: ["In-house facility (2 pts)", "Third-party testing (1 pt)", "No testing done (0 pt)"], scores: [2,1,0] },
+        { id: 8, category: "ZDHC MRSL Awareness", question: "Knowledge of ZDHC MRSL", options: ["Fully aware with latest version (2 pts)", "Somewhat aware, no update (1 pt)", "No awareness (0 pt)"], scores: [2,1,0] },
+        { id: 9, category: "Rejection Rate", question: "Rejection rate from different sources", options: ["Less than 10% (2 pts)", "Between 10-20% (1 pt)", "More than 20% (0 pt)"], scores: [2,1,0] },
+        { id: 10, category: "Complaint Handling", question: "System to carry out complaints", options: ["ISO system (2 pts)", "No system but handled (1 pt)", "Oral only (0 pt)"], scores: [2,1,0] },
+        { id: 11, category: "SDS Information", question: "Can provide GHS compliant SDS", options: ["GHS-SDS regularly (2 pts)", "SDS not GHS compliant (1 pt)", "No SDS provided (0 pt)"], scores: [2,1,0] },
+        { id: 12, category: "Third-party Certifications", question: "Third-party Certification for MRSL testing", options: ["Report submitted regularly (2 pts)", "Report intermittent (1 pt)", "No report ever (0 pt)"], scores: [2,1,0] }
+    ];
+
+    // State
+    let state = { suppliers: [], chemicals: [], evaluations: [], inventory: [] };
+    let nextId = 101;
+    let editModeSupplierId = null;
+    let volumeChart = null, classPieChart = null;
+    let currentFilter = { year: 'all', startMonth: '', endMonth: '' };
+
+    function getClassFromScore(score) {
+        if (score === undefined || score === null) return { letter: 'C', action: 'Not Evaluated - Pending Assessment' };
+        if (score >= 10 && score <= 24) return { letter: 'A', action: 'Continue to purchase - High trust, low risk' };
+        if (score >= 5 && score <= 9) return { letter: 'B', action: 'Review & initiate improvements - Medium risk' };
+        return { letter: 'C', action: 'Consider discontinuing - High risk' };
+    }
+
+    function getSupplierClass(supplierName) {
+        const ev = state.evaluations.find(e => e.supplierName === supplierName);
+        if (!ev) return 'C';
+        return getClassFromScore(ev.score).letter;
+    }
+
+    function renderAll() { 
+        renderSuppliersTable(); 
+        renderChemicalsTable(); 
+        renderSupplierDropdowns(); 
+        renderEvaluationTable(); 
+        renderClassificationTable(); 
+        renderInventoryTable(); 
+        renderPurchaseAnalysis(); 
+        updateFilterDropdowns();
+        updatePeriodFilterOptions();
+        updateTargetAnalysis();
+        updateDataPeriodBadges();
+    }
+
+    function updateDataPeriodBadges() {
+        const months = state.inventory
+            .map(i => i.purchaseMonth)
+            .filter(Boolean)
+            .map(m => parsePurchaseMonth(m))
+            .filter(d => d && !isNaN(d));
+
+        let badgeText = '';
+        if(months.length > 0) {
+            const minD = new Date(Math.min(...months));
+            const maxD = new Date(Math.max(...months));
+            const mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            const fromStr = mNames[minD.getMonth()] + '-' + minD.getFullYear();
+            const toStr   = mNames[maxD.getMonth()] + '-' + maxD.getFullYear();
+            badgeText = fromStr === toStr
+                ? '📅 Data Period: ' + fromStr
+                : '📅 Data Period: ' + fromStr + ' → ' + toStr;
+        } else {
+            badgeText = '📅 No inventory data';
+        }
+
+        const b6 = document.getElementById('tab6DataPeriod');
+        const b7 = document.getElementById('tab7DataPeriod');
+        if(b6) b6.textContent = badgeText;
+        if(b7) b7.textContent = badgeText;
+    }
+    
+    function renderSuppliersTable() {
+        const tbody = document.querySelector('#suppliersTable tbody');
+        if(tbody) {
+            tbody.innerHTML = state.suppliers.map(s => `
+                <tr>
+                    <td>${escapeHtml(s.name)}</td><td>${escapeHtml(s.country)}</td><td>${escapeHtml(s.website)}</td>
+                    <td>${escapeHtml(s.contactPerson)}</td><td>${escapeHtml(s.telephone)}</td><td>${escapeHtml(s.email)}</td>
+                    <td>${escapeHtml(s.address)}</td>
+                    <td><button class="btn-sm btn-sm-edit" onclick="editSupplier(${s.id})">✏️</button> <button class="btn-sm btn-sm-del" onclick="deleteSupplier(${s.id})">🗑️</button></td>
+                </tr>
+            `).join('');
+        }
+    }
+    
+    function renderChemicalsTable() {
+        const tbody = document.querySelector('#chemicalsTable tbody');
+        if(tbody) {
+            tbody.innerHTML = state.chemicals.map((c, idx) => `
+                <tr>
+                    <td>${escapeHtml(c.supplierName)}</td><td>${escapeHtml(c.serial)}</td><td>${escapeHtml(c.chemicalName)}</td>
+                    <td>${escapeHtml(c.cas)}</td><td>${escapeHtml(c.usage)}</td><td>${escapeHtml(c.riskCategory)}</td>
+                    <td><button class="btn-sm btn-sm-del" onclick="deleteChemical(${idx})">✖️</button></td>
+                </tr>
+            `).join('');
+        }
+    }
+    
+    function renderEvaluationTable() {
+        const tbody = document.querySelector('#evalTable tbody');
+        if(tbody) {
+            tbody.innerHTML = state.evaluations.map((ev, idx) => { 
+                const cls = getClassFromScore(ev.score);
+                let fileCell = '<span style="color:#aaa;font-size:0.75rem;">—</span>';
+                if(ev.declFileName && ev.declFileData) {
+                    fileCell = `<a href="${ev.declFileData}" download="${escapeHtml(ev.declFileName)}" title="Download ${escapeHtml(ev.declFileName)}" style="font-size:0.78rem;color:#1279a8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">📎 ${escapeHtml(ev.declFileName)}</a>`;
+                } else if(ev.declFileName) {
+                    fileCell = `<span style="font-size:0.76rem;color:#5a7d96;">📎 ${escapeHtml(ev.declFileName)}</span>`;
+                }
+                return `
+                    <tr>
+                        <td>${escapeHtml(ev.supplierName)}</td><td>${ev.date || '-'}</td><td><strong>${ev.score}</strong>/24</td>
+                        <td>${escapeHtml(ev.selfDeclaration)}</td>
+                        <td>${fileCell}</td>
+                        <td><span class="badge ${cls.letter === 'A' ? 'badge-A' : cls.letter === 'B' ? 'badge-B' : 'badge-C'}">Class ${cls.letter}</span></td>
+                        <td><button class="btn-sm btn-sm-edit" onclick="editEvaluationRecord(${idx})">✏️ Edit</button> <button class="btn-sm btn-sm-del" onclick="deleteEvaluation('${escapeHtml(ev.supplierName)}')">🗑️</button></td>
+                    </tr>
+                `; 
+            }).join('');
+        }
+    }
+    
+    function renderClassificationTable() {
+        const tbody = document.querySelector('#classificationTable tbody');
+        if(tbody) {
+            tbody.innerHTML = state.suppliers.map(sup => {
+                const ev = state.evaluations.find(e => e.supplierName === sup.name);
+                const hasEvaluation = ev !== undefined;
+                const score = hasEvaluation ? ev.score : null;
+                let cls, scoreDisplay;
+                if (!hasEvaluation) {
+                    cls = { letter: 'C', action: 'Not Evaluated - Pending Assessment' };
+                    scoreDisplay = 'Pending';
+                } else {
+                    cls = getClassFromScore(score);
+                    scoreDisplay = score;
+                }
+                const supplierProducts = state.chemicals.filter(c => c.supplierName === sup.name);
+                const productList = supplierProducts.map(p => p.chemicalName).join(', ');
+                const productDisplay = productList.length > 0 ? productList : 'No products assigned';
+                return `
+                    <tr>
+                        <td>${escapeHtml(sup.name)}</td><td>${scoreDisplay}</td>
+                        <td><span class="badge ${cls.letter === 'A' ? 'badge-A' : cls.letter === 'B' ? 'badge-B' : 'badge-C'}">Class ${cls.letter}</span></td>
+                        <td>${cls.action}</td>
+                        <td><small>${escapeHtml(productDisplay)}</small></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+    }
+    
+    function renderInventoryTable() {
+        const tbody = document.querySelector('#inventoryTable tbody');
+        if(!tbody) return;
+        const filterSupplier = document.getElementById('filterSupplier')?.value || '';
+        const filterChemical = document.getElementById('filterChemical')?.value.toLowerCase() || '';
+        const filterMonth = document.getElementById('filterMonth')?.value || '';
+        let filtered = [...state.inventory];
+        if (filterSupplier) filtered = filtered.filter(item => item.supplierName === filterSupplier);
+        if (filterChemical) filtered = filtered.filter(item => item.chemicalName && item.chemicalName.toLowerCase().includes(filterChemical));
+        if (filterMonth) filtered = filtered.filter(item => item.purchaseMonth === filterMonth);
+        if (filtered.length === 0) { 
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No records found</td></tr>'; 
+            return; 
+        }
+        tbody.innerHTML = filtered.map((inv, idx) => { 
+            const originalIdx = state.inventory.findIndex(i => i === inv); 
+            return `
+                <tr>
+                    <td>${escapeHtml(inv.supplierName)}</td><td>${escapeHtml(inv.chemicalName)}</td><td>${escapeHtml(inv.casNo || '')}</td>
+                    <td>${escapeHtml(inv.volume)}</td><td>${escapeHtml(inv.virginNonVirgin)}</td><td>${escapeHtml(formatPurchaseMonth(inv.purchaseMonth))}</td>
+                    <td><button class="btn-sm btn-sm-del" onclick="deleteInventory(${originalIdx})">🗑️</button></td>
+                </tr>
+            `; 
+        }).join('');
+    }
+    
+    function renderPurchaseAnalysis() {
+        let classVol = { A:0, B:0, C:0, Unclassified:0 };
+        let v=0, nv=0;
+        const map=new Map();
+        state.evaluations.forEach(ev=>map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+        const filteredInventory = getFilteredInventory();
+        filteredInventory.forEach(i=>{ let vol=parseFloat(i.volume)||0; let cls=map.get(i.supplierName)||'C'; classVol[cls]=(classVol[cls]||0)+vol; (i.virginNonVirgin||'').toLowerCase().includes('virgin')&&!i.virginNonVirgin.toLowerCase().includes('non')?v+=vol:nv+=vol; });
+        const t=classVol.A+classVol.B+classVol.C+classVol.Unclassified;
+        document.getElementById('analysisDynamicContainer').innerHTML=`<div class="analysis-stats">
+            <div class="stat-card"><h4>Class A</h4><p>${classVol.A.toFixed(2)} (${t>0?((classVol.A/t)*100).toFixed(1):0}%)</p></div>
+            <div class="stat-card"><h4>Class B</h4><p>${classVol.B.toFixed(2)} (${t>0?((classVol.B/t)*100).toFixed(1):0}%)</p></div>
+            <div class="stat-card"><h4>Class C</h4><p>${classVol.C.toFixed(2)} (${t>0?((classVol.C/t)*100).toFixed(1):0}%)</p></div>
+            <div class="stat-card"><h4>Virgin</h4><p>${v.toFixed(2)} (${t>0?((v/t)*100).toFixed(1):0}%)</p></div>
+            <div class="stat-card"><h4>Non-Virgin</h4><p>${nv.toFixed(2)} (${t>0?((nv/t)*100).toFixed(1):0}%)</p></div>
+        </div>`;
+    }
+    
+    function getFilteredInventory() {
+        let filtered = [...state.inventory];
+        if (currentFilter.year !== 'all') filtered = filtered.filter(item => item.purchaseMonth && item.purchaseMonth.split('-')[1] === currentFilter.year);
+        if (currentFilter.startMonth) filtered = filtered.filter(item => item.purchaseMonth && item.purchaseMonth >= currentFilter.startMonth);
+        if (currentFilter.endMonth) filtered = filtered.filter(item => item.purchaseMonth && item.purchaseMonth <= currentFilter.endMonth);
+        return filtered;
+    }
+    
+    function renderMonthWiseData() {
+        const tbody = document.querySelector('#monthwiseTable tbody');
+        if(!tbody) return;
+        const monthData = new Map();
+        const map = new Map();
+        state.evaluations.forEach(ev=>map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+        state.inventory.forEach(item => {
+            if(!item.purchaseMonth) return;
+            const vol = parseFloat(item.volume) || 0;
+            const cls = map.get(item.supplierName) || 'C';
+            const isVirgin = (item.virginNonVirgin || '').toLowerCase().includes('virgin') && !(item.virginNonVirgin || '').toLowerCase().includes('non');
+            if(!monthData.has(item.purchaseMonth)) monthData.set(item.purchaseMonth, { A:0, B:0, C:0, virgin:0, nonVirgin:0, total:0 });
+            const data = monthData.get(item.purchaseMonth);
+            if(cls === 'A') data.A += vol;
+            else if(cls === 'B') data.B += vol;
+            else data.C += vol;
+            if(isVirgin) data.virgin += vol;
+            else data.nonVirgin += vol;
+            data.total += vol;
+        });
+        const sortedMonths = Array.from(monthData.keys()).sort((a,b)=>parsePurchaseMonth(b)-parsePurchaseMonth(a));
+        if(sortedMonths.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No data available</td></td>';
+            return;
+        }
+        tbody.innerHTML = sortedMonths.map(month => { const d = monthData.get(month); return `<tr><td>${formatPurchaseMonth(month)}</td><td>${d.A.toFixed(2)}</td><td>${d.B.toFixed(2)}</td><td>${d.C.toFixed(2)}</td><td>${d.virgin.toFixed(2)}</td><td>${d.nonVirgin.toFixed(2)}</td><td><strong>${d.total.toFixed(2)}</strong></td></tr>`; }).join('');
+    }
+    
+    function renderGraphicalView() {
+        const filtered = getFilteredInventory();
+        let classVol = { A:0, B:0, C:0 };
+        let virginVol=0, nonVirginVol=0;
+        const map=new Map();
+        state.evaluations.forEach(ev=>map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+        const monthData = new Map();
+        filtered.forEach(item => {
+            const vol = parseFloat(item.volume)||0;
+            const cls = map.get(item.supplierName)||'C';
+            classVol[cls] = (classVol[cls]||0)+vol;
+            const isVirgin = (item.virginNonVirgin||'').toLowerCase().includes('virgin')&&!(item.virginNonVirgin||'').toLowerCase().includes('non');
+            isVirgin ? virginVol+=vol : nonVirginVol+=vol;
+            if(item.purchaseMonth) {
+                if(!monthData.has(item.purchaseMonth)) monthData.set(item.purchaseMonth, { A:0, B:0, C:0 });
+                monthData.get(item.purchaseMonth)[cls] = (monthData.get(item.purchaseMonth)[cls]||0)+vol;
+            }
+        });
+        const sortedMonths = Array.from(monthData.keys()).sort((a,b)=>parsePurchaseMonth(a)-parsePurchaseMonth(b));
+        const ctx = document.getElementById('volumeChart')?.getContext('2d');
+        if(ctx) { if(volumeChart) volumeChart.destroy(); volumeChart = new Chart(ctx, { type:'bar', data:{ labels:sortedMonths.map(formatPurchaseMonth), datasets:[{label:'Class A', data:sortedMonths.map(m=>monthData.get(m).A||0), backgroundColor:'#4caf50'},{label:'Class B', data:sortedMonths.map(m=>monthData.get(m).B||0), backgroundColor:'#ffc107'},{label:'Class C', data:sortedMonths.map(m=>monthData.get(m).C||0), backgroundColor:'#f44336'}] }, options:{ responsive:true, maintainAspectRatio:true } }); }
+        const pieCtx = document.getElementById('classPieChart')?.getContext('2d');
+        if(pieCtx) { if(classPieChart) classPieChart.destroy(); classPieChart = new Chart(pieCtx, { type:'pie', data:{ labels:['Class A','Class B','Class C'], datasets:[{ data:[classVol.A,classVol.B,classVol.C], backgroundColor:['#4caf50','#ffc107','#f44336'] }] }, options:{ responsive:true } }); }
+    }
+    
+    function updatePeriodFilterOptions() {
+        const yearSelect = document.getElementById('analysisYearFilter');
+        const startSelect = document.getElementById('analysisStartMonth');
+        const endSelect = document.getElementById('analysisEndMonth');
+        if(!yearSelect) return;
+        const years = new Set(), months = new Set();
+        state.inventory.forEach(item => { if(item.purchaseMonth) { years.add(item.purchaseMonth.split('-')[1]); months.add(item.purchaseMonth); } });
+        yearSelect.innerHTML = '<option value="all">All Time</option>' + Array.from(years).sort((a,b)=>b-a).map(y=>`<option value="${y}">${y}</option>`).join('');
+        const sortedMonths = Array.from(months).sort((a,b)=>parsePurchaseMonth(b)-parsePurchaseMonth(a));
+        startSelect.innerHTML = '<option value="">-- Select --</option>' + sortedMonths.map(m=>`<option value="${m}">${formatPurchaseMonth(m)}</option>`).join('');
+        endSelect.innerHTML = '<option value="">-- Select --</option>' + sortedMonths.map(m=>`<option value="${m}">${formatPurchaseMonth(m)}</option>`).join('');
+    }
+    
+    function updateFilterDropdowns() {
+        const supplierSelect = document.getElementById('filterSupplier');
+        const monthSelect = document.getElementById('filterMonth');
+        if(supplierSelect) { const unique = [...new Set(state.inventory.map(i=>i.supplierName).filter(Boolean))]; supplierSelect.innerHTML = '<option value="">-- All Suppliers --</option>' + unique.map(s=>`<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join(''); }
+        if(monthSelect) { const unique = [...new Set(state.inventory.map(i=>i.purchaseMonth).filter(Boolean))].sort((a,b)=>parsePurchaseMonth(b)-parsePurchaseMonth(a)); monthSelect.innerHTML = '<option value="">-- All Months --</option>' + unique.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(formatPurchaseMonth(m))}</option>`).join(''); }
+    }
+    
+    function updateTargetAnalysis() {
+        let currentClassA = 0, currentTotal = 0;
+        const map=new Map();
+        state.evaluations.forEach(ev=>map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+        state.inventory.forEach(item => { const vol = parseFloat(item.volume) || 0; if(map.get(item.supplierName) === 'A') currentClassA += vol; currentTotal += vol; });
+        const currentShare = currentTotal > 0 ? (currentClassA / currentTotal) * 100 : 0;
+        
+        let targetShareEditable = parseFloat(document.getElementById('targetClassAShareEditable')?.value);
+        if (isNaN(targetShareEditable) || targetShareEditable === 0) {
+            targetShareEditable = currentShare * 1.5;
+            const targetInput = document.getElementById('targetClassAShareEditable');
+            if(targetInput) targetInput.value = targetShareEditable.toFixed(2);
+        }
+        
+        const targetClassAVolume = (targetShareEditable / 100) * currentTotal;
+        const additionalRequired = targetClassAVolume - currentClassA;
+        
+        document.getElementById('currentClassAVolume').value = currentClassA.toFixed(2);
+        document.getElementById('currentTotalVolume').value = currentTotal.toFixed(2);
+        document.getElementById('currentClassAShare').value = currentShare.toFixed(2) + '%';
+        document.getElementById('targetClassAVolume').value = targetClassAVolume.toFixed(2);
+        document.getElementById('additionalVolumeRequired').value = additionalRequired.toFixed(2);
+        
+        const progressPercent = targetClassAVolume > 0 ? (currentClassA / targetClassAVolume) * 100 : 0;
+        const finalProgress = Math.min(progressPercent, 100);
+        const progressBar = document.getElementById('targetProgressBar');
+        if(progressBar) { progressBar.style.width = finalProgress + '%'; progressBar.innerText = finalProgress.toFixed(1) + '%'; }
+        
+        const msg = document.getElementById('targetMessage');
+        if(msg) msg.innerHTML = additionalRequired <= 0 ? '🎉 Congratulations! You have already achieved the target!' : `📈 Need to increase Class A volume by <strong>${additionalRequired.toFixed(2)} kg/L</strong> to reach ${targetShareEditable.toFixed(2)}% target.`;
+    }
+    
+    function renderSupplierDropdowns() {
+        const options = '<option value="">-- Select Supplier --</option>' + state.suppliers.map(s => `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)}</option>`).join('');
+        document.getElementById('chemSupplierSelect').innerHTML = options;
+        document.getElementById('evalSupplierSelectMain').innerHTML = options;
+    }
+    
+    function renderEvalForm() {
+        const container = document.getElementById('evalQuestionsContainer');
+        if(!container) return;
+        container.innerHTML = evaluationQuestions.map(q => `<div class="eval-row"><div class="eval-question"><strong>${q.category}:</strong> ${q.question}</div><div class="eval-options"><select data-qid="${q.id}" class="eval-select"><option value="">-- Select --</option>${q.options.map((opt, idx) => `<option value="${q.scores[idx]}">${opt}</option>`).join('')}</select></div><div class="eval-score" id="score-${q.id}">0 pts</div></div>`).join('');
+        document.querySelectorAll('.eval-select').forEach(sel => sel.addEventListener('change', function() { const qid = parseInt(this.dataset.qid); const score = parseInt(this.value) || 0; document.getElementById(`score-${qid}`).innerText = score + ' pts'; calculateTotalScore(); }));
+    }
+    
+    function calculateTotalScore() { 
+        let total = 0; 
+        evaluationQuestions.forEach(q => { const sel = document.querySelector(`.eval-select[data-qid="${q.id}"]`); if(sel && sel.value) total += parseInt(sel.value) || 0; }); 
+        document.getElementById('totalScoreDisplay').innerText = total; 
+        const cls = getClassFromScore(total); 
+        document.getElementById('scoreClassificationMsg').innerHTML = `<span class="badge ${cls.letter === 'A' ? 'badge-A' : cls.letter === 'B' ? 'badge-B' : 'badge-C'}">Class ${cls.letter}</span> - ${cls.action}`; 
+        return total; 
+    }
+    
+    function escapeHtml(str) { if(!str) return ''; return String(str).replace(/[&<>]/g, m => m==='&'?'&amp;': m==='<'?'&lt;':'&gt;'); }
+
+    // Parse "MMM-YYYY" (e.g. "Jan-2025") into a sortable Date object
+    const monthNames = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+    function parsePurchaseMonth(str) {
+        if(!str) return new Date(0);
+        const parts = str.split('-');
+        if(parts.length === 2) {
+            const mon = monthNames[parts[0]];
+            const yr = parseInt(parts[1]);
+            if(mon !== undefined && !isNaN(yr)) return new Date(yr, mon, 1);
+        }
+        // fallback for ISO or other formats
+        const d = new Date(str);
+        return isNaN(d) ? new Date(0) : d;
+    }
+    function formatPurchaseMonth(str) {
+        if(!str) return 'Not set';
+        // If already in MMM-YYYY format, return as-is
+        if(/^[A-Za-z]{3}-\d{4}$/.test(str)) return str;
+        // If ISO YYYY-MM or YYYY-MM-DD, convert to MMM-YYYY
+        const d = new Date(str);
+        if(!isNaN(d)) {
+            const mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return mNames[d.getMonth()] + '-' + d.getFullYear();
+        }
+        return str;
+    }
+    
+    // CRUD Operations
+    window.editSupplier = (id) => { const s = state.suppliers.find(s=>s.id===id); if(s){ document.getElementById('supName').value=s.name; document.getElementById('supCountry').value=s.country; document.getElementById('supWeb').value=s.website; document.getElementById('supContact').value=s.contactPerson; document.getElementById('supPhone').value=s.telephone; document.getElementById('supEmail').value=s.email; document.getElementById('supAddress').value=s.address; document.getElementById('editSupplierId').value=s.id; editModeSupplierId=s.id; document.getElementById('addSupplierBtn').style.display='none'; document.getElementById('updateSupplierBtn').style.display='inline-block'; document.getElementById('cancelEditBtn').style.display='inline-block'; } };
+    function cancelEdit() { document.getElementById('addSupplierBtn').style.display='inline-block'; document.getElementById('updateSupplierBtn').style.display='none'; document.getElementById('cancelEditBtn').style.display='none'; document.getElementById('editSupplierId').value=''; editModeSupplierId=null; document.getElementById('supName').value=''; document.getElementById('supCountry').value=''; document.getElementById('supWeb').value='NA'; document.getElementById('supContact').value='NA'; document.getElementById('supPhone').value='NA'; document.getElementById('supEmail').value='NA'; document.getElementById('supAddress').value=''; }
+    document.getElementById('cancelEditBtn')?.addEventListener('click', cancelEdit);
+    document.getElementById('updateSupplierBtn')?.addEventListener('click', () => { const id=parseInt(document.getElementById('editSupplierId').value); const idx=state.suppliers.findIndex(s=>s.id===id); if(idx!==-1){ const oldName=state.suppliers[idx].name; const newName=document.getElementById('supName').value.trim(); if(!newName) return; state.suppliers[idx]={id,name:newName,country:document.getElementById('supCountry').value,website:document.getElementById('supWeb').value,contactPerson:document.getElementById('supContact').value,telephone:document.getElementById('supPhone').value,email:document.getElementById('supEmail').value,address:document.getElementById('supAddress').value}; if(oldName!==newName){ state.chemicals.forEach(c=>{if(c.supplierName===oldName)c.supplierName=newName}); state.evaluations.forEach(e=>{if(e.supplierName===oldName)e.supplierName=newName}); state.inventory.forEach(i=>{if(i.supplierName===oldName)i.supplierName=newName}); } renderAll(); cancelEdit(); alert("Supplier updated"); } });
+    window.deleteSupplier = (id) => { const sup=state.suppliers.find(s=>s.id===id); if(sup && confirm(`Delete ${sup.name}?`)){ state.chemicals=state.chemicals.filter(c=>c.supplierName!==sup.name); state.evaluations=state.evaluations.filter(e=>e.supplierName!==sup.name); state.inventory=state.inventory.filter(i=>i.supplierName!==sup.name); state.suppliers=state.suppliers.filter(s=>s.id!==id); renderAll(); if(editModeSupplierId===id) cancelEdit(); } };
+    window.editEvaluationRecord = function(idx) {
+        const ev = state.evaluations[idx];
+        if(!ev) return;
+        document.getElementById('evalSupplierSelectMain').value = ev.supplierName;
+        document.getElementById('evalDate').value = ev.date || new Date().toISOString().split('T')[0];
+        document.getElementById('selfDeclStatusEval').value = ev.selfDeclaration || 'Available';
+        if(ev.declFileName) {
+            document.getElementById('selfDeclFileName').textContent = ev.declFileName;
+            document.getElementById('selfDeclFileClear').style.display = 'inline';
+            _pendingDeclFile = null;
+        } else {
+            document.getElementById('selfDeclFileName').textContent = 'No file chosen';
+            document.getElementById('selfDeclFileClear').style.display = 'none';
+            _pendingDeclFile = null;
+        }
+        if(ev.details) {
+            for(let i = 0; i < evaluationQuestions.length; i++) {
+                const sel = document.querySelector(`.eval-select[data-qid="${evaluationQuestions[i].id}"]`);
+                if(sel && ev.details[evaluationQuestions[i].id] !== undefined) {
+                    sel.value = ev.details[evaluationQuestions[i].id].toString();
+                    document.getElementById(`score-${evaluationQuestions[i].id}`).innerText = (parseInt(ev.details[evaluationQuestions[i].id]) || 0) + ' pts';
+                }
+            }
+        }
+        document.getElementById('totalScoreDisplay').innerText = ev.score;
+        const cls = getClassFromScore(ev.score);
+        document.getElementById('scoreClassificationMsg').innerHTML = `<span class="badge ${cls.letter === 'A' ? 'badge-A' : cls.letter === 'B' ? 'badge-B' : 'badge-C'}">Class ${cls.letter}</span> - ${cls.action}`;
+        document.querySelector('#tab3 .card-panel').scrollIntoView({ behavior:'smooth', block:'start' });
+        alert(`Editing evaluation for ${ev.supplierName}. Modify answers and click Save.`);
+    };
+    window.deleteChemical = (idx) => { state.chemicals.splice(idx,1); renderAll(); };
+    window.deleteEvaluation = (supplierName) => { state.evaluations = state.evaluations.filter(e => e.supplierName !== supplierName); renderAll(); };
+    window.deleteInventory = (idx) => { state.inventory.splice(idx,1); renderAll(); updateFilterDropdowns(); };
+    
+    document.getElementById('addSupplierBtn')?.addEventListener('click', () => { const name=document.getElementById('supName').value.trim(); if(!name) return alert("Supplier name required"); state.suppliers.push({id:nextId++,name,country:document.getElementById('supCountry').value,website:document.getElementById('supWeb').value||'NA',contactPerson:document.getElementById('supContact').value||'NA',telephone:document.getElementById('supPhone').value||'NA',email:document.getElementById('supEmail').value||'NA',address:document.getElementById('supAddress').value}); renderAll(); cancelEdit(); });
+    
+    function populateChemicalDropdown() {
+        const select = document.getElementById('chemicalSelectGuide');
+        if(select) {
+            select.innerHTML = '<option value="">-- Select Chemical (88 products) --</option>' + fullChemicalLibrary.map((c,idx)=>`<option value="${idx}" data-serial="${c.serial}" data-cas="${c.cas}" data-usage="${c.usage}" data-risk="${c.risk}" data-name="${c.name}">${c.serial}. ${c.name}</option>`);
+            select.addEventListener('change', function() { const opt = this.options[this.selectedIndex]; if(opt && opt.value) { document.getElementById('chemSerial').value = opt.dataset.serial || ''; document.getElementById('chemCas').value = opt.dataset.cas || ''; document.getElementById('chemUsage').value = opt.dataset.usage || ''; document.getElementById('chemRisk').value = opt.dataset.risk || ''; document.getElementById('chemName').value = opt.dataset.name || ''; } else { ['chemSerial','chemCas','chemUsage','chemRisk','chemName'].forEach(id => document.getElementById(id).value = ''); } });
+        }
+    }
+    if(!document.getElementById('chemName')) { const hidden = document.createElement('input'); hidden.type='hidden'; hidden.id='chemName'; document.querySelector('#tab2 .form-row')?.appendChild(hidden); }
+    document.getElementById('addChemicalBtn')?.addEventListener('click', () => { const sup=document.getElementById('chemSupplierSelect').value; const chemName=document.getElementById('chemName').value; if(!sup||!chemName) return alert("Select supplier and chemical"); state.chemicals.push({id:Date.now(),supplierName:sup,serial:document.getElementById('chemSerial').value,chemicalName:chemName,cas:document.getElementById('chemCas').value,usage:document.getElementById('chemUsage').value,riskCategory:document.getElementById('chemRisk').value}); renderAll(); alert("Chemical added"); });
+    
+    // ── Self-declaration file input handler ──
+    let _pendingDeclFile = null; // {name, dataUrl}
+    document.getElementById('selfDeclFileInput')?.addEventListener('change', function() {
+        const file = this.files[0];
+        const nameEl = document.getElementById('selfDeclFileName');
+        const clearBtn = document.getElementById('selfDeclFileClear');
+        if(file) {
+            nameEl.textContent = file.name;
+            clearBtn.style.display = 'inline';
+            const reader = new FileReader();
+            reader.onload = e => { _pendingDeclFile = { name: file.name, dataUrl: e.target.result }; };
+            reader.readAsDataURL(file);
+        } else {
+            _pendingDeclFile = null;
+            nameEl.textContent = 'No file chosen';
+            clearBtn.style.display = 'none';
+        }
+    });
+    document.getElementById('selfDeclFileClear')?.addEventListener('click', function() {
+        document.getElementById('selfDeclFileInput').value = '';
+        document.getElementById('selfDeclFileName').textContent = 'No file chosen';
+        this.style.display = 'none';
+        _pendingDeclFile = null;
+    });
+
+    document.getElementById('saveEvalResultsBtn')?.addEventListener('click', () => {
+        const supName = document.getElementById('evalSupplierSelectMain').value;
+        if(!supName) return alert("Select a supplier");
+        let total = 0; const answers = {};
+        evaluationQuestions.forEach(q => { const sel = document.querySelector(`.eval-select[data-qid="${q.id}"]`); if(sel && sel.value) { const val = parseInt(sel.value) || 0; total += val; answers[q.id] = val; } });
+        const evalDate = document.getElementById('evalDate').value || new Date().toISOString().split('T')[0];
+        const selfDecl = document.getElementById('selfDeclStatusEval').value;
+        const existingIdx = state.evaluations.findIndex(e => e.supplierName === supName);
+        const newEval = { supplierName: supName, score: total, date: evalDate, selfDeclaration: selfDecl, details: answers };
+        // Attach declaration file if selected; preserve existing if no new file chosen
+        if(_pendingDeclFile) {
+            newEval.declFileName = _pendingDeclFile.name;
+            newEval.declFileData = _pendingDeclFile.dataUrl;
+        } else if(existingIdx !== -1 && state.evaluations[existingIdx].declFileName) {
+            newEval.declFileName = state.evaluations[existingIdx].declFileName;
+            newEval.declFileData = state.evaluations[existingIdx].declFileData;
+        }
+        if(existingIdx !== -1) state.evaluations[existingIdx] = newEval;
+        else state.evaluations.push(newEval);
+        // Reset file input
+        document.getElementById('selfDeclFileInput').value = '';
+        document.getElementById('selfDeclFileName').textContent = 'No file chosen';
+        document.getElementById('selfDeclFileClear').style.display = 'none';
+        _pendingDeclFile = null;
+        renderAll();
+        alert(`Evaluation saved for ${supName} - Score: ${total}/24`);
+    });
+    
+    // ── Upload Month/Year Selector Init ──
+    (function initUploadMonthYear() {
+        const yearSel = document.getElementById('uploadYearSelect');
+        if(!yearSel) return;
+        const curY = new Date().getFullYear();
+        for(let y = curY - 2; y <= curY + 3; y++) {
+            const opt = document.createElement('option');
+            opt.value = y; opt.textContent = y;
+            if(y === curY) opt.selected = true;
+            yearSel.appendChild(opt);
+        }
+        function updatePreview() {
+            const mon = document.getElementById('uploadMonthSelect').value;
+            const yr = document.getElementById('uploadYearSelect').value;
+            const prev = document.getElementById('uploadMonthPreview');
+            if(prev) prev.textContent = (mon && yr) ? '→ ' + mon + '-' + yr : '';
+        }
+        document.getElementById('uploadMonthSelect')?.addEventListener('change', updatePreview);
+        yearSel.addEventListener('change', updatePreview);
+        updatePreview();
+    })();
+
+    function getUploadMonth() {
+        const mon = document.getElementById('uploadMonthSelect')?.value;
+        const yr  = document.getElementById('uploadYearSelect')?.value;
+        return (mon && yr) ? mon + '-' + yr : null;
+    }
+
+    document.getElementById('processInventoryUploadBtn')?.addEventListener('click', () => {
+        const file = document.getElementById('inventoryFileUpload').files[0];
+        if(!file) return alert('Please choose a file to upload.');
+        const selectedMonth = getUploadMonth();
+        const reader = new FileReader();
+        reader.onload = e => {
+            const data = new Uint8Array(e.target.result);
+            const wb   = XLSX.read(data, {type:'array'});
+            const sheet = wb.Sheets[wb.SheetNames[0]];
+            const rows  = XLSX.utils.sheet_to_json(sheet);
+            let added = 0;
+            rows.forEach(row => {
+                const sup  = row['Supplier Name']  || row['SupplierName']  || '';
+                const chem = row['Chemical Name']  || row['ChemicalName']  || '';
+                if(!sup || !chem) return;
+                const pm = selectedMonth
+                    || row['Purchase Month'] || row['PurchaseMonth']
+                    || 'Jan-' + new Date().getFullYear();
+                state.inventory.push({
+                    supplierName:    sup,
+                    chemicalName:    chem,
+                    casNo:           row['CAS No.']          || row['CAS']   || '',
+                    volume:          row['Volume (kg/L)']    || row['Volume'] || 0,
+                    virginNonVirgin: row['Virgin/Non-Virgin'] || row['Type']  || 'Virgin',
+                    purchaseMonth:   pm
+                });
+                added++;
+            });
+            renderAll();
+            updateFilterDropdowns();
+            alert(added + ' row(s) loaded successfully.' + (selectedMonth ? ' Month applied: ' + selectedMonth : ''));
+        };
+        reader.readAsArrayBuffer(file);
+    });
+
+    // ── Download Inventory Upload Template (pre-filled from Tab 2) ──
+    document.getElementById('downloadInventoryTemplateBtn')?.addEventListener('click', () => {
+        if(typeof XLSX === 'undefined') return alert('XLSX library not loaded yet. Please wait a moment.');
+        if(state.chemicals.length === 0) return alert('No chemicals found in Tab 2. Please assign chemicals to suppliers in Tab 2 first, then download the template.');
+        const selectedMonth = getUploadMonth();
+        const colHeaders = ['Supplier Name','Chemical Name','CAS No.','Volume (kg/L)','Virgin/Non-Virgin','Purchase Month'];
+
+        // Group by supplier, sorted alphabetically
+        const grouped = {};
+        state.chemicals.forEach(c => {
+            const sup = c.supplierName || '';
+            if(!grouped[sup]) grouped[sup] = [];
+            grouped[sup].push(c);
+        });
+        const dataRows = [];
+        Object.keys(grouped).sort().forEach(sup => {
+            grouped[sup].forEach(c => {
+                dataRows.push([
+                    c.supplierName  || '',
+                    c.chemicalName  || '',
+                    c.cas           || '',
+                    '',                          // Volume — user fills this
+                    c.riskCategory  || '',
+                    selectedMonth   || ''
+                ]);
+            });
+        });
+
+        const aoa = [colHeaders, ...dataRows];
+        const ws  = XLSX.utils.aoa_to_sheet(aoa);
+        ws['!freeze'] = {xSplit:0, ySplit:1, topLeftCell:'A2', activePane:'bottomLeft'};
+        ws['!cols'] = [{wch:26},{wch:34},{wch:16},{wch:16},{wch:24},{wch:16}];
+        colHeaders.forEach((_, ci) => {
+            const ref = XLSX.utils.encode_cell({r:0, c:ci});
+            if(ws[ref]) ws[ref].s = {font:{bold:true}};
+        });
+
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Inventory Data');
+
+        const instrData = [
+            ['WINSOME TEXTILE INDUSTRIES LTD — INVENTORY UPLOAD TEMPLATE'],
+            [''],
+            ['Instructions:'],
+            ['1. Column "Volume (kg/L)" is intentionally blank — enter the purchase volume for each row.'],
+            ['2. All other columns are pre-filled from Tab 2 (Commodity Chemicals list).'],
+            ['3. Do NOT change or delete the column header row (Row 1).'],
+            ['4. Purchase Month format must be: MMM-YYYY  (e.g.  Jan-2025).'],
+            ['5. Save as .xlsx and upload using the "Process & Load Inventory" button in Tab 5.'],
+            ['6. The month selected in Tab 5 overrides the Purchase Month column on upload.'],
+            [''],
+            ['Generated on:',   new Date().toLocaleDateString('en-IN', {dateStyle:'long'})],
+            ['Selected Month:', selectedMonth || '(none — fill Purchase Month column manually)'],
+            ['Source:',         'Tab 2 — Commodity Chemicals List'],
+            ['Total rows:',     dataRows.length],
+        ];
+        const wsI = XLSX.utils.aoa_to_sheet(instrData);
+        wsI['!cols'] = [{wch:18},{wch:65}];
+        XLSX.utils.book_append_sheet(wb, wsI, 'Instructions');
+
+        const stamp = new Date().toISOString().slice(0,10).replace(/-/g,'');
+        XLSX.writeFile(wb, 'WTIL_Inventory_Template_' + stamp + '.xlsx');
+    });
+    function openManualInventoryModal() {
+        // Populate supplier dropdown from state
+        const supSel = document.getElementById('modalSupplierSelect');
+        supSel.innerHTML = '<option value="">-- Select Supplier --</option>' +
+            state.suppliers.map(s => `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)}</option>`).join('');
+        // Reset other fields
+        document.getElementById('modalChemicalSelect').innerHTML = '<option value="">-- Select Supplier First --</option>';
+        document.getElementById('modalCasNo').value = '';
+        document.getElementById('modalProductType').value = '';
+        document.getElementById('modalVolume').value = '';
+        document.getElementById('modalPurchaseMonth').value = '';
+        document.getElementById('manualInventoryModal').classList.add('open');
+    }
+
+    function closeManualInventoryModal() {
+        document.getElementById('manualInventoryModal').classList.remove('open');
+    }
+
+    document.getElementById('addManualInventoryBtn')?.addEventListener('click', openManualInventoryModal);
+    document.getElementById('modalCancelBtn')?.addEventListener('click', closeManualInventoryModal);
+    document.getElementById('manualInventoryModal')?.addEventListener('click', function(e) {
+        if(e.target === this) closeManualInventoryModal();
+    });
+
+    // When supplier changes, populate chemicals from Tab 2 (state.chemicals)
+    document.getElementById('modalSupplierSelect')?.addEventListener('change', function() {
+        const supName = this.value;
+        const chemSel = document.getElementById('modalChemicalSelect');
+        const casInput = document.getElementById('modalCasNo');
+        const typeInput = document.getElementById('modalProductType');
+        // Filter chemicals from state for this supplier
+        const supChemicals = state.chemicals.filter(c => c.supplierName === supName);
+        if(!supName || supChemicals.length === 0) {
+            chemSel.innerHTML = '<option value="">-- No chemicals assigned in Tab 2 --</option>';
+            casInput.value = '';
+            typeInput.value = '';
+        } else {
+            chemSel.innerHTML = '<option value="">-- Select Chemical --</option>' +
+                supChemicals.map((c, i) =>
+                    `<option value="${i}" data-cas="${escapeHtml(c.cas||'')}" data-type="${escapeHtml(c.riskCategory||'')}" data-name="${escapeHtml(c.chemicalName||'')}">${escapeHtml(c.chemicalName)}</option>`
+                ).join('');
+            casInput.value = '';
+            typeInput.value = '';
+        }
+    });
+
+    // When chemical changes, auto-fill CAS and type
+    document.getElementById('modalChemicalSelect')?.addEventListener('change', function() {
+        const opt = this.options[this.selectedIndex];
+        if(opt && opt.value !== '') {
+            document.getElementById('modalCasNo').value = opt.dataset.cas || '';
+            // Map ZDHC risk category → Virgin/Non-Virgin selector
+            const raw = (opt.dataset.type || '').toLowerCase();
+            const typeSelect = document.getElementById('modalProductType');
+            if(raw.includes('non-virgin') || raw === 'non-virgin') typeSelect.value = 'Non-Virgin';
+            else if(raw.includes('virgin and non-virgin')) typeSelect.value = 'Virgin and Non-Virgin';
+            else if(raw.includes('virgin')) typeSelect.value = 'Virgin';
+            else typeSelect.value = '';
+        } else {
+            document.getElementById('modalCasNo').value = '';
+            document.getElementById('modalProductType').value = '';
+        }
+    });
+
+    document.getElementById('modalSaveBtn')?.addEventListener('click', () => {
+        const sup = document.getElementById('modalSupplierSelect').value;
+        const chemOpt = document.getElementById('modalChemicalSelect');
+        const selOpt = chemOpt.options[chemOpt.selectedIndex];
+        const chemName = selOpt && selOpt.value !== '' ? selOpt.dataset.name : '';
+        const casNo = document.getElementById('modalCasNo').value;
+        const type = document.getElementById('modalProductType').value;
+        const volume = document.getElementById('modalVolume').value.trim();
+        const month = document.getElementById('modalPurchaseMonth').value.trim();
+
+        if(!sup) return alert("Please select a supplier.");
+        if(!chemName) return alert("Please select a chemical.");
+        if(!volume || isNaN(parseFloat(volume))) return alert("Please enter a valid volume.");
+        if(!month) return alert("Please enter a purchase month (e.g. Jan-2025).");
+        if(!/^[A-Za-z]{3}-\d{4}$/.test(month)) return alert("Purchase Month must be in MMM-YYYY format (e.g. Jan-2025).");
+
+        state.inventory.push({
+            supplierName: sup,
+            chemicalName: chemName,
+            casNo: casNo,
+            volume: volume,
+            virginNonVirgin: type || 'Virgin',
+            purchaseMonth: month
+        });
+        renderAll();
+        updateFilterDropdowns();
+        closeManualInventoryModal();
+    });
+
+    // ── JSON Backup dropdown toggle ──
+    const _jsonToggleBtn = document.getElementById('jsonToggleBtn');
+    const _jsonDropdown  = document.getElementById('jsonDropdown');
+    const _jsonArrow     = document.getElementById('jsonToggleArrow');
+    _jsonToggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = _jsonDropdown.style.display === 'block';
+        _jsonDropdown.style.display = open ? 'none' : 'block';
+        _jsonArrow.style.transform  = open ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+    document.addEventListener('click', () => {
+        if(_jsonDropdown) { _jsonDropdown.style.display = 'none'; _jsonArrow.style.transform = 'rotate(0deg)'; }
+    });
+    _jsonDropdown?.addEventListener('click', e => e.stopPropagation());
+
+    document.getElementById('exportFullJsonBtn')?.addEventListener('click', () => { const now=new Date(); const fd=`${now.getDate().toString().padStart(2,'0')}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getFullYear()}${now.getHours().toString().padStart(2,'0')}${now.getMinutes().toString().padStart(2,'0')}${now.getSeconds().toString().padStart(2,'0')}`; const blob=new Blob([JSON.stringify({suppliers:state.suppliers,chemicals:state.chemicals,evaluations:state.evaluations,inventory:state.inventory,nextId},null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`Commodity Chemical Analysis data ${fd}.json`; a.click(); URL.revokeObjectURL(blob); });
+    document.getElementById('importJsonInput')?.addEventListener('change', (e) => { const file=e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=ev=>{ try{ const p=JSON.parse(ev.target.result); state.suppliers=p.suppliers||[]; state.chemicals=p.chemicals||[]; state.evaluations=p.evaluations||[]; state.inventory=p.inventory||[]; nextId=p.nextId||200; renderAll(); alert("Data restored successfully"); } catch(e){ alert("Invalid JSON file"); } }; reader.readAsText(file); });
+    
+    document.getElementById('resetDemoBtn')?.addEventListener('click', () => {
+        state.suppliers = [{ id:1, name:"ChemiSol Global", country:"Germany", website:"www.chemisol.com", contactPerson:"Anna Schmidt", telephone:"+4912345", email:"contact@chemisol.com", address:"Berlin" }, { id:2, name:"EcoTann Solutions", country:"Italy", website:"NA", contactPerson:"NA", telephone:"NA", email:"NA", address:"Milan" }];
+        state.chemicals = [];
+        state.evaluations = [{ supplierName:"ChemiSol Global", score:12, date:"2025-01-15", selfDeclaration:"Available", details:{} }, { supplierName:"EcoTann Solutions", score:6, date:"2025-01-10", selfDeclaration:"Not Available", details:{} }];
+        state.inventory = [{ supplierName:"ChemiSol Global", chemicalName:"Acetic acid", casNo:"64-19-7", volume:"1250", virginNonVirgin:"Non-Virgin", purchaseMonth:"Jan-2025" }];
+        nextId = 200;
+        renderAll();
+        renderEvalForm();
+        cancelEdit();
+    });
+    
+    // Filter listeners
+    document.getElementById('filterSupplier')?.addEventListener('change', () => renderInventoryTable());
+    document.getElementById('filterChemical')?.addEventListener('input', () => renderInventoryTable());
+    document.getElementById('filterMonth')?.addEventListener('change', () => renderInventoryTable());
+    document.getElementById('clearFiltersBtn')?.addEventListener('click', () => { document.getElementById('filterSupplier').value=''; document.getElementById('filterChemical').value=''; document.getElementById('filterMonth').value=''; renderInventoryTable(); });
+    document.getElementById('applyPeriodFilter')?.addEventListener('click', () => { currentFilter.year = document.getElementById('analysisYearFilter').value; currentFilter.startMonth = document.getElementById('analysisStartMonth').value; currentFilter.endMonth = document.getElementById('analysisEndMonth').value; renderPurchaseAnalysis(); renderMonthWiseData(); renderGraphicalView(); });
+    document.getElementById('resetPeriodFilter')?.addEventListener('click', () => { currentFilter = { year:'all', startMonth:'', endMonth:'' }; document.getElementById('analysisYearFilter').value='all'; document.getElementById('analysisStartMonth').value=''; document.getElementById('analysisEndMonth').value=''; renderPurchaseAnalysis(); renderMonthWiseData(); renderGraphicalView(); });
+    document.getElementById('refreshTargetBtn')?.addEventListener('click', () => updateTargetAnalysis());
+    
+    // Target editable listeners
+    const targetShareInput = document.getElementById('targetClassAShareEditable');
+    const applyTargetBtn = document.getElementById('applyTargetBtn');
+    const resetTargetBtn = document.getElementById('resetTargetBtn');
+    
+    if (targetShareInput) {
+        targetShareInput.addEventListener('input', function() {
+            let currentClassA = parseFloat(document.getElementById('currentClassAVolume').value) || 0;
+            let currentTotal = parseFloat(document.getElementById('currentTotalVolume').value) || 0;
+            const targetShare = parseFloat(this.value) || 0;
+            const targetVolume = (targetShare / 100) * currentTotal;
+            const additional = targetVolume - currentClassA;
+            document.getElementById('targetClassAVolume').value = targetVolume.toFixed(2);
+            document.getElementById('additionalVolumeRequired').value = additional.toFixed(2);
+            const progressPercent = targetVolume > 0 ? (currentClassA / targetVolume) * 100 : 0;
+            const finalProgress = Math.min(progressPercent, 100);
+            const progressBar = document.getElementById('targetProgressBar');
+            if(progressBar) { progressBar.style.width = finalProgress + '%'; progressBar.innerText = finalProgress.toFixed(1) + '%'; }
+            const msg = document.getElementById('targetMessage');
+            if(msg) msg.innerHTML = additional <= 0 ? '🎉 Congratulations! You have already achieved the target!' : `📈 Need to increase Class A volume by <strong>${additional.toFixed(2)} kg/L</strong> to reach ${targetShare.toFixed(2)}% target.`;
+        });
+    }
+    
+    if (applyTargetBtn) {
+        applyTargetBtn.addEventListener('click', () => {
+            updateTargetAnalysis();
+            alert(`Target updated to ${document.getElementById('targetClassAShareEditable')?.value}% by ${document.getElementById('targetYear')?.value}`);
+        });
+    }
+    
+    if (resetTargetBtn) {
+        resetTargetBtn.addEventListener('click', () => {
+            let currentShare = parseFloat(document.getElementById('currentClassAShare').value) || 0;
+            const defaultTarget = currentShare * 1.5;
+            if(targetShareInput) targetShareInput.value = defaultTarget.toFixed(2);
+            document.getElementById('targetYear').value = '2030';
+            updateTargetAnalysis();
+            alert(`Target reset to 50% increase: ${defaultTarget.toFixed(2)}%`);
+        });
+    }
+    
+    // Sub-tab switching
+    document.querySelectorAll('.analysis-subtab').forEach(tab => { tab.addEventListener('click', function() { document.querySelectorAll('.analysis-subtab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.analysis-subcontent').forEach(c=>c.classList.remove('active')); this.classList.add('active'); document.getElementById(this.dataset.subtab+'View').classList.add('active'); if(this.dataset.subtab==='monthwise') renderMonthWiseData(); if(this.dataset.subtab==='graphical') renderGraphicalView(); }); });
+    
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active')); btn.classList.add('active'); document.getElementById(btn.getAttribute('data-tab')).classList.add('active'); if(btn.getAttribute('data-tab') === 'tab3') renderEvalForm(); }));
+    
+    window.addEventListener('DOMContentLoaded', () => { populateChemicalDropdown(); document.getElementById('resetDemoBtn').click(); document.getElementById('evalDate').valueAsDate = new Date(); renderEvalForm(); });
+
+    // ===================== EXPORT / DOWNLOAD REPORTS =====================
+
+    // --- Helpers ---
+    function reportMeta() {
+        const now = new Date();
+        return `Winsome Textile Industries Ltd. — Commodity Chemicals Management System\nGenerated: ${now.toLocaleString('en-IN', {dateStyle:'long', timeStyle:'short'})}`;
+    }
+    function nowStamp() {
+        const n = new Date();
+        return `${n.getFullYear()}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}_${String(n.getHours()).padStart(2,'0')}${String(n.getMinutes()).padStart(2,'0')}`;
+    }
+
+    // --- Build data for each tab ---
+    function getTab1Data() {
+        return {
+            title: 'Tab 1 — Existing Suppliers',
+            headers: ['#','Name','Country','Website','Contact Person','Phone','Email','Address'],
+            rows: state.suppliers.map((s,i) => [i+1, s.name, s.country, s.website, s.contactPerson, s.telephone, s.email, s.address])
+        };
+    }
+    function getTab2Data() {
+        return {
+            title: 'Tab 2 — Commodity Chemicals List',
+            headers: ['#','Supplier','Serial No.','Chemical Name','CAS No.','Potential Usage','ZDHC MRSL Category'],
+            rows: state.chemicals.map((c,i) => [i+1, c.supplierName, c.serial, c.chemicalName, c.cas, c.usage, c.riskCategory])
+        };
+    }
+    function getTab3Data() {
+        return {
+            title: 'Tab 3 — Saved Evaluation Records',
+            headers: ['#','Supplier','Evaluation Date','Score (/24)','Self-Declaration','Class','Action Required'],
+            rows: state.evaluations.map((ev,i) => {
+                const cls = getClassFromScore(ev.score);
+                return [i+1, ev.supplierName, ev.date||'', ev.score, ev.selfDeclaration||'', `Class ${cls.letter}`, cls.action];
+            })
+        };
+    }
+    function getTab4Data() {
+        const map = new Map();
+        state.evaluations.forEach(ev => map.set(ev.supplierName, ev));
+        return {
+            title: 'Tab 4 — Supplier Classification Matrix',
+            headers: ['#','Supplier','Score (/24)','Class','Action Required','Assigned Products'],
+            rows: state.suppliers.map((s,i) => {
+                const ev = map.get(s.name);
+                const cls = ev ? getClassFromScore(ev.score) : { letter:'C', action:'Not Evaluated - Pending Assessment' };
+                const products = state.chemicals.filter(c => c.supplierName === s.name).map(c => c.chemicalName).join(', ') || 'None';
+                return [i+1, s.name, ev ? ev.score : 'N/A', `Class ${cls.letter}`, cls.action, products];
+            })
+        };
+    }
+    function getTab5Data() {
+        return {
+            title: 'Tab 5 — Inventory Records',
+            headers: ['#','Supplier','Chemical Name','CAS No.','Volume (kg/L)','Type','Purchase Month'],
+            rows: state.inventory.map((inv,i) => [i+1, inv.supplierName, inv.chemicalName, inv.casNo||'', inv.volume, inv.virginNonVirgin, formatPurchaseMonth(inv.purchaseMonth)])
+        };
+    }
+    function getTab6Data() {
+        const map = new Map();
+        state.evaluations.forEach(ev => map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+        const monthData = new Map();
+        let totA=0,totB=0,totC=0,totV=0,totNV=0;
+        state.inventory.forEach(item => {
+            const vol = parseFloat(item.volume)||0;
+            const cls = map.get(item.supplierName)||'C';
+            const isV = (item.virginNonVirgin||'').toLowerCase().includes('virgin') && !(item.virginNonVirgin||'').toLowerCase().includes('non');
+            const pm = item.purchaseMonth||'Unknown';
+            if(!monthData.has(pm)) monthData.set(pm,{A:0,B:0,C:0,virgin:0,nonVirgin:0,total:0});
+            const d = monthData.get(pm);
+            if(cls==='A'){d.A+=vol;totA+=vol;}else if(cls==='B'){d.B+=vol;totB+=vol;}else{d.C+=vol;totC+=vol;}
+            if(isV){d.virgin+=vol;totV+=vol;}else{d.nonVirgin+=vol;totNV+=vol;}
+            d.total+=vol;
+        });
+        const grand=totA+totB+totC;
+        const sorted = Array.from(monthData.keys()).sort((a,b)=>parsePurchaseMonth(b)-parsePurchaseMonth(a));
+        const rows = sorted.map(m => {
+            const d = monthData.get(m);
+            return [formatPurchaseMonth(m), d.A.toFixed(2), d.B.toFixed(2), d.C.toFixed(2), d.virgin.toFixed(2), d.nonVirgin.toFixed(2), d.total.toFixed(2)];
+        });
+        rows.push(['TOTAL', totA.toFixed(2), totB.toFixed(2), totC.toFixed(2), totV.toFixed(2), totNV.toFixed(2), grand.toFixed(2)]);
+        return {
+            title: 'Tab 6 — Purchase Analysis Summary & Month-wise Data',
+            headers: ['Month','Class A (kg/L)','Class B (kg/L)','Class C (kg/L)','Virgin (kg/L)','Non-Virgin (kg/L)','Total (kg/L)'],
+            rows,
+            summary: [
+                ['Total Volume (kg/L)', grand.toFixed(2)],
+                ['Class A Volume (kg/L)', totA.toFixed(2), `${grand>0?((totA/grand)*100).toFixed(1):0}%`],
+                ['Class B Volume (kg/L)', totB.toFixed(2), `${grand>0?((totB/grand)*100).toFixed(1):0}%`],
+                ['Class C Volume (kg/L)', totC.toFixed(2), `${grand>0?((totC/grand)*100).toFixed(1):0}%`],
+                ['Virgin Volume (kg/L)', totV.toFixed(2), `${grand>0?((totV/grand)*100).toFixed(1):0}%`],
+                ['Non-Virgin Volume (kg/L)', totNV.toFixed(2), `${grand>0?((totNV/grand)*100).toFixed(1):0}%`],
+            ]
+        };
+    }
+    function getTab7Data() {
+        const clsAVol = parseFloat(document.getElementById('currentClassAVolume')?.value)||0;
+        const totalVol = parseFloat(document.getElementById('currentTotalVolume')?.value)||0;
+        const clsAShare = document.getElementById('currentClassAShare')?.value||'0%';
+        const targetShare = document.getElementById('targetClassAShareEditable')?.value||'0';
+        const targetVol = document.getElementById('targetClassAVolume')?.value||'0';
+        const addReq = document.getElementById('additionalVolumeRequired')?.value||'0';
+        const targetYear = document.getElementById('targetYear')?.value||'2030';
+        const progress = totalVol>0?((clsAVol/(parseFloat(targetVol)||1))*100).toFixed(1):'0';
+        return {
+            title: 'Tab 7 — Target Analysis 2030',
+            headers: ['Metric','Value'],
+            rows: [
+                ['Current Class A Volume (kg/L)', clsAVol.toFixed(2)],
+                ['Current Total Volume (kg/L)', totalVol.toFixed(2)],
+                ['Current Class A Share (%)', clsAShare],
+                ['Target Class A Share (%)', targetShare+'%'],
+                ['Target Year', targetYear],
+                ['Target Class A Volume (kg/L)', targetVol],
+                ['Additional Volume Required (kg/L)', addReq],
+                ['Progress Towards Target (%)', progress+'%'],
+            ],
+            actions: [
+                'Identify and prioritize Class A suppliers for increased sourcing',
+                'Work with Class B suppliers to improve their score to Class A level',
+                'Consider transitioning from Class C suppliers to Class A or B suppliers',
+                'Conduct regular supplier evaluations and performance reviews',
+                'Implement supplier development programs for B and C class vendors',
+                'Set quarterly targets for Class A volume increase'
+            ]
+        };
+    }
+
+    const TAB_BUILDERS = { tab1:getTab1Data, tab2:getTab2Data, tab3:getTab3Data, tab4:getTab4Data, tab5:getTab5Data, tab6:getTab6Data, tab7:getTab7Data };
+
+    // ---- Excel Export ----
+    function exportExcel(selectedKeys, isCcms) {
+        if(typeof XLSX === 'undefined') return alert('XLSX library not loaded yet.');
+        const wb = XLSX.utils.book_new();
+        const company = 'Winsome Textile Industries Ltd.';
+        const now = new Date().toLocaleString('en-IN', {dateStyle:'long', timeStyle:'short'});
+
+        // CCMS: prepend a cover/summary sheet
+        if(isCcms) {
+            const map = new Map();
+            state.evaluations.forEach(ev => map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+            const totalVol = state.inventory.reduce((s,i)=>s+(parseFloat(i.volume)||0),0);
+            const clsAVol = state.inventory.filter(i=>map.get(i.supplierName)==='A').reduce((s,i)=>s+(parseFloat(i.volume)||0),0);
+            const cover = [
+                [company],
+                ['Commodity Chemicals Management System (CCMS)'],
+                ['Full Report'],
+                [`Generated: ${now}`],
+                [],
+                ['REPORT SUMMARY'],
+                ['Metric', 'Value'],
+                ['Total Registered Suppliers', state.suppliers.length],
+                ['Total Chemicals Assigned', state.chemicals.length],
+                ['Total Evaluation Records', state.evaluations.length],
+                ['Total Inventory Records', state.inventory.length],
+                ['Total Inventory Volume (kg/L)', totalVol.toFixed(2)],
+                ['Class A Volume (kg/L)', clsAVol.toFixed(2)],
+                ['Class A Share (%)', totalVol>0?((clsAVol/totalVol)*100).toFixed(1)+'%':'0%'],
+                [],
+                ['CONTENTS'],
+                ['Sheet', 'Description'],
+                ['1. Suppliers', 'All registered commodity chemical suppliers'],
+                ['2. Chemicals', 'Commodity chemicals list (ZDHC guide)'],
+                ['3. Evaluations', 'Supplier evaluation questionnaire results'],
+                ['4. Classification', 'Supplier classification matrix (Class A/B/C)'],
+                ['5. Inventory', 'Inventory records with volumes and months'],
+                ['6. Purchase Analysis', 'Month-wise purchase analysis and summary'],
+                ['7. Target 2030', '2030 target analysis and action plan'],
+                [],
+                ['© Winsome Textile Industries Ltd. All rights reserved. | Confidential'],
+            ];
+            const ws0 = XLSX.utils.aoa_to_sheet(cover);
+            ws0['!cols'] = [{wch:40},{wch:30}];
+            XLSX.utils.book_append_sheet(wb, ws0, 'CCMS Cover');
+        }
+
+        selectedKeys.forEach(key => {
+            const d = TAB_BUILDERS[key]();
+            const aoa = [];
+            aoa.push([company]);
+            aoa.push([d.title]);
+            aoa.push([`Generated: ${now}`]);
+            aoa.push([]);
+            if(key === 'tab6' && d.summary) {
+                aoa.push(['--- Summary ---']);
+                aoa.push(['Metric','Volume','Share']);
+                d.summary.forEach(r => aoa.push(r));
+                aoa.push([]);
+                aoa.push(['--- Month-wise Breakdown ---']);
+            }
+            aoa.push(d.headers);
+            d.rows.forEach(r => aoa.push(r));
+            if(key === 'tab7' && d.actions) {
+                aoa.push([]);
+                aoa.push(['Action Plan to Achieve Target']);
+                d.actions.forEach((a,i) => aoa.push([`${i+1}.`, a]));
+            }
+            const ws = XLSX.utils.aoa_to_sheet(aoa);
+            ws['!cols'] = d.headers.map(() => ({wch:22}));
+            const sheetName = d.title.replace(/[^a-zA-Z0-9 ]/g,'').substring(0,31);
+            XLSX.utils.book_append_sheet(wb, ws, sheetName);
+        });
+
+        const fname = isCcms
+            ? `WTIL_CCMS_Full_Report_${nowStamp()}.xlsx`
+            : `WTIL_CC_Report_${nowStamp()}.xlsx`;
+        XLSX.writeFile(wb, fname);
+    }
+
+    // ---- PDF Export ----
+    function exportPDF(selectedKeys, isCcms) {
+        const { jsPDF } = window.jspdf;
+        if(!jsPDF) return alert('jsPDF library not loaded yet.');
+        const doc = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
+        const company = 'Winsome Textile Industries Ltd.';
+        const subtitle = 'Commodity Chemicals Management System';
+        const now = new Date().toLocaleString('en-IN', {dateStyle:'long', timeStyle:'short'});
+        const pw = doc.internal.pageSize.getWidth();
+        const ph = doc.internal.pageSize.getHeight();
+        const BLUE = [17,114,164];
+        const LBLUE = [227,243,252];
+        const WHITE = [255,255,255];
+        const DARK = [30,50,70];
+        const GREEN = [23,160,85];
+        const TEAL = [0,128,128];
+
+        function drawPageHeader(title) {
+            doc.setFillColor(...BLUE);
+            doc.rect(0, 0, pw, 22, 'F');
+            doc.setTextColor(...WHITE);
+            doc.setFontSize(13);
+            doc.setFont('helvetica','bold');
+            doc.text(company, 14, 9);
+            doc.setFontSize(8);
+            doc.setFont('helvetica','normal');
+            doc.text(subtitle, 14, 15);
+            doc.text(`Generated: ${now}`, pw-14, 15, {align:'right'});
+            doc.setFillColor(...LBLUE);
+            doc.rect(0, 22, pw, 10, 'F');
+            doc.setTextColor(...BLUE);
+            doc.setFontSize(10);
+            doc.setFont('helvetica','bold');
+            doc.text(title, 14, 29);
+        }
+
+        function drawPageFooter(pageNum, totalPages) {
+            doc.setFillColor(240,248,255);
+            doc.rect(0, ph-10, pw, 10, 'F');
+            doc.setFontSize(7);
+            doc.setTextColor(90,130,160);
+            doc.text('© Winsome Textile Industries Ltd. All rights reserved. | Confidential', 14, ph-3.5);
+            doc.text(`Page ${pageNum} of ${totalPages}`, pw-14, ph-3.5, {align:'right'});
+        }
+
+        // CCMS: Cover page
+        const totalPages = isCcms ? selectedKeys.length + 1 : selectedKeys.length;
+        let pageNum = 1;
+
+        if(isCcms) {
+            const map = new Map();
+            state.evaluations.forEach(ev => map.set(ev.supplierName, getClassFromScore(ev.score).letter));
+            const totalVol = state.inventory.reduce((s,i)=>s+(parseFloat(i.volume)||0),0);
+            const clsAVol = state.inventory.filter(i=>map.get(i.supplierName)==='A').reduce((s,i)=>s+(parseFloat(i.volume)||0),0);
+
+            // Full cover background
+            doc.setFillColor(8, 60, 95);
+            doc.rect(0, 0, pw, ph, 'F');
+            // Accent bar
+            doc.setFillColor(23,160,85);
+            doc.rect(0, 0, 6, ph, 'F');
+
+            // Company + title
+            doc.setTextColor(...WHITE);
+            doc.setFontSize(22);
+            doc.setFont('helvetica','bold');
+            doc.text(company, pw/2, 45, {align:'center'});
+            doc.setFontSize(14);
+            doc.setFont('helvetica','normal');
+            doc.text(subtitle, pw/2, 56, {align:'center'});
+            doc.setFontSize(18);
+            doc.setFont('helvetica','bold');
+            doc.setTextColor(164,220,255);
+            doc.text('CCMS FULL REPORT', pw/2, 74, {align:'center'});
+            doc.setFontSize(9);
+            doc.setTextColor(180,210,230);
+            doc.setFont('helvetica','normal');
+            doc.text(`Generated: ${now}`, pw/2, 83, {align:'center'});
+
+            // Summary stat boxes
+            const stats = [
+                {label:'Suppliers', val:state.suppliers.length},
+                {label:'Chemicals', val:state.chemicals.length},
+                {label:'Evaluations', val:state.evaluations.length},
+                {label:'Inv. Records', val:state.inventory.length},
+                {label:'Total Volume', val:totalVol.toFixed(1)+' kg/L'},
+                {label:'Class A Share', val:totalVol>0?((clsAVol/totalVol)*100).toFixed(1)+'%':'0%'},
+            ];
+            const boxW=40, boxH=22, gapX=5;
+            const totalBoxW = stats.length*(boxW+gapX)-gapX;
+            let bx = (pw-totalBoxW)/2;
+            stats.forEach(s => {
+                doc.setFillColor(255,255,255,0.12);
+                doc.setFillColor(15,90,130);
+                doc.roundedRect(bx, 96, boxW, boxH, 4, 4, 'F');
+                doc.setTextColor(164,220,255);
+                doc.setFontSize(14);
+                doc.setFont('helvetica','bold');
+                doc.text(String(s.val), bx+boxW/2, 106, {align:'center'});
+                doc.setFontSize(7);
+                doc.setFont('helvetica','normal');
+                doc.setTextColor(180,210,230);
+                doc.text(s.label, bx+boxW/2, 113, {align:'center'});
+                bx += boxW+gapX;
+            });
+
+            // Contents list
+            doc.setTextColor(164,220,255);
+            doc.setFontSize(10);
+            doc.setFont('helvetica','bold');
+            doc.text('REPORT CONTENTS', pw/2, 132, {align:'center'});
+            const contents = [
+                'Tab 1 — Existing Suppliers',
+                'Tab 2 — Commodity Chemicals List',
+                'Tab 3 — Saved Evaluation Records',
+                'Tab 4 — Supplier Classification Matrix',
+                'Tab 5 — Inventory Records',
+                'Tab 6 — Purchase Analysis & Month-wise Summary',
+                'Tab 7 — Target Analysis 2030',
+            ];
+            doc.setFont('helvetica','normal');
+            doc.setFontSize(8.5);
+            doc.setTextColor(...WHITE);
+            contents.forEach((c,i) => {
+                doc.text(`${i+1}.  ${c}`, pw/2, 141+(i*9), {align:'center'});
+            });
+
+            // Footer
+            doc.setFontSize(7.5);
+            doc.setTextColor(120,170,200);
+            doc.text('© Winsome Textile Industries Ltd. All rights reserved. | Strictly Confidential', pw/2, ph-8, {align:'center'});
+            doc.text(`Page ${pageNum} of ${totalPages}`, pw-14, ph-3.5, {align:'right'});
+            pageNum++;
+        }
+
+        selectedKeys.forEach((key, idx) => {
+            doc.addPage();
+            const d = TAB_BUILDERS[key]();
+            drawPageHeader(d.title);
+            let startY = 36;
+
+            if(key === 'tab6' && d.summary) {
+                doc.autoTable({
+                    startY,
+                    head:[['Metric','Volume','Share (%)']],
+                    body: d.summary,
+                    theme:'grid',
+                    headStyles:{fillColor:GREEN, textColor:WHITE, fontStyle:'bold', fontSize:8},
+                    bodyStyles:{fontSize:8},
+                    margin:{left:14, right:14},
+                    tableWidth:'auto'
+                });
+                startY = doc.lastAutoTable.finalY + 6;
+                doc.setFontSize(8.5);
+                doc.setFont('helvetica','bold');
+                doc.setTextColor(...DARK);
+                doc.text('Month-wise Breakdown', 14, startY);
+                startY += 4;
+            }
+
+            doc.autoTable({
+                startY,
+                head: [d.headers],
+                body: d.rows,
+                theme:'striped',
+                headStyles:{fillColor:BLUE, textColor:WHITE, fontStyle:'bold', fontSize:7.5},
+                bodyStyles:{fontSize:7, textColor:DARK},
+                alternateRowStyles:{fillColor:[240,248,255]},
+                margin:{left:14, right:14},
+                styles:{overflow:'linebreak', cellPadding:2.5},
+                columnStyles: key==='tab7' ? {0:{cellWidth:70}, 1:{cellWidth:'auto'}} : {},
+                didParseCell(data) {
+                    if(key==='tab6' && data.row.index === d.rows.length-1 && data.section==='body') {
+                        data.cell.styles.fontStyle = 'bold';
+                        data.cell.styles.fillColor = [220,240,255];
+                    }
+                    if((key==='tab3'||key==='tab4') && data.section==='body') {
+                        const val = String(data.cell.raw||'');
+                        if(val==='Class A') { data.cell.styles.textColor=[10,100,60]; data.cell.styles.fontStyle='bold'; }
+                        else if(val==='Class B') { data.cell.styles.textColor=[140,90,10]; data.cell.styles.fontStyle='bold'; }
+                        else if(val==='Class C') { data.cell.styles.textColor=[180,40,40]; data.cell.styles.fontStyle='bold'; }
+                    }
+                }
+            });
+
+            if(key === 'tab7' && d.actions) {
+                let ay = doc.lastAutoTable.finalY + 8;
+                doc.setFontSize(9);
+                doc.setFont('helvetica','bold');
+                doc.setTextColor(...BLUE);
+                doc.text('Action Plan to Achieve Target', 14, ay);
+                ay += 5;
+                doc.setFont('helvetica','normal');
+                doc.setFontSize(8);
+                doc.setTextColor(...DARK);
+                d.actions.forEach((a,i) => { doc.text(`${i+1}. ${a}`, 18, ay); ay += 5.5; });
+            }
+
+            drawPageFooter(pageNum, totalPages);
+            pageNum++;
+        });
+
+        const fname = isCcms
+            ? `WTIL_CCMS_Full_Report_${nowStamp()}.pdf`
+            : `WTIL_CC_Report_${nowStamp()}.pdf`;
+        doc.save(fname);
+    }
+
+    // ---- Modal open/close ----
+    document.getElementById('openExportModalBtn')?.addEventListener('click', () => {
+        document.getElementById('exportReportModal').classList.add('open');
+    });
+    document.getElementById('closeExportModal')?.addEventListener('click', () => {
+        document.getElementById('exportReportModal').classList.remove('open');
+    });
+    document.getElementById('exportReportModal')?.addEventListener('click', function(e) {
+        if(e.target === this) this.classList.remove('open');
+    });
+
+    // ---- Tab card toggle ----
+    document.querySelectorAll('.exp-tab-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('selected');
+            // Update select-all label
+            const cards = document.querySelectorAll('.exp-tab-card');
+            const allSel = Array.from(cards).every(c => c.classList.contains('selected'));
+            const noneSel = Array.from(cards).every(c => !c.classList.contains('selected'));
+            const lbl = document.getElementById('expSelectAll');
+            if(allSel) lbl.textContent = 'Deselect All';
+            else if(noneSel) lbl.textContent = 'Select All';
+            else lbl.textContent = 'Select All';
+        });
+    });
+
+    document.getElementById('expSelectAll')?.addEventListener('click', function() {
+        const cards = document.querySelectorAll('.exp-tab-card');
+        const allSel = Array.from(cards).every(c => c.classList.contains('selected'));
+        if(allSel) {
+            cards.forEach(c => c.classList.remove('selected'));
+            this.textContent = 'Select All';
+        } else {
+            cards.forEach(c => c.classList.add('selected'));
+            this.textContent = 'Deselect All';
+        }
+    });
+
+    function getSelectedTabKeys() {
+        return Array.from(document.querySelectorAll('.exp-tab-card.selected')).map(c => c.dataset.tabkey);
+    }
+
+    const ALL_TAB_KEYS = ['tab1','tab2','tab3','tab4','tab5','tab6','tab7'];
+
+    // ---- Selected tabs Excel/PDF ----
+    document.getElementById('expExcelBtn')?.addEventListener('click', () => {
+        const keys = getSelectedTabKeys();
+        if(!keys.length) return alert('Please select at least one tab to export.');
+        exportExcel(keys, false);
+    });
+    document.getElementById('expPdfBtn')?.addEventListener('click', () => {
+        const keys = getSelectedTabKeys();
+        if(!keys.length) return alert('Please select at least one tab to export.');
+        exportPDF(keys, false);
+    });
+
+    // ---- CCMS Full Report (all 7 tabs) ----
+    document.getElementById('expCcmsExcelBtn')?.addEventListener('click', () => {
+        exportExcel(ALL_TAB_KEYS, true);
+    });
+    document.getElementById('expCcmsPdfBtn')?.addEventListener('click', () => {
+        exportPDF(ALL_TAB_KEYS, true);
+    });
+</script>
+</body>
+</html>
