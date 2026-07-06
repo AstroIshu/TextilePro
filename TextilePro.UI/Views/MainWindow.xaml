@@ -43,7 +43,7 @@
             </TabItem>
             
             <TabItem Header="🏷️ Classification" Name="ClassificationTab">
-                <TextBlock Text="Classification coming soon..." FontSize="16" Margin="20"/>
+                <views:ClassificationView />
             </TabItem>
             
             <TabItem Header="📦 Inventory" Name="InventoryTab">

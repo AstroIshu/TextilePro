@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("© 2026 AIM")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.0+67f1f84017e4df8ae39098ced62ffebc9beff9da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.0+e7af51be3dd3a7f2f686c38bbb93f56a1c6dd222")]
 [assembly: System.Reflection.AssemblyProductAttribute("TextilePro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TextilePro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

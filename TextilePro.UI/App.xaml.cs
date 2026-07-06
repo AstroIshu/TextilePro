@@ -43,6 +43,7 @@ public partial class App : Application
         services.AddScoped<SupplierViewModel>();
         services.AddScoped<ChemicalViewModel>();
         services.AddScoped<EvaluationViewModel>();
+        services.AddScoped<ClassificationViewModel>();
 
         // 4. Register Windows
         services.AddScoped<LoginWindow>();

@@ -586,6 +586,7 @@ D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\TextilePro.Core.
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro.UI.csproj.AssemblyReference.cache
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\LoginWindow.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ChemicalView.g.cs
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ClassificationView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\EvaluationView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\LoginWindow.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\MainWindow.g.cs
@@ -597,6 +598,7 @@ D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro_Marku
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro_MarkupCompile.lref
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\App.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ChemicalView.baml
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ClassificationView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\EvaluationView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\MainWindow.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\SupplierView.baml

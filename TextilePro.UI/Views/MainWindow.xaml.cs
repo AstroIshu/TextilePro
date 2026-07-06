@@ -30,4 +30,8 @@ public partial class MainWindow : Window
     {
         EvaluationTab.IsSelected = true;
     }
+     public void ShowClassificationTab()
+    {
+        ClassificationTab.IsSelected = true;
+    }
 }
