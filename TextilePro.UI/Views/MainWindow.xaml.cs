@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace TextilePro.UI.Views;
 
@@ -20,5 +21,9 @@ public partial class MainWindow : Window
     public void ShowSupplierTab()
     {
         SupplierTab.IsSelected = true;
+    }
+    public void ShowChemicalTab()
+    {
+        ChemicalTab.IsSelected = true;
     }
 }

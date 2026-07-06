@@ -132,6 +132,7 @@ public partial class App : Application
         services.AddScoped<LoginViewModel>();
         services.AddScoped<MainViewModel>();
         services.AddScoped<SupplierViewModel>();
+        services.AddScoped<ChemicalViewModel>();
 
         // 4. Register Windows
         services.AddScoped<LoginWindow>();

@@ -34,8 +34,8 @@
                 <views:SupplierView />
             </TabItem>
             
-            <TabItem Header="🧪 Chemicals" Name="ChemicalTab">
-                <TextBlock Text="Chemicals coming soon..." FontSize="16" Margin="20"/>
+            <TabItem Header="🧪 Chemicals" Name="ChemicalTab" IsSelected="True">
+                <views:ChemicalView />
             </TabItem>
             
             <TabItem Header="⭐ Evaluations" Name="EvaluationTab">
