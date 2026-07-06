@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Codes\Textile\TextilePro.UI\App.xaml
-2-1457342498
+3-758583392
 222115993120
-9-433611273
+13-1843864859
 244-697880102
-Views\LoginWindow.xaml;Views\MainWindow.xaml;
+Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\SupplierView.xaml;
 
 False
 

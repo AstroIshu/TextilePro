@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\TextilePro.Core\TextilePro.Core.csproj" />
   </ItemGroup>

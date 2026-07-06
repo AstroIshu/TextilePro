@@ -6,6 +6,19 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent();
+        try
+        {
+            InitializeComponent();
+        }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show($"Error loading MainWindow: {ex.Message}\n\nStack Trace:\n{ex.StackTrace}", 
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    public void ShowSupplierTab()
+    {
+        SupplierTab.IsSelected = true;
     }
 }

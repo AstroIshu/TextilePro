@@ -7,6 +7,7 @@ D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.GeneratedMSBui
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.AssemblyInfoInputs.cache
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.AssemblyInfo.cs
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.csproj.CoreCompileInputs.cache
+D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.sourcelink.json
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.dll
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\refint\TextilePro.Core.dll
 D:\Codes\Textile\TextilePro.Core\obj\Debug\net8.0\TextilePro.Core.pdb

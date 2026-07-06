@@ -71,7 +71,8 @@ public partial class LoginViewModel : ObservableObject
 
             Application.Current.Properties["Session"] = session;
 
-            var mainWindow = new MainWindow();
+            var mainWindow = App.GetService<MainWindow>();
+            mainWindow.ShowSupplierTab();
             Application.Current.MainWindow = mainWindow;
             mainWindow.Show();
 
