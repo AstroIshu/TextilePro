@@ -20,7 +20,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <TextBlock Text="🏭 Winsome Textile" FontSize="22" FontWeight="Bold" Foreground="White"/>
                 <TextBlock Text="CCMS" FontSize="18" Foreground="#64B5F6" Margin="10,0,0,0"/>
-                <TextBlock Text="👤 Admin" FontSize="12" Foreground="White" Margin="30,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="👤 Profile" FontSize="12" Foreground="White" Margin="30,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
@@ -39,7 +39,7 @@
             </TabItem>
             
             <TabItem Header="⭐ Evaluations" Name="EvaluationTab">
-                <TextBlock Text="Evaluations coming soon..." FontSize="16" Margin="20"/>
+                <views:EvaluationView />
             </TabItem>
             
             <TabItem Header="🏷️ Classification" Name="ClassificationTab">

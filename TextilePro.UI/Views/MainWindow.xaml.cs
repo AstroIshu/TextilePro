@@ -26,4 +26,8 @@ public partial class MainWindow : Window
     {
         ChemicalTab.IsSelected = true;
     }
+    public void ShowEvaluationTab()
+    {
+        EvaluationTab.IsSelected = true;
+    }
 }
