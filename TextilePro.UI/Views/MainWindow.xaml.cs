@@ -42,4 +42,8 @@ public partial class MainWindow : Window
     {
         AnalysisTab.IsSelected = true;
     }
+    public void ShowTargetTab()
+    {
+            TargetTab.IsSelected = true;
+    }
 }

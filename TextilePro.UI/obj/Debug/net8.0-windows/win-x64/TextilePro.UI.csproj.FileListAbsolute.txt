@@ -595,6 +595,7 @@ D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\InventoryV
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\LoginWindow.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\MainWindow.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\SupplierView.g.cs
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\TargetView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\App.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro_Content.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\GeneratedInternalTypeHelper.g.cs
@@ -608,6 +609,7 @@ D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\Evaluation
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\InventoryView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\MainWindow.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\SupplierView.baml
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\TargetView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro.g.resources
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro.UI.GeneratedMSBuildEditorConfig.editorconfig
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\TextilePro.UI.AssemblyInfoInputs.cache

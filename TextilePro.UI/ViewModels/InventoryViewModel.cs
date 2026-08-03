@@ -602,7 +602,14 @@ private async Task UploadExcelAsync()
         var filePath = openDialog.FileName;
         var workbook = new ClosedXML.Excel.XLWorkbook(filePath);
         var ws = workbook.Worksheet(1);
-        var rows = ws.RangeUsed().RowsUsed();
+        var usedRange = ws.RangeUsed();
+        if (usedRange == null)
+        {
+            MessageBox.Show("The selected file does not contain any data.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        var rows = usedRange.RowsUsed();
 
         // Get headers (first row)
         var headerRow = rows.First();
