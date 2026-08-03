@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:TextilePro.UI.Views"
         Title="Winsome Textile - CCMS"
-        Height="800" 
+        Height="800"
         Width="1200"
         WindowStartupLocation="CenterScreen"
         Background="#F5F5F5">
@@ -16,61 +16,100 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Background="#1a3a5c" Padding="16">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock Text="🏭 Winsome Textile" FontSize="22" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="CCMS" FontSize="18" Foreground="#64B5F6" Margin="10,0,0,0"/>
-                <TextBlock Text="👤 Profile" FontSize="12" Foreground="White" Margin="30,0,0,0" VerticalAlignment="Center"/>
+        <Border Grid.Row="0"
+                Background="#1a3a5c"
+                Padding="16">
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+                <TextBlock Text="🏭 Winsome Textile"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        Foreground="White"/>
+                <TextBlock Text="CCMS"
+                        FontSize="18"
+                        Foreground="#64B5F6"
+                        Margin="10,0,0,0"/>
+                <TextBlock Text="👤 Profile"
+                        FontSize="12"
+                        Foreground="White"
+                        Margin="30,0,0,0"
+                        VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
         <!-- Tab Control -->
-        <TabControl Grid.Row="1" Margin="16" Background="White" BorderThickness="0">
-            <TabItem Header="📊 Dashboard" Name="DashboardTab">
-                <TextBlock Text="Dashboard coming soon..." FontSize="16" Margin="20"/>
+        <TabControl Grid.Row="1"
+                Margin="16"
+                Background="White"
+                BorderThickness="0">
+            <TabItem Header="📊 Dashboard"
+                    Name="DashboardTab">
+                <TextBlock Text="Dashboard coming soon..."
+                        FontSize="16"
+                        Margin="20"/>
             </TabItem>
-            
-            <TabItem Header="🏭 Suppliers" Name="SupplierTab">
-                <views:SupplierView />
+
+            <TabItem Header="🏭 Suppliers"
+                    Name="SupplierTab">
+                <views:SupplierView/>
             </TabItem>
-            
-            <TabItem Header="🧪 Chemicals" Name="ChemicalTab" IsSelected="True">
-                <views:ChemicalView />
+
+            <TabItem Header="🧪 Chemicals"
+                    Name="ChemicalTab"
+                    IsSelected="True">
+                <views:ChemicalView/>
             </TabItem>
-            
-            <TabItem Header="⭐ Evaluations" Name="EvaluationTab">
-                <views:EvaluationView />
+
+            <TabItem Header="⭐ Evaluations"
+                    Name="EvaluationTab">
+                <views:EvaluationView/>
             </TabItem>
-            
-            <TabItem Header="🏷️ Classification" Name="ClassificationTab">
-                <views:ClassificationView />
+
+            <TabItem Header="🏷️ Classification"
+                    Name="ClassificationTab">
+                <views:ClassificationView/>
             </TabItem>
-            
-            <TabItem Header="📦 Inventory" Name="InventoryTab">
-                <TextBlock Text="Inventory coming soon..." FontSize="16" Margin="20"/>
+
+            <TabItem Header="📦 Inventory"
+                    Name="InventoryTab">
+                <views:InventoryView/>
             </TabItem>
-            
-            <TabItem Header="📈 Analysis" Name="AnalysisTab">
-                <TextBlock Text="Analysis coming soon..." FontSize="16" Margin="20"/>
+
+            <TabItem Header="📈 Analysis"
+                    Name="AnalysisTab">
+                <views:AnalysisView/>
             </TabItem>
-            
-            <TabItem Header="🎯 Target 2030" Name="TargetTab">
-                <TextBlock Text="Target Analysis coming soon..." FontSize="16" Margin="20"/>
+
+            <TabItem Header="🎯 Target 2030"
+                    Name="TargetTab">
+                <TextBlock Text="Target Analysis coming soon..."
+                        FontSize="16"
+                        Margin="20"/>
             </TabItem>
-            
-            <TabItem Header="📋 Audit" Name="AuditTab">
-                <TextBlock Text="Audit Log coming soon..." FontSize="16" Margin="20"/>
+
+            <TabItem Header="📋 Audit"
+                    Name="AuditTab">
+                <TextBlock Text="Audit Log coming soon..."
+                        FontSize="16"
+                        Margin="20"/>
             </TabItem>
-            
-            <TabItem Header="📄 Reports" Name="ReportsTab">
-                <TextBlock Text="Reports coming soon..." FontSize="16" Margin="20"/>
+
+            <TabItem Header="📄 Reports"
+                    Name="ReportsTab">
+                <TextBlock Text="Reports coming soon..."
+                        FontSize="16"
+                        Margin="20"/>
             </TabItem>
         </TabControl>
 
         <!-- Footer -->
-        <Border Grid.Row="2" Background="#E0E0E0" Padding="8">
-            <TextBlock Text="© Winsome Textile Industries Ltd. | All rights reserved." 
-                       FontSize="10" HorizontalAlignment="Center" 
+        <Border Grid.Row="2"
+                Background="#E0E0E0"
+                Padding="8">
+            <TextBlock Text="© Winsome Textile Industries Ltd. | All rights reserved."
+                       FontSize="10"
+                    HorizontalAlignment="Center"
                        Foreground="#666666"/>
         </Border>
     </Grid>

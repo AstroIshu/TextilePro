@@ -34,4 +34,12 @@ public partial class MainWindow : Window
     {
         ClassificationTab.IsSelected = true;
     }
+    public void ShowInventoryTab()
+    {
+        InventoryTab.IsSelected = true;
+    }
+    public void ShowAnalysisTab()
+    {
+        AnalysisTab.IsSelected = true;
+    }
 }

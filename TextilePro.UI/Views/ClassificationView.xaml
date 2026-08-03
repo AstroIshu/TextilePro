@@ -24,6 +24,15 @@
                     Foreground="#888888"
                     VerticalAlignment="Center"
                     Margin="15,0,0,0"/>
+            <Button Content="📊 Export to Excel"
+                    Command="{Binding ExportToExcelCommand}"
+                    Background="#0078D4"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Padding="12,6"
+                    FontWeight="SemiBold"
+                    Cursor="Hand"
+                    Margin="20,0,0,0"/>
         </StackPanel>
 
         <!-- Main Content -->

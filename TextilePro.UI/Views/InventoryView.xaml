@@ -1,0 +1,719 @@
+<UserControl x:Class="TextilePro.UI.Views.InventoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:TextilePro.UI.Converters"
+             Background="#F5F5F5">
+
+    <UserControl.Resources>
+        <converters:RiskToColorConverter x:Key="RiskToColorConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BoolToEditAddConverter x:Key="BoolToEditAddConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        Margin="0,0,0,16">
+                <TextBlock Text="📦 CC Inventory Management"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#1a1a1a"
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="(Upload Excel or add manual entries)"
+                           FontSize="12"
+                           Foreground="#888888"
+                           VerticalAlignment="Center"
+                           Margin="15,0,0,0"/>
+            </StackPanel>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Panel: Actions -->
+                <Border Grid.Column="0"
+                        Margin="0,0,12,0"
+                        Background="White"
+                        Padding="12"
+                        BorderBrush="#D0D0D0"
+                        BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="📋 Actions"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   Foreground="#333333"
+                                   Margin="0,0,0,12"/>
+
+                        <!-- Download Template -->
+                        <Button Content="⬇️ Download Template"
+                                Command="{Binding DownloadTemplateCommand}"
+                                Background="#E8F0FE"
+                                Foreground="#0078D4"
+                                BorderThickness="1"
+                                BorderBrush="#0078D4"
+                                Padding="12,8"
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                Cursor="Hand"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Stretch"/>
+
+                        <!-- Upload Excel -->
+                        <Button Content="📤 Upload Excel"
+                                Command="{Binding UploadExcelCommand}"
+                                Background="#0078D4"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Padding="12,8"
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                Cursor="Hand"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Stretch"/>
+
+                        <!-- Manual Entry -->
+                        <Button Content="➕ Manual Entry"
+                                Command="{Binding OpenManualEntryModalCommand}"
+                                Background="#28A745"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Padding="12,8"
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                Cursor="Hand"
+                                Margin="0,0,0,12"
+                                HorizontalAlignment="Stretch"/>
+
+                        <Border Background="#F0F7FF"
+                                Padding="8"
+                                Margin="0,0,0,12">
+                            <TextBlock Text="{Binding StatusMessage, FallbackValue='Ready'}"
+                                       FontSize="11"
+                                       Foreground="#333"
+                                       TextWrapping="Wrap"/>
+                        </Border>
+
+                        <TextBlock Text="🔍 Filters"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   Foreground="#333333"
+                                   Margin="0,0,0,8"/>
+
+                        <!-- Filters
+                    <ComboBox ItemsSource="{Binding Suppliers}"
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding FilterSupplier}"
+                              SelectedValuePath="Name"
+                              Margin="0,0,0,8"
+                              Padding="8"
+                              FontSize="12"
+                              Background="White"
+                              BorderBrush="#CCCCCC"
+                              BorderThickness="1"
+                             >
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBox">
+                                            <Grid>
+                                                <ToggleButton x:Name="ToggleButton"
+                                                              Grid.ColumnSpan="2"
+                                                              Focusable="False"
+                                                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                              Background="White"
+                                                              BorderBrush="#CCCCCC"
+                                                              BorderThickness="1"
+                                                            >
+                                                    <ToggleButton.Style>
+                                                        <Style TargetType="ToggleButton">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="ToggleButton">
+                                                                        <Border Background="{TemplateBinding Background}"
+                                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                              >
+                                                                            <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="*"/>
+                                                                                    <ColumnDefinition Width="30"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <ContentPresenter Grid.Column="0"
+                                                                                                  Content="{TemplateBinding Content}"
+                                                                                                  Margin="8,6"
+                                                                                                  VerticalAlignment="Center"/>
+                                                                                <Path Grid.Column="1"
+                                                                                      Data="M0,0 L5,5 L10,0"
+                                                                                      Stroke="#666"
+                                                                                      StrokeThickness="2"
+                                                                                      HorizontalAlignment="Center"
+                                                                                      VerticalAlignment="Center"/>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ToggleButton.Style>
+                                                </ToggleButton>
+                                                <Popup x:Name="Popup"
+                                                       IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                       StaysOpen="False">
+                                                    <Border Background="White"
+                                                            BorderBrush="#CCCCCC"
+                                                            BorderThickness="1"
+                                                       
+                                                            Padding="4"
+                                                            MaxHeight="200">
+                                                        <ScrollViewer>
+                                                            <ItemsPresenter/>
+                                                        </ScrollViewer>
+                                                    </Border>
+                                                </Popup>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox> -->
+                        <!-- Filter by Supplier -->
+                        <TextBlock Text="Supplier"
+                                FontSize="11"
+                                Foreground="#666"
+                                Margin="0,0,0,4"/>
+                        <ComboBox ItemsSource="{Binding Suppliers}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValue="{Binding FilterSupplier}"
+                                  SelectedValuePath="Name"
+                                  Margin="0,0,0,10"
+                                  Padding="8"
+                                  FontSize="12"
+                                  Background="White"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1"
+                                  Height="32">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBox">
+                                                <Grid>
+                                                    <ToggleButton x:Name="ToggleButton"
+                                                                  Grid.ColumnSpan="2"
+                                                                  Focusable="False"
+                                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                  Background="White"
+                                                                  BorderBrush="#CCCCCC"
+                                                                  BorderThickness="1">
+                                                        <ToggleButton.Style>
+                                                            <Style TargetType="ToggleButton">
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate TargetType="ToggleButton">
+                                                                            <Border Background="{TemplateBinding Background}"
+                                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                    CornerRadius="4">
+                                                                                <Grid>
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                        <ColumnDefinition Width="30"/>
+                                                                                    </Grid.ColumnDefinitions>
+                                                                                    <ContentPresenter Grid.Column="0"
+                                                                                                      Content="{TemplateBinding Content}"
+                                                                                                      Margin="8,6"
+                                                                                                      VerticalAlignment="Center"/>
+                                                                                    <Path Grid.Column="1"
+                                                                                          Data="M0,0 L5,5 L10,0"
+                                                                                          Stroke="#666"
+                                                                                          StrokeThickness="2"
+                                                                                          HorizontalAlignment="Center"
+                                                                                          VerticalAlignment="Center"/>
+                                                                                </Grid>
+                                                                            </Border>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </ToggleButton.Style>
+                                                    </ToggleButton>
+                                                    <Popup x:Name="Popup"
+                                                           IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                           PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                           StaysOpen="False">
+                                                        <Border Background="White"
+                                                                BorderBrush="#CCCCCC"
+                                                                BorderThickness="1"
+                                                                CornerRadius="4"
+                                                                Padding="4"
+                                                                MaxHeight="200">
+                                                            <ScrollViewer>
+                                                                <ItemsPresenter/>
+                                                            </ScrollViewer>
+                                                        </Border>
+                                                    </Popup>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.Style>
+                        </ComboBox>
+
+                        <!-- <TextBox Text="{Binding FilterChemical, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="8"
+                            BorderBrush="#CCCCCC"
+                            BorderThickness="1"
+                            
+                             FontSize="12"
+                            Margin="0,0,0,8"
+                             Background="White">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background"
+                                        Value="White"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Text"
+                                            Value="">
+                                        <Setter Property="Background"
+                                                Value="#FAFAFA"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBlock Text="🔍 Search chemical..."
+                            FontSize="10"
+                            Foreground="#AAAAAA"
+                            Margin="8,-28,0,0"
+                            IsHitTestVisible="False"/>
+
+                    <ComboBox ItemsSource="{Binding MonthFilterOptions}"
+                              SelectedValue="{Binding FilterMonth}"
+                              Margin="0,0,0,8"
+                              Padding="8"
+                              FontSize="12"
+                              Background="White"
+                              BorderBrush="#CCCCCC"
+                              BorderThickness="1"
+                           >
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBox">
+                                            <Grid>
+                                                <ToggleButton x:Name="ToggleButton"
+                                                              Grid.ColumnSpan="2"
+                                                              Focusable="False"
+                                                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                              Background="White"
+                                                              BorderBrush="#CCCCCC"
+                                                              BorderThickness="1"
+                                                             >
+                                                    <ToggleButton.Style>
+                                                        <Style TargetType="ToggleButton">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="ToggleButton">
+                                                                        <Border Background="{TemplateBinding Background}"
+                                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                             >
+                                                                            <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="*"/>
+                                                                                    <ColumnDefinition Width="30"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <ContentPresenter Grid.Column="0"
+                                                                                                  Content="{TemplateBinding Content}"
+                                                                                                  Margin="8,6"
+                                                                                                  VerticalAlignment="Center"/>
+                                                                                <Path Grid.Column="1"
+                                                                                      Data="M0,0 L5,5 L10,0"
+                                                                                      Stroke="#666"
+                                                                                      StrokeThickness="2"
+                                                                                      HorizontalAlignment="Center"
+                                                                                      VerticalAlignment="Center"/>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ToggleButton.Style>
+                                                </ToggleButton>
+                                                <Popup x:Name="Popup"
+                                                       IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                       StaysOpen="False">
+                                                    <Border Background="White"
+                                                            BorderBrush="#CCCCCC"
+                                                            BorderThickness="1"
+                                                          
+                                                            Padding="4"
+                                                            MaxHeight="200">
+                                                        <ScrollViewer>
+                                                            <ItemsPresenter/>
+                                                        </ScrollViewer>
+                                                    </Border>
+                                                </Popup>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox>
+
+                    <Button Content="❌ Clear Filters"
+                            Command="{Binding ClearFiltersCommand}"
+                            Background="#E0E0E0"
+                            Foreground="#333"
+                            BorderThickness="0"
+                            Padding="12,6"
+                            FontSize="12"
+                            Cursor="Hand"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Border> -->
+                        <!-- Filter by Chemical -->
+                        <TextBlock Text="Chemical"
+                                FontSize="11"
+                                Foreground="#666"
+                                Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding FilterChemical, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="8"
+                                BorderBrush="#CCCCCC"
+                                BorderThickness="1"
+                                 FontSize="12"
+                                Margin="0,0,0,10"
+                                 Background="White"
+                                Height="32"/>
+
+                        <!-- Filter by Month -->
+                        <TextBlock Text="Month"
+                                FontSize="11"
+                                Foreground="#666"
+                                Margin="0,0,0,4"/>
+                        <ComboBox ItemsSource="{Binding MonthFilterOptions}"
+                                  SelectedItem="{Binding FilterMonth}"
+                                  Margin="0,0,0,10"
+                                  Padding="8"
+                                  FontSize="12"
+                                  Background="White"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1"
+                                  Height="32">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBox">
+                                                <Grid>
+                                                    <ToggleButton x:Name="ToggleButton"
+                                                                  Grid.ColumnSpan="2"
+                                                                  Focusable="False"
+                                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                  Background="White"
+                                                                  BorderBrush="#CCCCCC"
+                                                                  BorderThickness="1">
+                                                        <ToggleButton.Style>
+                                                            <Style TargetType="ToggleButton">
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate TargetType="ToggleButton">
+                                                                            <Border Background="{TemplateBinding Background}"
+                                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                                                <Grid>
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                        <ColumnDefinition Width="30"/>
+                                                                                    </Grid.ColumnDefinitions>
+                                                                                    <ContentPresenter Grid.Column="0"
+                                                                                                      Content="{TemplateBinding Content}"
+                                                                                                      Margin="8,6"
+                                                                                                      VerticalAlignment="Center"/>
+                                                                                    <Path Grid.Column="1"
+                                                                                          Data="M0,0 L5,5 L10,0"
+                                                                                          Stroke="#666"
+                                                                                          StrokeThickness="2"
+                                                                                          HorizontalAlignment="Center"
+                                                                                          VerticalAlignment="Center"/>
+                                                                                </Grid>
+                                                                            </Border>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </ToggleButton.Style>
+                                                    </ToggleButton>
+                                                    <Popup x:Name="Popup"
+                                                           IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                           PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                           StaysOpen="False">
+                                                        <Border Background="White"
+                                                                BorderBrush="#CCCCCC"
+                                                                BorderThickness="1"
+                                                                Padding="4"
+                                                                MaxHeight="200">
+                                                            <ScrollViewer>
+                                                                <ItemsPresenter/>
+                                                            </ScrollViewer>
+                                                        </Border>
+                                                    </Popup>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.Style>
+                        </ComboBox>
+
+                        <Button Content="❌ Clear Filters"
+                                Command="{Binding ClearFiltersCommand}"
+                                Background="#E0E0E0"
+                                Foreground="#333"
+                                BorderThickness="0"
+                                Padding="12,6"
+                                FontSize="12"
+                                Cursor="Hand"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Stretch"
+                                Height="32"/>
+                    </StackPanel>
+                    <!-- </ScrollViewer> -->
+                </Border>
+
+                <!-- Right Panel: Inventory Grid -->
+                <Border Grid.Column="1"
+                        Margin="12,0,0,0"
+                        Background="White"
+                        Padding="16"
+                        BorderBrush="#D0D0D0"
+                        BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,12">
+                            <TextBlock Text="📋 Inventory Records"
+                                       FontWeight="Bold"
+                                       FontSize="14"
+                                       Foreground="#333333"/>
+                            <TextBlock Text="{Binding InventoryRecords.Count}"
+                                       FontWeight="Bold"
+                                       FontSize="14"
+                                       Foreground="#0078D4"
+                                       Margin="8,0,0,0"/>
+                            <TextBlock Text="records"
+                                       FontSize="12"
+                                       Foreground="#888"
+                                       Margin="4,0,0,0"/>
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="1"
+                                  ItemsSource="{Binding InventoryRecords}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  Background="White"
+                                  BorderThickness="0"
+                                  GridLinesVisibility="Horizontal"
+                                  RowHeight="32"
+                                  FontSize="13"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Supplier"
+                                                    Binding="{Binding SupplierName}"
+                                                    Width="*"/>
+                                <DataGridTextColumn Header="Chemical"
+                                                    Binding="{Binding ChemicalName}"
+                                                    Width="*"/>
+                                <DataGridTextColumn Header="CAS"
+                                                    Binding="{Binding CAS}"
+                                                    Width="120"/>
+                                <DataGridTextColumn Header="Volume"
+                                                    Binding="{Binding Volume}"
+                                                    Width="80"/>
+                                <DataGridTemplateColumn Header="Type"
+                                                        Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Background="{Binding Type, Converter={StaticResource RiskToColorConverter}}"
+                                                    Padding="6,2"
+                                                    Margin="4,2">
+                                                <TextBlock Text="{Binding Type}"
+                                                           FontSize="10"
+                                                           Foreground="White"
+                                                           HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Month"
+                                                    Binding="{Binding PurchaseMonth}"
+                                                    Width="100"/>
+                                <DataGridTemplateColumn Header=""
+                                                        Width="70">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="✏️"
+                                                        Command="{Binding DataContext.EditInventoryRecordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Foreground="#0078D4"
+                                                        FontSize="14"
+                                                        Cursor="Hand"
+                                                        ToolTip="Edit"
+                                                        Margin="0,0,8,0"/>
+                                                <Button Content="🗑️"
+                                                        Command="{Binding DataContext.DeleteInventoryRecordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Foreground="#E81123"
+                                                        FontSize="14"
+                                                        Cursor="Hand"
+                                                        ToolTip="Delete"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Manual Entry Modal -->
+            <Grid x:Name="ModalOverlay"
+                  Background="#80000000"
+                  Visibility="{Binding IsModalOpen, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Panel.ZIndex="1000">
+                <Border Background="White"
+                        Padding="24"
+                        Width="450"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="{Binding IsEditMode, Converter={StaticResource BoolToEditAddConverter}, FallbackValue='➕ Manual Inventory Entry'}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#1a1a1a"
+                                   Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Supplier *"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#333"
+                                   Margin="0,0,0,4"/>
+                        <ComboBox ItemsSource="{Binding Suppliers}"
+                                  SelectedItem="{Binding SelectedSupplier}"
+                                  DisplayMemberPath="Name"
+                                  Margin="0,0,0,12"
+                                  Padding="8"
+                                  FontSize="13"
+                                  Background="White"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1"/>
+
+                        <TextBlock Text="Chemical *"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#333"
+                                   Margin="0,0,0,4"/>
+                        <ComboBox ItemsSource="{Binding Chemicals}"
+                                  SelectedItem="{Binding SelectedChemical}"
+                                  DisplayMemberPath="ChemicalName"
+                                  Margin="0,0,0,12"
+                                  Padding="8"
+                                  FontSize="13"
+                                  Background="White"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1"/>
+
+                        <TextBlock Text="Volume (kg/L) *"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#333"
+                                   Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding ManualVolume, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="8"
+                                 BorderBrush="#CCCCCC"
+                                 BorderThickness="1"
+                                 FontSize="13"
+                                 Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Purchase Month *"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#333"
+                                   Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding ManualMonth, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="8"
+                                 BorderBrush="#CCCCCC"
+                                 BorderThickness="1"
+                                 FontSize="13"
+                                 Margin="0,0,0,12"/>
+                        <TextBlock Text="Format: MMM-YYYY (e.g., Jan-2025)"
+                                   FontSize="10"
+                                   Foreground="#888"
+                                   Margin="0,-8,0,12"/>
+
+                        <TextBlock Text="{Binding ModalStatus}"
+                                   FontSize="11"
+                                   Foreground="#E81123"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,8"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <Button Content="Cancel"
+                                    Command="{Binding CloseModalCommand}"
+                                    Background="#E0E0E0"
+                                    Foreground="#333"
+                                    BorderThickness="0"
+                                    Padding="16,8"
+                                    FontSize="13"
+                                    Cursor="Hand"
+                                    Margin="0,0,12,0"/>
+                            <Button Content="💾 Save"
+                                    Command="{Binding SaveManualEntryCommand}"
+                                    Background="#0078D4"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Padding="16,8"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Cursor="Hand"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
