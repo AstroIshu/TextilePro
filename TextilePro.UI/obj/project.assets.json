@@ -11,14 +11,14 @@
           "lib/netstandard2.1/BCrypt-Net-Next.dll": {}
         }
       },
-      "ClosedXML/0.105.0": {
+      "ClosedXML/0.105.1": {
         "type": "package",
         "dependencies": {
           "ClosedXML.Parser": "2.0.0",
           "DocumentFormat.OpenXml": "[3.1.1, 4.0.0)",
           "ExcelNumberFormat": "1.1.0",
           "RBush.Signed": "4.0.0",
-          "SixLabors.Fonts": "1.0.0"
+          "SixLabors.Fonts": "[1.0.0, 3.0.0)"
         },
         "compile": {
           "lib/netstandard2.1/ClosedXML.dll": {
@@ -922,7 +922,7 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
-      "QuestPDF/2026.6.1": {
+      "QuestPDF/2026.7.2": {
         "type": "package",
         "compile": {
           "lib/net8.0/QuestPDF.dll": {
@@ -1479,14 +1479,14 @@
           "lib/netstandard2.1/BCrypt-Net-Next.dll": {}
         }
       },
-      "ClosedXML/0.105.0": {
+      "ClosedXML/0.105.1": {
         "type": "package",
         "dependencies": {
           "ClosedXML.Parser": "2.0.0",
           "DocumentFormat.OpenXml": "[3.1.1, 4.0.0)",
           "ExcelNumberFormat": "1.1.0",
           "RBush.Signed": "4.0.0",
-          "SixLabors.Fonts": "1.0.0"
+          "SixLabors.Fonts": "[1.0.0, 3.0.0)"
         },
         "compile": {
           "lib/netstandard2.1/ClosedXML.dll": {
@@ -2390,7 +2390,7 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
-      "QuestPDF/2026.6.1": {
+      "QuestPDF/2026.7.2": {
         "type": "package",
         "compile": {
           "lib/net8.0/QuestPDF.dll": {
@@ -2811,14 +2811,14 @@
         "readme.md"
       ]
     },
-    "ClosedXML/0.105.0": {
-      "sha512": "U0hAdnYyPvF7TqHMFloxrS7pmozab79tFFF4c/bgPtqeelUs7ILpUd3r3c7C0a/DXsUZb3k1n4Pf7Q2LMyMQOg==",
+    "ClosedXML/0.105.1": {
+      "sha512": "X1ruIP9h2FBEK7jmO0peq3s6/Zqt5ve5a9f9kn6WUjdsUWvGbQlqxuGLz822xuFLlmnSeAfWFTGeX/tZlmAt+g==",
       "type": "package",
-      "path": "closedxml/0.105.0",
+      "path": "closedxml/0.105.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "closedxml.0.105.0.nupkg.sha512",
+        "closedxml.0.105.1.nupkg.sha512",
         "closedxml.nuspec",
         "lib/netstandard2.0/ClosedXML.dll",
         "lib/netstandard2.0/ClosedXML.pdb",
@@ -4197,10 +4197,10 @@
         "mono.texttemplating.nuspec"
       ]
     },
-    "QuestPDF/2026.6.1": {
-      "sha512": "EuGtkJcYNF/IV5Sd4WzshYJcqG5FNutBrRFPqzzlFxIEV9FOrN1pbPIYf38LVKEz9WCpHZN5SZjcISUefoHQvQ==",
+    "QuestPDF/2026.7.2": {
+      "sha512": "GSPOoErqB4Yh7mnbV4m/ykHOF6erHdm5qyMRHDr4sjk+fvrtkEL+RoG5YpOqiWrS833jEiktC1Uthyy5/QMNQA==",
       "type": "package",
-      "path": "questpdf/2026.6.1",
+      "path": "questpdf/2026.7.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4259,7 +4259,7 @@
         "lib/net8.0/QuestPDF.xml",
         "lib/netstandard2.0/QuestPDF.dll",
         "lib/netstandard2.0/QuestPDF.xml",
-        "questpdf.2026.6.1.nupkg.sha512",
+        "questpdf.2026.7.2.nupkg.sha512",
         "questpdf.nuspec",
         "runtimes/linux-arm64/native/libQuestPdfSkia.so",
         "runtimes/linux-arm64/native/libqpdf.so",
@@ -4886,7 +4886,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "BCrypt.Net-Next >= 4.2.0",
-      "ClosedXML >= 0.105.0",
+      "ClosedXML >= 0.105.1",
       "CommunityToolkit.Mvvm >= 8.4.2",
       "LiveCharts >= 0.9.7",
       "LiveCharts.Wpf >= 0.9.7",
@@ -4894,7 +4894,7 @@
       "Microsoft.Extensions.DependencyInjection >= 10.0.9",
       "Microsoft.NET.ILLink.Tasks >= 8.0.28",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.142",
-      "QuestPDF >= 2026.6.1",
+      "QuestPDF >= 2026.7.2",
       "TextilePro.Core >= 1.0.0"
     ]
   },
@@ -4950,7 +4950,7 @@
           },
           "ClosedXML": {
             "target": "Package",
-            "version": "[0.105.0, )"
+            "version": "[0.105.1, )"
           },
           "CommunityToolkit.Mvvm": {
             "target": "Package",
@@ -4984,7 +4984,7 @@
           },
           "QuestPDF": {
             "target": "Package",
-            "version": "[2026.6.1, )"
+            "version": "[2026.7.2, )"
           }
         },
         "imports": [

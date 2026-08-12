@@ -20,84 +20,82 @@
                 Background="#1a3a5c"
                 Padding="16">
             <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
                 <TextBlock Text="🏭 Winsome Textile"
-                        FontSize="22"
-                        FontWeight="Bold"
-                        Foreground="White"/>
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="White"/>
                 <TextBlock Text="CCMS"
-                        FontSize="18"
-                        Foreground="#64B5F6"
-                        Margin="10,0,0,0"/>
+                           FontSize="18"
+                           Foreground="#64B5F6"
+                           Margin="10,0,0,0"/>
                 <TextBlock Text="👤 Profile"
-                        FontSize="12"
-                        Foreground="White"
-                        Margin="30,0,0,0"
-                        VerticalAlignment="Center"/>
+                           FontSize="12"
+                           Foreground="White"
+                           Margin="30,0,0,0"
+                           VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
         <!-- Tab Control -->
         <TabControl Grid.Row="1"
-                Margin="16"
-                Background="White"
-                BorderThickness="0">
+                    Margin="16"
+                    Background="White"
+                    BorderThickness="0">
             <TabItem Header="📊 Dashboard"
-                    Name="DashboardTab">
+                     Name="DashboardTab">
                 <TextBlock Text="Dashboard coming soon..."
-                        FontSize="16"
-                        Margin="20"/>
+                           FontSize="16"
+                           Margin="20"/>
             </TabItem>
 
             <TabItem Header="🏭 Suppliers"
-                    Name="SupplierTab">
+                     Name="SupplierTab">
                 <views:SupplierView/>
             </TabItem>
 
             <TabItem Header="🧪 Chemicals"
-                    Name="ChemicalTab"
-                    IsSelected="True">
+                     Name="ChemicalTab"
+                     IsSelected="True">
                 <views:ChemicalView/>
             </TabItem>
 
             <TabItem Header="⭐ Evaluations"
-                    Name="EvaluationTab">
+                     Name="EvaluationTab">
                 <views:EvaluationView/>
             </TabItem>
 
             <TabItem Header="🏷️ Classification"
-                    Name="ClassificationTab">
+                     Name="ClassificationTab">
                 <views:ClassificationView/>
             </TabItem>
 
             <TabItem Header="📦 Inventory"
-                    Name="InventoryTab">
+                     Name="InventoryTab">
                 <views:InventoryView/>
             </TabItem>
 
             <TabItem Header="📈 Analysis"
-                    Name="AnalysisTab">
+                     Name="AnalysisTab">
                 <views:AnalysisView/>
             </TabItem>
 
             <TabItem Header="🎯 Target 2030"
-                    Name="TargetTab">
+                     Name="TargetTab">
                 <views:TargetView/>
             </TabItem>
 
             <TabItem Header="📋 Audit"
-                    Name="AuditTab">
+                     Name="AuditTab">
                 <TextBlock Text="Audit Log coming soon..."
-                        FontSize="16"
-                        Margin="20"/>
+                           FontSize="16"
+                           Margin="20"/>
             </TabItem>
 
             <TabItem Header="📄 Reports"
                     Name="ReportsTab">
-                <TextBlock Text="Reports coming soon..."
-                        FontSize="16"
-                        Margin="20"/>
+                <views:ReportView/>
             </TabItem>
         </TabControl>
 
@@ -107,7 +105,7 @@
                 Padding="8">
             <TextBlock Text="© Winsome Textile Industries Ltd. | All rights reserved."
                        FontSize="10"
-                    HorizontalAlignment="Center"
+                       HorizontalAlignment="Center"
                        Foreground="#666666"/>
         </Border>
     </Grid>
