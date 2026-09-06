@@ -25,6 +25,11 @@ public partial class MainWindow : Window
         }
     }
 
+
+    public void ShowDashboardTab()
+    {
+        DashboardTab.IsSelected = true;
+    }
     public void ShowSupplierTab()
     {
         SupplierTab.IsSelected = true;

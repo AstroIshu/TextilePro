@@ -200,6 +200,5 @@
     <PkgMicrosoft_Xaml_Behaviors_Wpf Condition=" '$(PkgMicrosoft_Xaml_Behaviors_Wpf)' == '' ">C:\Users\Ishant\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.142</PkgMicrosoft_Xaml_Behaviors_Wpf>
     <PkgMicrosoft_NET_ILLink_Tasks Condition=" '$(PkgMicrosoft_NET_ILLink_Tasks)' == '' ">C:\Users\Ishant\.nuget\packages\microsoft.net.illink.tasks\8.0.28</PkgMicrosoft_NET_ILLink_Tasks>
     <PkgMaterialDesignThemes Condition=" '$(PkgMaterialDesignThemes)' == '' ">C:\Users\Ishant\.nuget\packages\materialdesignthemes\5.3.2</PkgMaterialDesignThemes>
-    <PkgLiveCharts_Wpf Condition=" '$(PkgLiveCharts_Wpf)' == '' ">C:\Users\Ishant\.nuget\packages\livecharts.wpf\0.9.7</PkgLiveCharts_Wpf>
   </PropertyGroup>
 </Project>

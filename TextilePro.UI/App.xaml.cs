@@ -45,6 +45,8 @@ public partial class App : Application
         services.AddScoped<TargetViewModel>();
         services.AddScoped<ReportViewModel>();
         services.AddScoped<AuditViewModel>();
+        services.AddScoped<DashboardViewModel>();
+        services.AddTransient<DashboardViewModel>();
 
         // 4. Register Windows
         services.AddScoped<LoginWindow>();

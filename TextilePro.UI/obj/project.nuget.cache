@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nKrkDjPsR4w=",
+  "dgSpecHash": "Ect+ob9At30=",
   "success": true,
   "projectFilePath": "D:\\Codes\\Textile\\TextilePro.UI\\TextilePro.UI.csproj",
   "expectedPackageFiles": [
@@ -11,9 +11,13 @@
     "C:\\Users\\Ishant\\.nuget\\packages\\documentformat.openxml\\3.1.1\\documentformat.openxml.3.1.1.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\documentformat.openxml.framework\\3.1.1\\documentformat.openxml.framework.3.1.1.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\harfbuzzsharp\\8.3.1.1\\harfbuzzsharp.8.3.1.1.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\8.3.1.1\\harfbuzzsharp.nativeassets.macos.8.3.1.1.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\8.3.1.1\\harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\Ishant\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
-    "C:\\Users\\Ishant\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\livechartscore\\2.0.5\\livechartscore.2.0.5.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.5\\livechartscore.skiasharpview.2.0.5.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\livechartscore.skiasharpview.wpf\\2.0.5\\livechartscore.skiasharpview.wpf.2.0.5.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\materialdesigncolors\\5.3.2\\materialdesigncolors.5.3.2.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\materialdesignthemes\\5.3.2\\materialdesignthemes.5.3.2.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -44,9 +48,17 @@
     "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.28\\microsoft.net.illink.tasks.8.0.28.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.142\\microsoft.xaml.behaviors.wpf.1.1.142.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\opentk\\3.3.1\\opentk.3.3.1.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\opentk.glwpfcontrol\\3.3.0\\opentk.glwpfcontrol.3.3.0.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\questpdf\\2026.7.2\\questpdf.2026.7.2.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\rbush.signed\\4.0.0\\rbush.signed.4.0.0.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\sixlabors.fonts\\1.0.0\\sixlabors.fonts.1.0.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp\\3.119.0\\skiasharp.3.119.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp.harfbuzz\\3.119.0\\skiasharp.harfbuzz.3.119.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.119.0\\skiasharp.nativeassets.macos.3.119.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.119.0\\skiasharp.nativeassets.win32.3.119.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp.views.desktop.common\\3.119.0\\skiasharp.views.desktop.common.3.119.0.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\skiasharp.views.wpf\\3.119.0\\skiasharp.views.wpf.3.119.0.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
@@ -68,17 +80,17 @@
     "C:\\Users\\Ishant\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.28\\microsoft.aspnetcore.app.runtime.win-x64.8.0.28.nupkg.sha512",
     "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.28\\microsoft.netcore.app.runtime.win-x64.8.0.28.nupkg.sha512",
-    "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.28\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.28.nupkg.sha512"
+    "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.28\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.28.nupkg.sha512",
+    "C:\\Users\\Ishant\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.28\\microsoft.aspnetcore.app.runtime.win-x64.8.0.28.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'LiveCharts 0.9.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "LiveCharts",
+      "message": "Package 'OpenTK 3.3.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OpenTK",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]
@@ -87,8 +99,18 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'LiveCharts.Wpf 0.9.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "LiveCharts.Wpf",
+      "message": "Package 'OpenTK.GLWpfControl 3.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OpenTK.GLWpfControl",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SkiaSharp.Views.WPF 3.119.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "SkiaSharp.Views.WPF",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]

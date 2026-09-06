@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace TextilePro.Core.Models;
+using TextilePro.Core.Models;
 
 public class AuditLog
 {

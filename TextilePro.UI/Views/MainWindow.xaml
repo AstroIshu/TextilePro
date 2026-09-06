@@ -43,60 +43,59 @@
                     Margin="16"
                     Background="White"
                     BorderThickness="0">
+
             <TabItem Header="📊 Dashboard"
-                     Name="DashboardTab">
-                <TextBlock Text="Dashboard coming soon..."
-                           FontSize="16"
-                           Margin="20"/>
+                     x:Name="DashboardTab">
+                <views:DashboardView/>
             </TabItem>
 
             <TabItem Header="🏭 Suppliers"
-                     Name="SupplierTab">
+                     x:Name="SupplierTab">
                 <views:SupplierView/>
             </TabItem>
 
             <TabItem Header="🧪 Chemicals"
-                     Name="ChemicalTab"
+                     x:Name="ChemicalTab"
                      IsSelected="True">
                 <views:ChemicalView/>
             </TabItem>
 
             <TabItem Header="⭐ Evaluations"
-                     Name="EvaluationTab">
+                     x:Name="EvaluationTab">
                 <views:EvaluationView/>
             </TabItem>
 
             <TabItem Header="🏷️ Classification"
-                     Name="ClassificationTab">
+                     x:Name="ClassificationTab">
                 <views:ClassificationView/>
             </TabItem>
 
             <TabItem Header="📦 Inventory"
-                     Name="InventoryTab">
+                     x:Name="InventoryTab">
                 <views:InventoryView/>
             </TabItem>
 
             <TabItem Header="📈 Analysis"
-                     Name="AnalysisTab">
+                     x:Name="AnalysisTab">
                 <views:AnalysisView/>
             </TabItem>
 
             <TabItem Header="🎯 Target 2030"
-                     Name="TargetTab">
+                     x:Name="TargetTab">
                 <views:TargetView/>
             </TabItem>
 
             <TabItem Header="📋 Audit"
-                    Name="AuditTab"
-                    Visibility="Collapsed">
+                     x:Name="AuditTab"
+                     Visibility="Collapsed">
                 <views:AuditView/>
-            </TabItem>
             </TabItem>
 
             <TabItem Header="📄 Reports"
-                     Name="ReportsTab">
+                     x:Name="ReportsTab">
                 <views:ReportView/>
             </TabItem>
+
         </TabControl>
 
         <!-- Footer -->

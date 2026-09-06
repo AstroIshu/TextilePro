@@ -21,4 +21,5 @@ public partial class AuditView : UserControl
             MessageBox.Show($"Error loading AuditView: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
 }

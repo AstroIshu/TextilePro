@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using TextilePro.Core.DbContext;
 using TextilePro.Core.Models;
-using LiveCharts;
-using LiveCharts.Wpf;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 #nullable enable
 
@@ -23,6 +25,22 @@ public partial class AnalysisViewModel : ObservableObject
 
     [ObservableProperty]
     private ObservableCollection<string> _years = new();
+
+    [ObservableProperty]
+    private Axis[] _barXAxes =
+[
+    new Axis
+    {
+        Labels = Array.Empty<string>(),
+        Name = "Month"
+    }
+];
+
+    [ObservableProperty]
+    private Axis[] _barYAxes =
+    [
+        new Axis()
+    ];
 
     [ObservableProperty]
     private string _selectedYear = "All";
@@ -61,13 +79,13 @@ public partial class AnalysisViewModel : ObservableObject
 
     // Chart Data
     [ObservableProperty]
-    private SeriesCollection _barSeries = new();
+    private ISeries[] _barSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
     private string[] _barLabels = Array.Empty<string>();
 
     [ObservableProperty]
-    private SeriesCollection _pieSeries = new();
+    private ISeries[] _pieSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
     private string[] _pieLabels = Array.Empty<string>();
@@ -164,9 +182,17 @@ public partial class AnalysisViewModel : ObservableObject
                 NonVirginVolume = 0;
                 VirginPercentage = "0%";
                 MonthData = new ObservableCollection<MonthData>();
-                BarSeries = new SeriesCollection();
+                BarSeries = Array.Empty<ISeries>();
                 BarLabels = Array.Empty<string>();
-                PieSeries = new SeriesCollection();
+                BarXAxes =
+                [
+                    new Axis
+                    {
+                        Labels = Array.Empty<string>(),
+                        Name = "Month"
+                    }
+                ];
+                PieSeries = Array.Empty<ISeries>();
                 PieLabels = Array.Empty<string>();
                 HasData = false;
                 StatusMessage = "No data available for the selected filters.";
@@ -247,34 +273,51 @@ public partial class AnalysisViewModel : ObservableObject
     {
         if (!monthGroups.Any())
         {
-            BarSeries = new SeriesCollection();
+            BarSeries = Array.Empty<ISeries>();
             BarLabels = Array.Empty<string>();
+            BarXAxes =
+            [
+                new Axis
+                {
+                    Labels = Array.Empty<string>(),
+                    Name = "Month"
+                }
+            ];
             return;
         }
 
         BarLabels = monthGroups.Select(m => m.Month).ToArray();
 
-        BarSeries = new SeriesCollection
-        {
-            new ColumnSeries
+        BarXAxes =
+        [
+            new Axis
             {
-                Title = "Class A",
-                Values = new ChartValues<decimal>(monthGroups.Select(m => m.ClassA)),
-                Fill = System.Windows.Media.Brushes.Green
-            },
-            new ColumnSeries
-            {
-                Title = "Class B",
-                Values = new ChartValues<decimal>(monthGroups.Select(m => m.ClassB)),
-                Fill = System.Windows.Media.Brushes.Orange
-            },
-            new ColumnSeries
-            {
-                Title = "Class C",
-                Values = new ChartValues<decimal>(monthGroups.Select(m => m.ClassC)),
-                Fill = System.Windows.Media.Brushes.Red
+                Labels = BarLabels,
+                Name = "Month"
             }
-        };
+        ];
+
+        BarSeries =
+        [
+            new ColumnSeries<decimal>
+        {
+                Name = "Class A",
+                Values = monthGroups.Select(m => m.ClassA).ToArray(),
+                Fill = new SolidColorPaint(SKColors.Green)
+            },
+            new ColumnSeries<decimal>
+            {
+                Name = "Class B",
+                Values = monthGroups.Select(m => m.ClassB).ToArray(),
+                Fill = new SolidColorPaint(SKColors.Orange)
+            },
+            new ColumnSeries<decimal>
+            {
+                Name = "Class C",
+                Values = monthGroups.Select(m => m.ClassC).ToArray(),
+                Fill = new SolidColorPaint(SKColors.Red)
+            }
+        ];
     }
 
     private void BuildPieChart(Dictionary<int, string> classMap, List<Inventory> inventory)
@@ -291,32 +334,32 @@ public partial class AnalysisViewModel : ObservableObject
 
         if (classAVol == 0 && classBVol == 0 && classCVol == 0)
         {
-            PieSeries = new SeriesCollection();
+            PieSeries = Array.Empty<ISeries>();
             PieLabels = Array.Empty<string>();
             return;
         }
 
-        PieSeries = new SeriesCollection
+        PieSeries =
+        [
+            new PieSeries<decimal>
         {
-            new PieSeries
-            {
-                Title = $"Class A ({classAVol:F1})",
-                Values = new ChartValues<decimal> { classAVol },
-                Fill = System.Windows.Media.Brushes.Green
+                Name = $"Class A ({classAVol:F1})",
+                Values = [classAVol],
+                Fill = new SolidColorPaint(SKColors.Green)
             },
-            new PieSeries
+            new PieSeries<decimal>
             {
-                Title = $"Class B ({classBVol:F1})",
-                Values = new ChartValues<decimal> { classBVol },
-                Fill = System.Windows.Media.Brushes.Orange
+                Name = $"Class B ({classBVol:F1})",
+                Values = [classBVol],
+                Fill = new SolidColorPaint(SKColors.Orange)
             },
-            new PieSeries
+            new PieSeries<decimal>
             {
-                Title = $"Class C ({classCVol:F1})",
-                Values = new ChartValues<decimal> { classCVol },
-                Fill = System.Windows.Media.Brushes.Red
+                Name = $"Class C ({classCVol:F1})",
+                Values = [classCVol],
+                Fill = new SolidColorPaint(SKColors.Red)
             }
-        };
+        ];
         PieLabels = new[] { "Class A", "Class B", "Class C" };
     }
 

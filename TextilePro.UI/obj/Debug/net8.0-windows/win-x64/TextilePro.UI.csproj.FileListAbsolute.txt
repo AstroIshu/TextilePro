@@ -29,9 +29,11 @@ D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\CommunityToolkit
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\DocumentFormat.OpenXml.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\DocumentFormat.OpenXml.Framework.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\ExcelNumberFormat.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\HarfBuzzSharp.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Humanizer.dll
-D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\LiveCharts.dll
-D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\LiveCharts.Wpf.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\LiveChartsCore.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\LiveChartsCore.SkiaSharpView.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\LiveChartsCore.SkiaSharpView.WPF.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\MaterialDesignColors.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\MaterialDesignThemes.Wpf.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.Bcl.AsyncInterfaces.dll
@@ -57,9 +59,15 @@ D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.Extens
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.Extensions.Primitives.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.Xaml.Behaviors.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Mono.TextTemplating.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\OpenTK.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\GLWpfControl.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\QuestPDF.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\RBush.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SixLabors.Fonts.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SkiaSharp.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SkiaSharp.HarfBuzz.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SkiaSharp.Views.Desktop.Common.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SkiaSharp.Views.WPF.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SQLitePCLRaw.batteries_v2.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SQLitePCLRaw.core.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\SQLitePCLRaw.provider.e_sqlite3.dll
@@ -121,8 +129,10 @@ D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\ru\Microsoft.Cod
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\libHarfBuzzSharp.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\QuestPdfSkia.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\qpdf.dll
+D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\libSkiaSharp.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\e_sqlite3.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.CSharp.dll
 D:\Codes\Textile\TextilePro.UI\bin\Debug\net8.0-windows\win-x64\Microsoft.VisualBasic.Core.dll
@@ -591,6 +601,7 @@ D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\AnalysisVi
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\AuditView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ChemicalView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ClassificationView.g.cs
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\DashboardView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\EvaluationView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\InventoryView.g.cs
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\LoginWindow.g.cs
@@ -608,6 +619,7 @@ D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\AnalysisVi
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\AuditView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ChemicalView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\ClassificationView.baml
+D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\DashboardView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\EvaluationView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\InventoryView.baml
 D:\Codes\Textile\TextilePro.UI\obj\Debug\net8.0-windows\win-x64\Views\MainWindow.baml
