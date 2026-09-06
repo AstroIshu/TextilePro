@@ -87,14 +87,14 @@
             </TabItem>
 
             <TabItem Header="📋 Audit"
-                     Name="AuditTab">
-                <TextBlock Text="Audit Log coming soon..."
-                           FontSize="16"
-                           Margin="20"/>
+                    Name="AuditTab"
+                    Visibility="Collapsed">
+                <views:AuditView/>
+            </TabItem>
             </TabItem>
 
             <TabItem Header="📄 Reports"
-                    Name="ReportsTab">
+                     Name="ReportsTab">
                 <views:ReportView/>
             </TabItem>
         </TabControl>
