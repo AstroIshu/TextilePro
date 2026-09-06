@@ -31,40 +31,40 @@ public partial class EvaluationViewModel : ObservableObject
     public ObservableCollection<EvaluationQuestion> Questions { get; } = new()
     {
         new EvaluationQuestion(1, "Details of organisation", "Location of the manufacturing site",
-            new[] { "Manufactured (2 pts)", "Traded, known origin (1 pt)", "Traded, unknown origin (0 pt)" },
+            new[] { "Manufactured", "Traded, known origin", "Traded, unknown origin" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(2, "Technical person", "Name of technical person/QC Head",
-            new[] { "Tech person/QC head name is known (2 pts)", "Commercial person is known (1 pt)", "No proper person is known (0 pt)" },
+            new[] { "Tech person/QC head name is known", "Commercial person is known", "No proper person is known" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(3, "Traceability", "System of traceability of commodity chemical source",
-            new[] { "System with documentation (2 pts)", "System without backup (1 pt)", "No traceability (0 pt)" },
+            new[] { "System with documentation", "System without backup", "No traceability" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(4, "Consistency", "Quality consistency of commodity chemicals",
-            new[] { "No changes for past batches (2 pts)", "Variation >10% deliveries (1 pt)", "Variation >25% deliveries (0 pt)" },
+            new[] { "No changes for past batches", "Variation over 10% of deliveries", "Variation over 25% of deliveries" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(5, "Supply reliability", "Ability to supply ordered quantity",
-            new[] { "Immediate full lot (2 pts)", "Delivered in several lots (1 pt)", "Not fulfilled/spread out (0 pt)" },
+            new[] { "Immediate full lot", "Delivered in several lots", "Not fulfilled or spread out" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(6, "Technical Knowledge", "Qualified team for quality decisions",
-            new[] { "Internal qualified QC team (2 pts)", "Relies on external decision (1 pt)", "No testing carried out (0 pt)" },
+            new[] { "Internal qualified QC team", "Relies on external decision", "No testing carried out" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(7, "Quality Lab", "Quality testing laboratory",
-            new[] { "In-house facility (2 pts)", "Third-party testing (1 pt)", "No testing done (0 pt)" },
+            new[] { "In-house facility", "Third-party testing", "No testing done" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(8, "ZDHC MRSL Awareness", "Knowledge of ZDHC MRSL",
-            new[] { "Fully aware with latest version (2 pts)", "Somewhat aware, no update (1 pt)", "No awareness (0 pt)" },
+            new[] { "Fully aware with latest version", "Somewhat aware, no update", "No awareness" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(9, "Rejection Rate", "Rejection rate from different sources",
-            new[] { "Less than 10% (2 pts)", "Between 10-20% (1 pt)", "More than 20% (0 pt)" },
+            new[] { "Less than 10%", "Between 10-20%", "More than 20%" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(10, "Complaint Handling", "System to carry out complaints",
-            new[] { "ISO system (2 pts)", "No system but handled (1 pt)", "Oral only (0 pt)" },
+            new[] { "ISO system", "No system but handled", "Oral only" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(11, "SDS Information", "Can provide GHS compliant SDS",
-            new[] { "GHS-SDS regularly (2 pts)", "SDS not GHS compliant (1 pt)", "No SDS provided (0 pt)" },
+            new[] { "GHS-SDS regularly", "SDS not GHS compliant", "No SDS provided" },
             new[] { 2, 1, 0 }),
         new EvaluationQuestion(12, "Third-party Certifications", "Third-party Certification for MRSL testing",
-            new[] { "Report submitted regularly (2 pts)", "Report intermittent (1 pt)", "No report ever (0 pt)" },
+            new[] { "Report submitted regularly", "Report intermittent", "No report ever" },
             new[] { 2, 1, 0 })
     };
 
@@ -373,6 +373,14 @@ public partial class EvaluationViewModel : ObservableObject
                 CurrentEvaluation.ModifiedDate = DateTime.Now;
                 CurrentEvaluation.Score = TotalScore;
                 _context.Evaluations.Update(CurrentEvaluation);
+            }
+
+            await _context.SaveChangesAsync();
+
+            foreach (var document in Documents.Where(d => d.Id == 0))
+            {
+                document.EvaluationId = CurrentEvaluation.Id;
+                _context.EvaluationDocuments.Add(document);
             }
 
             await _context.SaveChangesAsync();

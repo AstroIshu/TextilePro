@@ -73,6 +73,9 @@ public partial class AnalysisViewModel : ObservableObject
     [ObservableProperty]
     private string _virginPercentage = "0%";
 
+    [ObservableProperty]
+    private string _nonVirginPercentage = "0%";
+
     // Month-wise Data
     [ObservableProperty]
     private ObservableCollection<MonthData> _monthData = new();
@@ -181,6 +184,7 @@ public partial class AnalysisViewModel : ObservableObject
                 VirginVolume = 0;
                 NonVirginVolume = 0;
                 VirginPercentage = "0%";
+                NonVirginPercentage = "0%";
                 MonthData = new ObservableCollection<MonthData>();
                 BarSeries = Array.Empty<ISeries>();
                 BarLabels = Array.Empty<string>();
@@ -227,12 +231,13 @@ public partial class AnalysisViewModel : ObservableObject
             ClassAPercentage = TotalVolume > 0 ? $"{((ClassAVolume / TotalVolume) * 100):F1}%" : "0%";
 
             VirginVolume = inventory
-                .Where(i => i.Type.Contains("Virgin", StringComparison.OrdinalIgnoreCase))
+                .Where(i => IsInventoryType(i.Type, "Virgin"))
                 .Sum(i => i.Volume);
             NonVirginVolume = inventory
-                .Where(i => i.Type.Contains("Non-Virgin", StringComparison.OrdinalIgnoreCase))
+                .Where(i => IsInventoryType(i.Type, "Non-Virgin"))
                 .Sum(i => i.Volume);
             VirginPercentage = TotalVolume > 0 ? $"{((VirginVolume / TotalVolume) * 100):F1}%" : "0%";
+            NonVirginPercentage = TotalVolume > 0 ? $"{((NonVirginVolume / TotalVolume) * 100):F1}%" : "0%";
 
             // Month-wise data
             var monthGroups = inventory
@@ -244,8 +249,8 @@ public partial class AnalysisViewModel : ObservableObject
                     ClassA = g.Where(i => classMap.TryGetValue(i.SupplierId, out var cls) && cls == "A").Sum(i => i.Volume),
                     ClassB = g.Where(i => classMap.TryGetValue(i.SupplierId, out var cls) && cls == "B").Sum(i => i.Volume),
                     ClassC = g.Where(i => classMap.TryGetValue(i.SupplierId, out var cls) && cls == "C").Sum(i => i.Volume),
-                    Virgin = g.Where(i => i.Type.Contains("Virgin", StringComparison.OrdinalIgnoreCase)).Sum(i => i.Volume),
-                    NonVirgin = g.Where(i => i.Type.Contains("Non-Virgin", StringComparison.OrdinalIgnoreCase)).Sum(i => i.Volume),
+                    Virgin = g.Where(i => IsInventoryType(i.Type, "Virgin")).Sum(i => i.Volume),
+                    NonVirgin = g.Where(i => IsInventoryType(i.Type, "Non-Virgin")).Sum(i => i.Volume),
                     Total = g.Sum(i => i.Volume)
                 })
                 .ToList();
@@ -268,6 +273,9 @@ public partial class AnalysisViewModel : ObservableObject
             IsLoading = false;
         }
     }
+
+    private static bool IsInventoryType(string? value, string expected) =>
+        string.Equals(value?.Trim(), expected, StringComparison.OrdinalIgnoreCase);
 
     private void BuildBarChart(List<MonthData> monthGroups)
     {
@@ -303,19 +311,19 @@ public partial class AnalysisViewModel : ObservableObject
         {
                 Name = "Class A",
                 Values = monthGroups.Select(m => m.ClassA).ToArray(),
-                Fill = new SolidColorPaint(SKColors.Green)
+                Fill = new SolidColorPaint(SKColor.Parse("#2E7D32"))
             },
             new ColumnSeries<decimal>
             {
                 Name = "Class B",
                 Values = monthGroups.Select(m => m.ClassB).ToArray(),
-                Fill = new SolidColorPaint(SKColors.Orange)
+                Fill = new SolidColorPaint(SKColor.Parse("#E65100"))
             },
             new ColumnSeries<decimal>
             {
                 Name = "Class C",
                 Values = monthGroups.Select(m => m.ClassC).ToArray(),
-                Fill = new SolidColorPaint(SKColors.Red)
+                Fill = new SolidColorPaint(SKColor.Parse("#C62828"))
             }
         ];
     }
@@ -345,19 +353,19 @@ public partial class AnalysisViewModel : ObservableObject
         {
                 Name = $"Class A ({classAVol:F1})",
                 Values = [classAVol],
-                Fill = new SolidColorPaint(SKColors.Green)
+                Fill = new SolidColorPaint(SKColor.Parse("#2E7D32"))
             },
             new PieSeries<decimal>
             {
                 Name = $"Class B ({classBVol:F1})",
                 Values = [classBVol],
-                Fill = new SolidColorPaint(SKColors.Orange)
+                Fill = new SolidColorPaint(SKColor.Parse("#E65100"))
             },
             new PieSeries<decimal>
             {
                 Name = $"Class C ({classCVol:F1})",
                 Values = [classCVol],
-                Fill = new SolidColorPaint(SKColors.Red)
+                Fill = new SolidColorPaint(SKColor.Parse("#C62828"))
             }
         ];
         PieLabels = new[] { "Class A", "Class B", "Class C" };

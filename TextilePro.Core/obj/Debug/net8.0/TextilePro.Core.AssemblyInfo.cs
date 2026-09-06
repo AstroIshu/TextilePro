@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TextilePro.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47eff1ad234a04fbc211c7ec11f5aa697b66acb2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+158785ff08b4d093c00c6f816ab593c9943c7d0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("TextilePro.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TextilePro.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

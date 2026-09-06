@@ -33,7 +33,7 @@ public partial class ClassificationViewModel : ObservableObject
     private ObservableCollection<string> _supplierNames = new();
 
     [ObservableProperty]
-    private string? _selectedSupplier;
+    private string? _selectedSupplier = "Select supplier";
 
     [ObservableProperty]
     private string _productSearchText = string.Empty;
@@ -118,7 +118,7 @@ public partial class ClassificationViewModel : ObservableObject
             }
 
             // Populate supplier names for the filter dropdown
-            SupplierNames = new ObservableCollection<string>(suppliers.Select(s => s.Name).OrderBy(n => n));
+            SupplierNames = new ObservableCollection<string>(suppliers.Select(s => s.Name).OrderBy(n => n).Prepend("Select supplier"));
 
             _allClassificationItems = items;
             ClassificationItems = new ObservableCollection<ClassificationItem>(items);
@@ -174,7 +174,7 @@ public partial class ClassificationViewModel : ObservableObject
         }
 
         // Filter by supplier
-        if (!string.IsNullOrEmpty(SelectedSupplier))
+        if (!string.IsNullOrEmpty(SelectedSupplier) && SelectedSupplier != "Select supplier")
         {
             filtered = filtered.Where(item => item.SupplierName == SelectedSupplier);
         }
@@ -196,7 +196,7 @@ public partial class ClassificationViewModel : ObservableObject
     private void ClearFilters()
     {
         SelectedClassFilter = "All";
-        SelectedSupplier = null;
+        SelectedSupplier = "Select supplier";
         ProductSearchText = string.Empty;
         ApplyFilters();
     }

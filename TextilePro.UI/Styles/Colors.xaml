@@ -1,0 +1,37 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="Focus.Visual">
+        <Setter Property="Control.Template"><Setter.Value><ControlTemplate><Border BorderBrush="#2E7DB5" BorderThickness="2" CornerRadius="6" Margin="-3"/></ControlTemplate></Setter.Value></Setter>
+    </Style>
+    <Color x:Key="Color.Primary">#17365D</Color>
+    <Color x:Key="Color.PrimaryHover">#214A78</Color>
+    <Color x:Key="Color.Secondary">#2E7DB5</Color>
+    <Color x:Key="Color.PrimarySoft">#E8F2FA</Color>
+    <Color x:Key="Color.Canvas">#F5F7F9</Color>
+    <Color x:Key="Color.Surface">#FFFFFF</Color>
+    <Color x:Key="Color.TextPrimary">#17212B</Color>
+    <Color x:Key="Color.TextSecondary">#5E6B78</Color>
+    <Color x:Key="Color.TextMuted">#617181</Color>
+    <Color x:Key="Color.Border">#DCE3E8</Color>
+    <Color x:Key="Color.ThreadBeige">#B9AA92</Color>
+    <Color x:Key="Color.FabricWarm">#F0ECE6</Color>
+    <Color x:Key="Color.ClassA">#2E7D32</Color>
+    <Color x:Key="Color.ClassB">#E65100</Color>
+    <Color x:Key="Color.ClassC">#C62828</Color>
+
+    <SolidColorBrush x:Key="Brush.Primary" Color="{StaticResource Color.Primary}"/>
+    <SolidColorBrush x:Key="Brush.PrimaryHover" Color="{StaticResource Color.PrimaryHover}"/>
+    <SolidColorBrush x:Key="Brush.Secondary" Color="{StaticResource Color.Secondary}"/>
+    <SolidColorBrush x:Key="Brush.PrimarySoft" Color="{StaticResource Color.PrimarySoft}"/>
+    <SolidColorBrush x:Key="Brush.Canvas" Color="{StaticResource Color.Canvas}"/>
+    <SolidColorBrush x:Key="Brush.Surface" Color="{StaticResource Color.Surface}"/>
+    <SolidColorBrush x:Key="Brush.TextPrimary" Color="{StaticResource Color.TextPrimary}"/>
+    <SolidColorBrush x:Key="Brush.TextSecondary" Color="{StaticResource Color.TextSecondary}"/>
+    <SolidColorBrush x:Key="Brush.TextMuted" Color="{StaticResource Color.TextMuted}"/>
+    <SolidColorBrush x:Key="Brush.Border" Color="{StaticResource Color.Border}"/>
+    <SolidColorBrush x:Key="Brush.ThreadBeige" Color="{StaticResource Color.ThreadBeige}"/>
+    <SolidColorBrush x:Key="Brush.FabricWarm" Color="{StaticResource Color.FabricWarm}"/>
+    <SolidColorBrush x:Key="Brush.ClassA" Color="{StaticResource Color.ClassA}"/>
+    <SolidColorBrush x:Key="Brush.ClassB" Color="{StaticResource Color.ClassB}"/>
+    <SolidColorBrush x:Key="Brush.ClassC" Color="{StaticResource Color.ClassC}"/>
+</ResourceDictionary>

@@ -89,6 +89,8 @@ public partial class SupplierViewModel : ObservableObject
     {
         if (newValue != null)
         {
+            foreach (var contact in newValue.Contacts)
+                contact.LoadPhoneParts();
             Contacts = new ObservableCollection<SupplierContact>(newValue.Contacts);
             IsEditing = true;
         }
@@ -133,6 +135,28 @@ public partial class SupplierViewModel : ObservableObject
                 return;
             }
 
+            var invalidPhone = Contacts.FirstOrDefault(contact =>
+                !string.IsNullOrWhiteSpace(contact.LocalPhone) &&
+                (contact.LocalPhone.Length != 10 || !contact.LocalPhone.All(char.IsDigit)));
+            if (invalidPhone != null)
+            {
+                MessageBox.Show("Each phone number must contain exactly 10 digits.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var invalidCountryCode = Contacts.FirstOrDefault(contact =>
+                !string.IsNullOrWhiteSpace(contact.LocalPhone) &&
+                (string.IsNullOrWhiteSpace(contact.CountryCode) ||
+                 contact.CountryCode[0] != '+' ||
+                 contact.CountryCode.Length < 2 ||
+                 contact.CountryCode.Length > 5 ||
+                 !contact.CountryCode[1..].All(char.IsDigit)));
+            if (invalidCountryCode != null)
+            {
+                MessageBox.Show("Enter a valid country calling code, for example +91.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
         // Check duplicate name (excluding current entity)
         var exists = await _context.Suppliers
             .AnyAsync(s => s.Name == SelectedSupplier.Name && s.Id != SelectedSupplier.Id);
@@ -143,6 +167,9 @@ public partial class SupplierViewModel : ObservableObject
         }
 
             var isNewSupplier = SelectedSupplier.Id == 0;
+
+            foreach (var contact in Contacts)
+                contact.StorePhoneParts();
 
             // Set dates
             if (isNewSupplier)
@@ -261,6 +288,8 @@ public partial class SupplierViewModel : ObservableObject
             ContactName = "",
             Email = "",
             Phone = "",
+            CountryCode = "+91",
+            LocalPhone = "",
             Website = ""
         });
     }

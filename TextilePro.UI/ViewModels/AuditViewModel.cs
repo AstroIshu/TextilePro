@@ -27,6 +27,12 @@ public partial class AuditViewModel : ObservableObject
     private string _selectedUsername = "All Users";
 
     [ObservableProperty]
+    private ObservableCollection<string> _roleOptions = new(["All Roles"]);
+
+    [ObservableProperty]
+    private string _selectedRole = "All Roles";
+
+    [ObservableProperty]
     private DateTime? _fromDate;
 
     [ObservableProperty]
@@ -42,14 +48,16 @@ public partial class AuditViewModel : ObservableObject
     private string _statusMessage = string.Empty;
 
     public AuditViewModel(AppDbContext context, IAuditService auditService)
-{
-    _context = context;
-    _auditService = auditService;
-}
-public async Task InitializeAsync()
-{
-    await LoadDataAsync();
-}
+    {
+        _context = context;
+        _auditService = auditService;
+        _ = InitializeAsync();
+    }
+
+    public async Task InitializeAsync()
+    {
+        await LoadDataAsync();
+    }
 
     [RelayCommand]
     private async Task LoadDataAsync()
@@ -64,6 +72,14 @@ public async Task InitializeAsync()
                 .OrderBy(u => u)
                 .ToListAsync();
             Usernames = new ObservableCollection<string>(users.Prepend("All Users"));
+
+            var roles = await _context.AuditLogs
+                .Select(l => l.Role)
+                .Where(r => !string.IsNullOrWhiteSpace(r))
+                .Distinct()
+                .OrderBy(r => r)
+                .ToListAsync();
+            RoleOptions = new ObservableCollection<string>(roles.Prepend("All Roles"));
 
             await ApplyFiltersAsync();
         }
@@ -88,6 +104,9 @@ public async Task InitializeAsync()
             // Apply filters
             if (!string.IsNullOrEmpty(SelectedUsername) && SelectedUsername != "All Users")
                 query = query.Where(l => l.Username == SelectedUsername);
+
+            if (!string.IsNullOrEmpty(SelectedRole) && SelectedRole != "All Roles")
+                query = query.Where(l => l.Role == SelectedRole);
 
             if (FromDate.HasValue)
                 query = query.Where(l => l.Timestamp >= FromDate.Value);
@@ -119,11 +138,18 @@ public async Task InitializeAsync()
     private void ResetFilters()
     {
         SelectedUsername = "All Users";
+        SelectedRole = "All Roles";
         FromDate = null;
         ToDate = null;
         ActionFilter = string.Empty;
         _ = ApplyFiltersAsync();
     }
+
+    partial void OnActionFilterChanged(string value) => _ = ApplyFiltersAsync();
+
+    partial void OnSelectedUsernameChanged(string value) => _ = ApplyFiltersAsync();
+
+    partial void OnSelectedRoleChanged(string value) => _ = ApplyFiltersAsync();
 
     [RelayCommand]
     private async Task ExportLogsAsync()

@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <Thickness x:Key="Spacing.2XS">2</Thickness>
+    <Thickness x:Key="Spacing.XS">4</Thickness>
+    <Thickness x:Key="Spacing.S">8</Thickness>
+    <Thickness x:Key="Spacing.M">12</Thickness>
+    <Thickness x:Key="Spacing.L">16</Thickness>
+    <Thickness x:Key="Spacing.XL">24</Thickness>
+    <Thickness x:Key="Spacing.2XL">32</Thickness>
+    <CornerRadius x:Key="Radius.Card">8</CornerRadius>
+    <CornerRadius x:Key="Radius.Control">6</CornerRadius>
+    <sys:Double x:Key="Size.ButtonHeight">40</sys:Double>
+    <sys:Double x:Key="Size.InputHeight">44</sys:Double>
+    <sys:Double x:Key="Size.NavItemHeight">46</sys:Double>
+</ResourceDictionary>

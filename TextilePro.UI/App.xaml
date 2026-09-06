@@ -4,7 +4,26 @@
              xmlns:converters="clr-namespace:TextilePro.UI.Converters">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/Typography.xaml"/>
+                <ResourceDictionary Source="Styles/Spacing.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Styles/Inputs.xaml"/>
+                <ResourceDictionary Source="Styles/Cards.xaml"/>
+                <ResourceDictionary Source="Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="Styles/Badges.xaml"/>
+                <ResourceDictionary Source="Styles/Dialogs.xaml"/>
+                <ResourceDictionary Source="Styles/Charts.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Window">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Foreground" Value="{DynamicResource Brush.TextPrimary}"/>
+                <Setter Property="Background" Value="{DynamicResource Brush.Canvas}"/>
+            </Style>
+            <Style TargetType="UserControl"><Setter Property="FontFamily" Value="Segoe UI"/><Setter Property="Foreground" Value="{DynamicResource Brush.TextPrimary}"/><Setter Property="Background" Value="{DynamicResource Brush.Canvas}"/><Setter Property="UseLayoutRounding" Value="True"/></Style>
             <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+            <converters:NonEmptyTextToVisibilityConverter x:Key="NonEmptyTextToVisibilityConverter" />
             <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
         </ResourceDictionary>
     </Application.Resources>

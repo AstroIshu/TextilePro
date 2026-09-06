@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:TextilePro.UI.Converters"
-             Background="#F5F5F5">
+             Background="{DynamicResource Brush.Canvas}">
 
     <UserControl.Resources>
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
@@ -16,46 +16,23 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <StackPanel Grid.Row="0"
+        <WrapPanel Grid.Row="0"
                 Orientation="Horizontal"
                 Margin="0,0,0,16">
-            <TextBlock Text="🏭 Supplier Management"
-                    FontSize="22"
-                    FontWeight="Bold"
-                    VerticalAlignment="Center"
-                    Foreground="#1a1a1a"/>
-            <Button Content="➕ New Supplier"
+            <TextBlock TextWrapping="Wrap" Text="Supplier Management"
+                    Style="{StaticResource Text.PageTitle}"
+                    VerticalAlignment="Center"/>
+            <Button Style="{StaticResource Button.Secondary}" Content="New Supplier"
                     Command="{Binding NewSupplierCommand}"
-                    Background="#0078D4"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Padding="14,8"
                     Margin="20,0,0,0"
-                    FontWeight="SemiBold"
-                    FontSize="14"
                     Cursor="Hand">
-                <Button.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}"
-                                            Padding="{TemplateBinding Padding}">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Resources>
             </Button>
             <TextBlock Text="(Select a supplier from the left to edit)"
                        FontSize="12"
-                    Foreground="#888888"
+                    Foreground="{DynamicResource Brush.TextMuted}"
                     VerticalAlignment="Center"
                     Margin="20,0,0,0"/>
-        </StackPanel>
+        </WrapPanel>
 
         <!-- Main Content -->
         <Grid Grid.Row="1">
@@ -69,7 +46,7 @@
                     Margin="0,0,12,0"
                     Background="White"
                     Padding="12"
-                    BorderBrush="#D0D0D0"
+                    BorderBrush="{DynamicResource Brush.Border}"
                     BorderThickness="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -79,21 +56,21 @@
 
                     <StackPanel Grid.Row="0"
                             Margin="0,0,0,12">
-                        <TextBlock Text="📋 Supplier List"
-                                FontWeight="Bold"
+                        <TextBlock Text="Supplier List"
+                                FontWeight="SemiBold"
                                 FontSize="14"
-                                Foreground="#333333"
+                                Foreground="{DynamicResource Brush.TextPrimary}"
                                 Margin="0,0,0,8"/>
                         <Grid>
                             <TextBox x:Name="SearchBox"
                                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                                      Padding="8"
-                                    BorderBrush="#CCCCCC"
+                                    BorderBrush="{DynamicResource Brush.Border}"
                                     BorderThickness="1"
                                     
                                      FontSize="13"
                                     Background="#FAFAFA"/>
-                            <TextBlock Text="🔍 Search suppliers..."
+                            <TextBlock Text="Search suppliers..."
                                     FontSize="13"
                                     Foreground="#AAAAAA"
                                        Padding="8,0,0,0"
@@ -127,7 +104,7 @@
                                         <Setter Property="Background"
                                                 Value="#E5F1FB"/>
                                         <Setter Property="BorderBrush"
-                                                Value="#0078D4"/>
+                                                Value="{DynamicResource Brush.Secondary}"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver"
                                             Value="True">
@@ -142,8 +119,8 @@
     <DataTemplate>
         <StackPanel>
             <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="14"/>
-            <TextBlock Text="{Binding Country, StringFormat='{}📍 {0}'}" FontSize="11" Foreground="#666"/>
-            <TextBlock Text="{Binding Contacts.Count, StringFormat='📞 {0} contact(s)'}" FontSize="10" Foreground="#888"/>
+            <TextBlock Text="{Binding Country, StringFormat='{}{0}'}" FontSize="11" Foreground="{DynamicResource Brush.TextSecondary}"/>
+            <TextBlock Text="{Binding Contacts.Count, StringFormat='{}{0} contact(s)'}" FontSize="11" Foreground="{DynamicResource Brush.TextMuted}"/>
         </StackPanel>
     </DataTemplate>
 </ListBox.ItemTemplate>
@@ -166,7 +143,7 @@
                     
                     Background="White"
                     Padding="20"
-                    BorderBrush="#D0D0D0"
+                    BorderBrush="{DynamicResource Brush.Border}"
                     BorderThickness="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -183,13 +160,13 @@
                         <!-- Title -->
                         <StackPanel Grid.Row="0"
                                 Margin="0,0,0,16">
-                            <TextBlock Text="{Binding SelectedSupplier.Name, FallbackValue='📝 New Supplier'}"
+                            <TextBlock Text="{Binding SelectedSupplier.Name, FallbackValue='New supplier'}"
                                        FontSize="18"
-                                    FontWeight="Bold"
-                                    Foreground="#1a1a1a"/>
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource Brush.TextPrimary}"/>
                             <TextBlock Text="{Binding SelectedSupplier.Id, Converter={StaticResource IdToStatusConverter}, FallbackValue='New'}"
                                        FontSize="11"
-                                    Foreground="#888888"/>
+                                    Foreground="{DynamicResource Brush.TextMuted}"/>
                         </StackPanel>
 
                         <!-- Supplier Information -->
@@ -197,12 +174,12 @@
                                 Margin="0,0,0,16"
                                 Padding="0,0,0,12"
                                 BorderThickness="0,0,0,1"
-                                BorderBrush="#E0E0E0">
+                                BorderBrush="{DynamicResource Brush.Border}">
                             <StackPanel>
-                                <TextBlock Text="🏢 Supplier Information"
-                                        FontWeight="Bold"
+                                <TextBlock Text="Supplier Information"
+                                        FontWeight="SemiBold"
                                         FontSize="14"
-                                        Foreground="#333333"
+                                        Foreground="{DynamicResource Brush.TextPrimary}"
                                         Margin="0,0,0,12"/>
 
                                 <Grid Margin="0,0,0,8">
@@ -214,11 +191,11 @@
                                             Text="Name *"
                                             FontWeight="SemiBold"
                                             VerticalAlignment="Center"
-                                            Foreground="#333333"/>
+                                            Foreground="{DynamicResource Brush.TextPrimary}"/>
                                     <TextBox Grid.Column="1"
                                             Text="{Binding SelectedSupplier.Name, UpdateSourceTrigger=PropertyChanged}"
                                              Padding="8"
-                                            BorderBrush="#CCCCCC"
+                                            BorderBrush="{DynamicResource Brush.Border}"
                                             BorderThickness="1"
                                             
                                              FontSize="13"
@@ -234,11 +211,11 @@
                                             Text="Country"
                                             FontWeight="SemiBold"
                                             VerticalAlignment="Center"
-                                            Foreground="#333333"/>
+                                            Foreground="{DynamicResource Brush.TextPrimary}"/>
                                     <TextBox Grid.Column="1"
                                             Text="{Binding SelectedSupplier.Country, UpdateSourceTrigger=PropertyChanged}"
                                              Padding="8"
-                                            BorderBrush="#CCCCCC"
+                                            BorderBrush="{DynamicResource Brush.Border}"
                                             BorderThickness="1"
                                            
                                              FontSize="13"/>
@@ -253,16 +230,20 @@
                                             Text="Address"
                                             FontWeight="SemiBold"
                                             VerticalAlignment="Top"
-                                            Foreground="#333333"
+                                            Foreground="{DynamicResource Brush.TextPrimary}"
                                             Margin="0,4,0,0"/>
                                     <TextBox Grid.Column="1"
                                             Text="{Binding SelectedSupplier.Address, UpdateSourceTrigger=PropertyChanged}"
                                              Padding="8"
-                                            BorderBrush="#CCCCCC"
+                                            BorderBrush="{DynamicResource Brush.Border}"
                                             BorderThickness="1"
                                             
                                              AcceptsReturn="True"
-                                            Height="60"
+                                            MinLines="1"
+                                            MaxLines="4"
+                                            MinHeight="44"
+                                            MaxHeight="112"
+                                            VerticalScrollBarVisibility="Auto"
                                             TextWrapping="Wrap"
                                              FontSize="13"/>
                                 </Grid>
@@ -274,162 +255,74 @@
                                 Margin="0,0,0,12"
                                 Padding="0,8,0,0"
                                 BorderThickness="0,1,0,0"
-                                BorderBrush="#E0E0E0">
+                                BorderBrush="{DynamicResource Brush.Border}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="📞 Contacts"
-                                            FontWeight="Bold"
+                                    <TextBlock Text="Contacts"
+                                            FontWeight="SemiBold"
                                             FontSize="14"
-                                            Foreground="#333333"/>
+                                            Foreground="{DynamicResource Brush.TextPrimary}"/>
                                     <TextBlock Text="Add one or more contacts for this supplier"
                                             FontSize="11"
-                                            Foreground="#888888"/>
+                                            Foreground="{DynamicResource Brush.TextMuted}"/>
                                 </StackPanel>
-                                <Button Grid.Column="1"
-                                        Content="➕ Add Contact"
+                                <Button Style="{StaticResource Button.Primary}" Grid.Column="1"
+                                        Content="Add Contact"
                                         Command="{Binding AddContactCommand}"
-                                        Background="#E8F0FE"
-                                        Foreground="#0078D4"
-                                        BorderThickness="1"
-                                        BorderBrush="#0078D4"
-                                        Padding="12,6"
-                                        FontSize="12"
-                                        FontWeight="SemiBold"
+                                        BorderBrush="{DynamicResource Brush.Secondary}"
                                         Cursor="Hand"
                                         Margin="0,0,0,8">
-                                    <Button.Resources>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Background="{TemplateBinding Background}"
-                                                                
-                                                                Padding="{TemplateBinding Padding}"
-                                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                                BorderThickness="{TemplateBinding BorderThickness}">
-                                                            <ContentPresenter HorizontalAlignment="Center"
-                                                                    VerticalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Resources>
                                 </Button>
                             </Grid>
                         </Border>
 
-                        <!-- Contacts DataGrid -->
-                        <Border Grid.Row="3"
-                                Margin="0,0,0,12"
-                                BorderBrush="#E0E0E0"
-                                BorderThickness="1"
-                               >
-                            <DataGrid ItemsSource="{Binding Contacts}"
-                                      AutoGenerateColumns="False"
-                                    CanUserAddRows="False"
-                                      HeadersVisibility="Column"
-                                      Background="White"
-                                    BorderThickness="0"
-                                      GridLinesVisibility="Horizontal"
-                                      RowHeight="32"
-                                      FontSize="13">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Contact Name"
-                                            Binding="{Binding ContactName}"
-                                            Width="*"/>
-                                    <DataGridTextColumn Header="Email"
-                                            Binding="{Binding Email}"
-                                            Width="*"/>
-                                    <DataGridTextColumn Header="Phone"
-                                            Binding="{Binding Phone}"
-                                            Width="120"/>
-                                    <DataGridTextColumn Header="Website"
-                                            Binding="{Binding Website}"
-                                            Width="120"/>
-                                    <DataGridTemplateColumn Header=""
-                                            Width="40">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Content="✖"
-                                                        Command="{Binding DataContext.RemoveContactCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                        CommandParameter="{Binding}"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"
-                                                        Foreground="#E81123"
-                                                        FontWeight="Bold"
-                                                        FontSize="14"
-                                                        Cursor="Hand"
-                                                        ToolTip="Remove contact"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Border>
+                        <!-- Contact cards -->
+                        <ItemsControl Grid.Row="3" ItemsSource="{Binding Contacts}" Margin="0,0,0,12">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="16" Margin="0,0,0,12" CornerRadius="8" Background="{DynamicResource Brush.Canvas}" BorderBrush="{DynamicResource Brush.Border}" BorderThickness="1">
+                                        <StackPanel>
+                                            <DockPanel Margin="0,0,0,12">
+                                                <Button DockPanel.Dock="Right" Content="Remove contact" Style="{StaticResource Button.Compact}" HorizontalAlignment="Right" Command="{Binding DataContext.RemoveContactCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                                <TextBlock Text="Contact details" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource Brush.TextPrimary}" VerticalAlignment="Center"/>
+                                            </DockPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                                <StackPanel Margin="0,0,8,12"><TextBlock Text="Contact name" Style="{StaticResource Text.Label}" Margin="0,0,0,6"/><TextBox Text="{Binding ContactName, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="Contact name"/></StackPanel>
+                                                <StackPanel Grid.Column="1" Margin="8,0,0,12"><TextBlock Text="Email address" Style="{StaticResource Text.Label}" Margin="0,0,0,6"/><TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="Email address"/></StackPanel>
+                                            </Grid>
+                                            <TextBlock Text="Phone number" Style="{StaticResource Text.Label}" Margin="0,0,0,6"/>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions><ColumnDefinition Width="90"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                                <TextBox Text="{Binding CountryCode, UpdateSourceTrigger=PropertyChanged}" MaxLength="5" Margin="0,0,8,0" PreviewTextInput="CountryCode_PreviewTextInput" DataObject.Pasting="CountryCode_Pasting" AutomationProperties.Name="Country calling code" ToolTip="Country calling code, for example +91"/>
+                                                <TextBox Grid.Column="1" Text="{Binding LocalPhone, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" PreviewTextInput="PhoneNumber_PreviewTextInput" DataObject.Pasting="PhoneNumber_Pasting" AutomationProperties.Name="10 digit phone number"/>
+                                            </Grid>
+                                            <TextBlock Text="Website" Style="{StaticResource Text.Label}" Margin="0,0,0,6"/>
+                                            <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="Website"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
                         <!-- Action Buttons -->
                         <StackPanel Grid.Row="6"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Margin="0,12,0,0">
-                            <Button Content="💾 Save Supplier"
+                            <Button Style="{StaticResource Button.Primary}" Content="Save Supplier"
                                     Command="{Binding SaveSupplierCommand}"
-                                    Background="#0078D4"
-                                    Foreground="White"
-                                    BorderThickness="0"
-                                    Padding="20,10"
                                     Margin="0,0,12,0"
-                                    Cursor="Hand"
-                                    FontWeight="SemiBold"
-                                    FontSize="14">
-                                <Button.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Resources>
+                                    Cursor="Hand">
                             </Button>
-                            <Button Content="🗑️ Delete"
+                            <Button Style="{StaticResource Button.Compact}" Content="Delete"
                                     Command="{Binding DeleteSupplierCommand}"
                                     CommandParameter="{Binding SelectedSupplier}"
-                                    Background="#E81123"
-                                    Foreground="White"
-                                    BorderThickness="0"
-                                    Padding="20,10"
-                                    Cursor="Hand"
-                                    FontWeight="SemiBold"
-                                    FontSize="14">
-                                <Button.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Resources>
+                                    Cursor="Hand">
                             </Button>
                         </StackPanel>
                     </Grid>

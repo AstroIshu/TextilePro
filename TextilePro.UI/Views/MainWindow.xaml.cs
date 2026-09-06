@@ -7,15 +7,19 @@ namespace TextilePro.UI.Views;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly AppDbContext _context;
+
+    public MainWindow(AppDbContext context)
     {
+        _context = context;
         try
         {
             InitializeComponent();
             var session = Application.Current.Properties["Session"] as dynamic;
-            if (session != null && session.IsAdmin)
+            if (session != null)
             {
-                AuditTab.Visibility = Visibility.Visible;
+                bool isAdmin = session.IsAdmin;
+                AuditTab.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             }
         }
         catch (System.Exception ex)
@@ -24,6 +28,14 @@ public partial class MainWindow : Window
                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+    private async void SaveAll_Click(object sender, RoutedEventArgs e)
+    {
+        await _context.SaveChangesAsync();
+        MessageBox.Show("All pending tracked changes have been saved.", "TextilePro", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void ExitApplication_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
 
 
     public void ShowDashboardTab()

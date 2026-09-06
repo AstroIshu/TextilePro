@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +30,8 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         // 1. Register DbContext
-        var connectionString = "Data Source=TextilePro.db;";
+        var databasePath = Path.Combine(AppContext.BaseDirectory, "TextilePro.db");
+        var connectionString = $"Data Source={databasePath};";
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(connectionString));
 
@@ -46,7 +48,6 @@ public partial class App : Application
         services.AddScoped<ReportViewModel>();
         services.AddScoped<AuditViewModel>();
         services.AddScoped<DashboardViewModel>();
-        services.AddTransient<DashboardViewModel>();
 
         // 4. Register Windows
         services.AddScoped<LoginWindow>();

@@ -26,13 +26,13 @@ public partial class ReportViewModel : ObservableObject
     // List of available tabs with their names and keys
     public ObservableCollection<ReportTabItem> AvailableTabs { get; } = new()
     {
-        new ReportTabItem { Key = "tab1", DisplayName = "🏭 Tab 1 — Suppliers", IsSelected = true },
-        new ReportTabItem { Key = "tab2", DisplayName = "🧪 Tab 2 — Chemicals", IsSelected = true },
-        new ReportTabItem { Key = "tab3", DisplayName = "⭐ Tab 3 — Evaluations", IsSelected = true },
-        new ReportTabItem { Key = "tab4", DisplayName = "🏷️ Tab 4 — Classification", IsSelected = true },
-        new ReportTabItem { Key = "tab5", DisplayName = "📦 Tab 5 — Inventory", IsSelected = true },
-        new ReportTabItem { Key = "tab6", DisplayName = "📈 Tab 6 — Analysis", IsSelected = true },
-        new ReportTabItem { Key = "tab7", DisplayName = "🎯 Tab 7 — Target 2030", IsSelected = true }
+        new ReportTabItem { Key = "tab1", DisplayName = "Suppliers", IsSelected = true },
+        new ReportTabItem { Key = "tab2", DisplayName = "Chemicals", IsSelected = true },
+        new ReportTabItem { Key = "tab3", DisplayName = "Evaluations", IsSelected = true },
+        new ReportTabItem { Key = "tab4", DisplayName = "Classification", IsSelected = true },
+        new ReportTabItem { Key = "tab5", DisplayName = "Inventory", IsSelected = true },
+        new ReportTabItem { Key = "tab6", DisplayName = "Analysis", IsSelected = true },
+        new ReportTabItem { Key = "tab7", DisplayName = "Target 2030", IsSelected = true }
     };
 
     [ObservableProperty]
@@ -432,13 +432,13 @@ public partial class ReportViewModel : ObservableObject
     {
         return key switch
         {
-            "tab1" => "🏭 Tab 1 — Suppliers",
-            "tab2" => "🧪 Tab 2 — Chemicals",
-            "tab3" => "⭐ Tab 3 — Evaluations",
-            "tab4" => "🏷️ Tab 4 — Classification",
-            "tab5" => "📦 Tab 5 — Inventory",
-            "tab6" => "📈 Tab 6 — Analysis",
-            "tab7" => "🎯 Tab 7 — Target 2030",
+            "tab1" => "Suppliers",
+            "tab2" => "Chemicals",
+            "tab3" => "Evaluations",
+            "tab4" => "Classification",
+            "tab5" => "Inventory",
+            "tab6" => "Analysis",
+            "tab7" => "Target 2030",
             _ => "Report"
         };
     }

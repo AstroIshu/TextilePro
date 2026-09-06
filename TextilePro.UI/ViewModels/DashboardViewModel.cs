@@ -30,6 +30,12 @@ public partial class DashboardViewModel : ObservableObject
     private int _totalChemicals;
 
     [ObservableProperty]
+    private int _assignedChemicals;
+
+    [ObservableProperty]
+    private int _pendingEvaluations;
+
+    [ObservableProperty]
     private int _totalEvaluations;
 
     [ObservableProperty]
@@ -49,6 +55,12 @@ public partial class DashboardViewModel : ObservableObject
 
     [ObservableProperty]
     private decimal _nonVirginVolume;
+
+    [ObservableProperty]
+    private string _virginShare = "0%";
+
+    [ObservableProperty]
+    private string _nonVirginShare = "0%";
 
     // Recent Activities
     [ObservableProperty]
@@ -129,6 +141,8 @@ public partial class DashboardViewModel : ObservableObject
         TotalChemicals = await _context.ZDHCChemicals.CountAsync();
         TotalEvaluations = await _context.Evaluations.CountAsync();
         TotalInventoryRecords = await _context.Inventories.CountAsync();
+        AssignedChemicals = await _context.SupplierChemicals.CountAsync();
+        PendingEvaluations = await _context.Suppliers.CountAsync(s => !s.Evaluations.Any());
 
         // Volumes
         var allInventory = await _context.Inventories
@@ -165,19 +179,19 @@ public partial class DashboardViewModel : ObservableObject
         ClassAShare = TotalVolume > 0 ? $"{((ClassAVolume / TotalVolume) * 100):F1}%" : "0%";
 
         VirginVolume = allInventory
- .Where(i => string.Equals(
-     i.Type,
-     "Virgin",
-     StringComparison.OrdinalIgnoreCase))
- .Sum(i => i.Volume);
+            .Where(i => IsInventoryType(i.Type, "Virgin"))
+            .Sum(i => i.Volume);
 
         NonVirginVolume = allInventory
-            .Where(i => string.Equals(
-                i.Type,
-                "Non-Virgin",
-                StringComparison.OrdinalIgnoreCase))
+            .Where(i => IsInventoryType(i.Type, "Non-Virgin"))
             .Sum(i => i.Volume);
+
+        VirginShare = TotalVolume > 0 ? $"{VirginVolume / TotalVolume:P1}" : "0%";
+        NonVirginShare = TotalVolume > 0 ? $"{NonVirginVolume / TotalVolume:P1}" : "0%";
     }
+
+    private static bool IsInventoryType(string? value, string expected) =>
+        string.Equals(value?.Trim(), expected, StringComparison.OrdinalIgnoreCase);
 
     private async Task LoadRecentActivitiesAsync()
     {
@@ -261,19 +275,19 @@ public partial class DashboardViewModel : ObservableObject
                 {
                     Name = "Class A",
                     Values = monthData.Select(m => m.ClassA).ToArray(),
-                    Fill = new SolidColorPaint(SKColors.Green)
+                    Fill = new SolidColorPaint(SKColor.Parse("#2E7D32"))
                 },
                 new ColumnSeries<decimal>
                 {
                     Name = "Class B",
                     Values = monthData.Select(m => m.ClassB).ToArray(),
-                    Fill = new SolidColorPaint(SKColors.Orange)
+                    Fill = new SolidColorPaint(SKColor.Parse("#E65100"))
                 },
                 new ColumnSeries<decimal>
                 {
                     Name = "Class C",
                     Values = monthData.Select(m => m.ClassC).ToArray(),
-                    Fill = new SolidColorPaint(SKColors.Red)
+                    Fill = new SolidColorPaint(SKColor.Parse("#C62828"))
                 }
             ];
         }
